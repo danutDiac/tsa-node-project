@@ -9,16 +9,25 @@ let findUser = (users, id) => {
 }
 
 let getUser = (request, response) => {
-    let users = require("../../db/users.json");
-    let user = findUser(users, Number(request.params.id));
+    try {
+        let users = require("../../db/users.json");
+        console.log(users)
+        let user = findUser(users, Number(request.params.id));
 
-    if (user !== false) {
-        response.json(user);
+        if (user !== false) {
+            response.json(user);
+        }
+        else {
+            response.status(404);
+            response.json({
+                "error": "User not found"
+            });
+        }
     }
-    else {
-        response.status(404);
+    catch (err) {
+        response.status(500);
         response.json({
-            "error": "User not found"
+            "error": "Internal server error"
         });
     }
 }
