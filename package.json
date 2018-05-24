@@ -1,5 +1,5 @@
 {
-  "name": "tsa-node-project",
+  "name": "concedii",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,10 +7,7 @@
     "start": "nodemon src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/danutDiac/tsa-node-project.git"
-  },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
