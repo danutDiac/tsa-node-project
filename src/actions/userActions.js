@@ -32,6 +32,4 @@ let getUser = (request, response) => {
     }
 }
 
-module.exports = { getUser: getUser,
-                   findUser: findUser}
-                   
+module.exports = getUser;
