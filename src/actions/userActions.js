@@ -1,7 +1,7 @@
 let findUser = (users, id) => {
     if (id < 0) return false;
     for (let user of users) {
-        if (user["userId"] === id) {
+        if (user["id"] === id) {
             return user;
         }
     }
@@ -11,7 +11,6 @@ let findUser = (users, id) => {
 let getUser = (request, response) => {
     try {
         let users = require("../../db/users.json");
-        console.log(users)
         let user = findUser(users, Number(request.params.id));
 
         if (user !== false) {
@@ -32,6 +31,6 @@ let getUser = (request, response) => {
     }
 }
 
-module.exports = { getUser: getUser,
-                   findUser: findUser}
+module.exports = { getUser,
+                   findUser }
                    
