@@ -14,16 +14,19 @@ let createUser = (req, res) => {
     res.status(400).json({ message: convObj(name) });
   }
 };
-let convObj = str => {
+let convObj = (str) => {
   let ok = "";
-  if (!/[a-zA-Z]+/.test(str.first_name))
+  if (!/[a-zA-Z]+/.test(str.firstName))
     ok += "Ati introdus prenumele gresit" + "\n";
-  if (!/[a-zA-Z]+/.test(str.last_name))
+  if (!/[a-zA-Z]+/.test(str.lastName))
     ok += "Ati introdus numele gresit" + "\n";
   if (!/^([a-z0-9A-Z])+\@([a-z0-9])+\.([a-z])+$/.test(str.email))
     ok += "Ati introdus emailul gresit" + "\n";
   if (!/^([0]{1})\d{5,9}$/.test(str.phone))
     ok += "Ati introdus gresit numarul de telefon";
+  if (str.email.length>0 && checkMail(str.email, users) === 1) {
+    ok+= "Mailul folosit exista deja in baza de date";
+  }
   if (ok === "") return 1;
   else return ok;
 };
@@ -37,5 +40,13 @@ let idMax = (users) => {
       }
   return max;
 }
+
+let checkMail = (newMail, allMails) => {
+  for (let i=0; i<allMails.length; i++){
+    if (newMail === allMails[i].email)
+       return 1;
+  } 
+  return 0;
+} 
 
 module.exports = createUser;

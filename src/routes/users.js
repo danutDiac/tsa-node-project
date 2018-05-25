@@ -1,9 +1,8 @@
-let getUser = require("../actions/userActions");
 let createUser = require("../actions/createUser");
+let retrieveUser = require("../actions/retrieveUser")
 let router = require("express").Router();
 
-
-router.get("/:id", getUser);
+router.get("/");
 router.post("/", createUser);
 
 module.exports = router;

@@ -1,1 +1,17 @@
-[{ "first_name": "", "last_name": "", "email": "", "phone": "", "userId": 0 }]
+[
+  { "firstName": "", "lastName": "", "email": "", "phone": "", "userId": 0 },
+  {
+    "firstName": "Costel",
+    "lastName": "Ciobanu",
+    "email": "cidsada@gmail.com",
+    "phone": "0734454922",
+    "userId": 1
+  },
+  {
+    "firstName": "Costel",
+    "lastName": "Ciobanu",
+    "email": "cidsada@gmail.com",
+    "phone": "0734454922",
+    "userId": 2
+  }
+]
