@@ -16,7 +16,6 @@ describe('DELETE /users/:id', function () {
                 "phone": ""
             }
         ]
-        console.log('inainte')
         fs.writeFile('db/users.json', JSON.stringify(users), function (err) {
             if(err) console.log(err)
             done()
