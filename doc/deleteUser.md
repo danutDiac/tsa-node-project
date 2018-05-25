@@ -1,4 +1,4 @@
-# Retriving user details
+# Retrieving user details
 
 Deletes a single user with given id
 
