@@ -24,6 +24,9 @@ let convObj = str => {
     ok += "Ati introdus emailul gresit" + "\n";
   if (!/^([0]{1})\d{5,9}$/.test(str.phone))
     ok += "Ati introdus gresit numarul de telefon";
+  if (checkMail(str.email, users) === 1) {
+    ok+= "Mailul folosit exista deja in baza de date";
+  }
   if (ok === "") return 1;
   else return ok;
 };
@@ -37,5 +40,14 @@ let idMax = (users) => {
       }
   return max;
 }
+
+let checkMail = (newMail, allMails) => {
+  console.log(allMails[1].email, ' ', newMail);
+  for (let i=0; i<allMails.length; i++){
+    if (newMail === allMails[i].email)
+       return 1;
+  } 
+  return 0;
+} 
 
 module.exports = createUser;
