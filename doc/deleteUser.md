@@ -29,14 +29,14 @@ Deletes a single user with given id
       **Content:** 
     ```javascript
     {
-        error: "User not found"
+        message: "User not found"
     }
     ```
     * **Code:** 500 INTERNAL SERVER ERROR <br>
       **Content:** 
     ```javascript
     {
-        error: "Internal server error"
+        message: "Internal server error"
     }
     ```
  
