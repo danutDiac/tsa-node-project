@@ -42,5 +42,5 @@ Deletes a single user with given id
  
 * **Sample Call:** <br>
     ```javascript
-    fetch("localhost:3000/users/0");
+    fetch("localhost:3000/users/0", {method:'DELETE'});
     ```
