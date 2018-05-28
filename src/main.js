@@ -1,11 +1,11 @@
 let express = require("express");
 let bodyParser = require("body-parser")
 let usersRouter = require("./routes/users");
-let exampleRouter = require("./routes/example");
 
 let app = express();
 app.use(bodyParser.json());
 app.use("/users", usersRouter);
-app.use("/api", exampleRouter);
+
 
 app.listen(3000);
+
