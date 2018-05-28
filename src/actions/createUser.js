@@ -3,7 +3,7 @@ let users = require("../../db/users.json")
 
 let createUser = (req, res) => {
   let name = req.body;
-  if (convObj(name) === 1) {
+  if (dataValid(name) === 1) {
     name.userId = idMax(users)+1;
     users.push(name);
     fs.writeFile("db/users.json", JSON.stringify(users), err => {
@@ -11,14 +11,14 @@ let createUser = (req, res) => {
     });
     res.status(200).send(`/users/${name.userId}`);
   } else {
-    res.status(400).json({ message: convObj(name) });
+    res.status(400).json({ message: dataValid(name) });
   }
 };
-let convObj = (str) => {
+let dataValid = (str) => {
   let ok = "";
-  if (!/[a-zA-Z]+/.test(str.firstName))
+  if (!/^[a-zA-Z]+$/.test(str.firstName))
     ok += "Ati introdus prenumele gresit" + "\n";
-  if (!/[a-zA-Z]+/.test(str.lastName))
+  if (!/^[a-zA-Z]+$/.test(str.lastName))
     ok += "Ati introdus numele gresit" + "\n";
   if (!/^([a-z0-9A-Z])+\@([a-z0-9])+\.([a-z])+$/.test(str.email))
     ok += "Ati introdus emailul gresit" + "\n";
@@ -49,4 +49,9 @@ let checkMail = (newMail, allMails) => {
   return 0;
 } 
 
-module.exports = createUser;
+module.exports = {
+  createUser,
+  idMax,
+  dataValid,
+  checkMail
+};
