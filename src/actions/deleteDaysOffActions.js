@@ -1,18 +1,21 @@
 let fs = require('fs')
 let daysOff = require('../../db/daysOff.json')
 
-let deleteDaysOff = (req, res) => {
-    let id = req.params.id
-    let found = false
-    let index;
-    for (let i = 0; i < daysOff.length; i++) {
-        if (id == daysOff[i].id) {
-            found = true
-            index = i
-        }
+let findDaysOff = (id) => {
+    return daysOff.find(e => e.id == id)
+}
+
+let deleteDaysOffFromArray = (daysOff, index) => {
+    if (index >= 0) {
+        daysOff.splice(index, 1);
     }
-    if (found) {
-        daysOff.splice(index, 1)
+}
+
+let deleteDaysOff = (req, res) => {
+    let id = req.params.id;
+    let result = findDaysOff(id);
+    if (result) {
+        deleteDaysOffFromArray(daysOff, result);
         fs.writeFile('db/daysOff.json', JSON.stringify(daysOff), function (err) {
             if (err) {
                 res.status(500).json({ "message": "Internal server error." })
@@ -26,5 +29,7 @@ let deleteDaysOff = (req, res) => {
 }
 
 module.exports = {
-    deleteDaysOff
+    deleteDaysOff,
+    findDaysOff,
+    deleteDaysOffFromArray
 }
