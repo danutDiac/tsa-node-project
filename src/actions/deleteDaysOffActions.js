@@ -13,7 +13,7 @@ let deleteDaysOff = (req, res) => {
     }
     if (found) {
         daysOff.splice(index, 1)
-        fs.writeFile('../../db/daysOff.json', JSON.stringify(daysOff), function (err) {
+        fs.writeFile('db/daysOff.json', JSON.stringify(daysOff), function (err) {
             if (err) {
                 res.status(500).json({ "message": "Internal server error." })
             } else {
