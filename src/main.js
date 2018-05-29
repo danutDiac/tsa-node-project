@@ -11,3 +11,5 @@ app.use("/users", usersRouter);
 app.use("/api", exampleRouter);
 
 app.listen(3000);
+
+module.exports = app;
