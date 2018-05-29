@@ -1,36 +1,83 @@
-var example = require("../db/users.json")[1];
-var errorMessage = {
-    "error": "User could not be created"
-}
+let idMax = require("../src/actions/createUser").idMax;
+let dataValid = require("../src/actions/createUser").dataValid;
+let checkMail = require("../src/actions/createUser").checkMail;
 
-const chai = require('chai');
-const chaiHttp = require('chai-http')
+let users = [
+  {
+    firstName: "Costel",
+    lastName: "Ciobanu",
+    email: "cidsadagmail.com",
+    phone: "0734454922",
+    userId: 1
+  },
+  {
+    firstName: "Co5t3!",
+    lastName: "Ciobanu",
+    email: "cidsa@dagmail.com",
+    phone: "0734454922",
+    userId: 2
+  },
+  {
+    firstName: "Costel",
+    lastName: "Ciobanu",
+    email: "altceva@gmail.com",
+    phone: "0734454922",
+    userId: 3
+  },
+  {
+    firstName: "Costel",
+    lastName: "Ciobanu",
+    email: "altceva@gmail.com",
+    phone: "0734454922",
+    userId: 4
+  },
+  {
+    firstName: "Costel",
+    lastName: "Ciobanu",
+    email: "altceva@gmail.com",
+    phone: "0734454922",
+    userId: 5
+  }
+];
+
+const chai = require("chai");
 const should = chai.should();
-chai.use(chaiHttp);
 
-describe('CreateUser Module', () => {
-    it("Should check if user with id 1 was created", (done) => {
-        chai.request(`http://localhost:3000`)
-            .get('/users/1')
-            .end((error, response) => {
-                response.should.have.status(200);
-                response.should.be.json;
-                chai.expect(response.body).to.deep.equal(example);
-                done();
-            })
-    });
 
-    it("Should return error 400 if wrong data is introduced", (done) => {
-        chai.request(`http://localhost:3000`)
-            .get('/users/')
-            .end((error, response) => {
-                response.should.have.status(400);
-                response.should.be.json;
-                chai.expect(response.body).to.deep.equal(errorMessage);
-                done();
-            })
-    });
-        
+describe("idMax", () => {
+  it("Should return the maximum value for existing user id", done => {
+    let expectedResult = 5;
+    let result = idMax(users);
 
+    chai.expect(result).to.equal(expectedResult);
+    chai.expect(result).to.not.equal(2);
+    done()
+  });
+});
+
+describe('dataValid', ()=>{
+  it("Should return 1 when the validation is good", done => {
+    let result = dataValid(users[2]);
+    chai.expect(result).to.equal(1);
+    done()
+  })
+  it("Should return the error when mail validation requirements are not met", done => {
+    let result = dataValid(users[0]);
+    chai.expect(result).to.equal("Ati introdus emailul gresit" + "\n");
+    done();
+  })
+  it("Should return error when you add odd characters to the name", done =>{
+    let result  = dataValid(users[1]);
+    chai.expect(result).to.equal("Ati introdus prenumele gresit" + "\n");
+    done();
+  })
 })
+describe('checkMail',()=>{
+  it("Should return 0 when there is the same e-mail twice", done =>{
+    let result  = checkMail(users[3],users);
+    chai.expect(result).to.equal(0);
+    done();
+  })
+})
+
 

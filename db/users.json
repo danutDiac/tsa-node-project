@@ -1,17 +1,3 @@
 [
-  { "firstName": "", "lastName": "", "email": "", "phone": "", "userId": 0 },
-  {
-    "firstName": "Costel",
-    "lastName": "Ciobanu",
-    "email": "cidsada@gmail.com",
-    "phone": "0734454922",
-    "userId": 1
-  },
-  {
-    "firstName": "Costel",
-    "lastName": "Ciobanu",
-    "email": "cidsada@gmail.com",
-    "phone": "0734454922",
-    "userId": 2
-  }
+  { "firstName": "", "lastName": "", "email": "", "phone": "", "id": 0 }
 ]
