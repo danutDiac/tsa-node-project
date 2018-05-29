@@ -8,35 +8,35 @@ let users = [
     lastName: "Ciobanu",
     email: "cidsadagmail.com",
     phone: "0734454922",
-    userId: 1
+    id: 1
   },
   {
     firstName: "Co5t3!",
     lastName: "Ciobanu",
     email: "cidsa@dagmail.com",
     phone: "0734454922",
-    userId: 2
+    id: 2
   },
   {
     firstName: "Costel",
     lastName: "Ciobanu",
     email: "altceva@gmail.com",
     phone: "0734454922",
-    userId: 3
+    id: 3
   },
   {
     firstName: "Costel",
     lastName: "Ciobanu",
     email: "altceva@gmail.com",
     phone: "0734454922",
-    userId: 4
+    id: 4
   },
   {
     firstName: "Costel",
     lastName: "Ciobanu",
     email: "altceva@gmail.com",
     phone: "0734454922",
-    userId: 5
+    id: 5
   }
 ];
 
@@ -50,7 +50,6 @@ describe("idMax", () => {
     let result = idMax(users);
 
     chai.expect(result).to.equal(expectedResult);
-    chai.expect(result).to.not.equal(2);
     done()
   });
 });
