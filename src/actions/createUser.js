@@ -6,9 +6,7 @@ let createUser = (req, res) => {
   if (dataValid(name) === 1) {
     name.userId = idMax(users)+1;
     users.push(name);
-    fs.writeFile("db/users.json", JSON.stringify(users), err => {
-      if (err) throw err(console.log("Nu s-a putut suprascrie"));
-    });
+    fs.writeFile("db/users.json", JSON.stringify(users));
     res.status(200).send(`/users/${name.userId}`);
   } else {
     res.status(400).json({ message: dataValid(name) });
