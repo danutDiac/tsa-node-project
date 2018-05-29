@@ -15,7 +15,6 @@
   },
   "homepage": "https://github.com/danutDiac/tsa-node-project#readme",
   "dependencies": {
-    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
