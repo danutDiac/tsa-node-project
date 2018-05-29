@@ -4,10 +4,10 @@ let users = require("../../db/users.json")
 let createUser = (req, res) => {
   let name = req.body;
   if (dataValid(name) === 1) {
-    name.userId = idMax(users)+1;
+    name.id = idMax(users)+1;
     users.push(name);
-    fs.writeFile("db/users.json", JSON.stringify(users));
-    res.status(200).send(`/users/${name.userId}`);
+    fs.writeFile("db/users.json", JSON.stringify(users), callback => {});
+    res.status(200).send(`/users/${name.id}`);
   } else {
     res.status(400).json({ message: dataValid(name) });
   }
@@ -33,8 +33,8 @@ let idMax = (users) => {
   let max=0;
   for (let i=0;i<users.length;i++)
       {
-        if (users[i].userId>max)
-          max=users[i].userId;
+        if (users[i].id>max)
+          max=users[i].id;
       }
   return max;
 }
