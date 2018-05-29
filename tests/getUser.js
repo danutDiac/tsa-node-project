@@ -14,7 +14,7 @@ describe('GetUser Module', () => {
             .end((error, response) => {
                 response.should.have.status(200);
                 response.should.be.json;
-                chai.expect(response.body).to.deep.equal(result);
+                response.body.should.deep.equal(result);
                 done();
             })
     });
@@ -28,7 +28,7 @@ describe('GetUser Module', () => {
             .end((error, response) => {
                 response.should.have.status(404);
                 response.should.be.json;
-                chai.expect(response.body).to.deep.equal(result);
+                response.body.should.deep.equal(result);
                 done();
             })
     });
@@ -42,7 +42,7 @@ describe('GetUser Module', () => {
             .end((error, response) => {
                 response.should.have.status(404);
                 response.should.be.json;
-                chai.expect(response.body).to.deep.equal(result);
+                response.body.should.deep.equal(result);
                 done();
             })
     });
@@ -56,7 +56,7 @@ describe('GetUser Module', () => {
             .end((error, response) => {
                 response.should.have.status(404);
                 response.should.be.json;
-                chai.expect(response.body).to.deep.equal(result);
+                response.body.should.deep.equal(result);
                 done();
             })
     });
