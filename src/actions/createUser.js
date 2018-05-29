@@ -10,9 +10,9 @@ let createUser = (req, res) => {
   name.id = idMax(users) + 1;
   users.push(name);
   fs.writeFile("db/users.json", JSON.stringify(users), err => {
-    if (err) res.status(500).json({ message: `We found this ${err}` });
+    if (err) {return res.status(500).json({ message: `We found this ${err}` })}
+    res.status(200).send(`/users/${name.id}`);
   });
-  res.status(200).send(`/users/${name.id}`);
 };
 let dataValid = str => {
   let ok = "";
