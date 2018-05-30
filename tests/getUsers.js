@@ -1,6 +1,6 @@
 const chai = require('chai');
 
-describe('GetUser Module', () => {
+describe('GetUsers Module', () => {
 
     it("Should return user with id 0", () => {
         const { findUser } = require('../src/actions/getUsers');
