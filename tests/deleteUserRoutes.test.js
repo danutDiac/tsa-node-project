@@ -2,11 +2,12 @@ const chai = require('chai')
 const chaiHttp = require('chai-http')
 const fs = require('fs')
 const server = require('../src/main')
+const { writeFile } = require('../src/helpers/helpers')
 const should = chai.should()
 chai.use(chaiHttp)
 
 describe('DELETE /users/:id', function () {
-    afterEach(function (done) {
+    beforeEach(function (done) {
         const users = [
             {
                 "id": 0,
@@ -16,9 +17,10 @@ describe('DELETE /users/:id', function () {
                 "phone": ""
             }
         ]
-        fs.writeFile('db/users.json', JSON.stringify(users), function (err) {
-            if(err) console.log(err)
-            done()
+        
+        writeFile("db/users.json", JSON.stringify(users))
+        .then(() => {
+            done();
         })
     })
     it('should return status 404 for id not found', function (done) {
