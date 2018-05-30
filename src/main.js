@@ -10,6 +10,8 @@ app.use("/days", daysRouter);
 app.use("/users", usersRouter);
 app.use("/api", exampleRouter);
 
-app.listen(3000);
+app.listen(3000,function(){
+    console.log('Server started on localhost:3000')
+});
 
-module.exports = app;
+module.exports = app
