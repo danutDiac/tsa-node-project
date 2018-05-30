@@ -1,4 +1,4 @@
-# Retriving user details
+# Retrieving user details
 
 Returns a JSON with information about a single user
 
