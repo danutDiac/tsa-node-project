@@ -39,11 +39,19 @@ const newId = daysArray => {
 };
 
 const writeDaysOff = (daysOff, json) => {
-  daysOff.push(json);
+  return new Promise((resolve, reject) => {
+    daysOff.push(json);
 
-  fs.writeFile("db/daysOff.json", JSON.stringify(daysOff), err => {
-    if (err) console.log(err);
-  });
+    fs.writeFile("db/daysOff.json", JSON.stringify(daysOff), err => {
+      if (err) {
+        console.log(err);
+        reject(err);
+      }
+      else {
+        resolve();
+      }
+    });
+  })
 };
 
 const bookDaysOff = (request, response) => {
@@ -67,10 +75,17 @@ const bookDaysOff = (request, response) => {
       daysOff: daysOffArray
     };
 
-    writeDaysOff(daysOff,newJson);
-
-    response.status(200).send(`/days/${newJson["id"]}`);
-  } else {
+    writeDaysOff(daysOff, newJson)
+    .then(() => {
+      response.status(200).send(`/days/${newJson["id"]}`);
+    })
+    .catch((err) => {
+      response.status(500).send(JSON.stringify({ 
+        serverErrorMessage: "the error was logged and we’ll be checking it shortly" 
+      }));
+    })
+  } 
+  else {
     response.status(400).send(
       JSON.stringify({
         error: "Bad request"
