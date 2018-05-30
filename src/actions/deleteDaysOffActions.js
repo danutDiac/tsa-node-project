@@ -18,13 +18,15 @@ let deleteDaysOff = (req, res) => {
         deleteDaysOffFromArray(daysOff, result);
         fs.writeFile('db/daysOff.json', JSON.stringify(daysOff), err => {
             if (err) {
-                res.status(500).json({ "message": "Internal server error." })
+                res.status(500).json({
+                    serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+                })
             } else {
-                res.status(200).json({ "message": "Days off deleted" })
+                res.status(204).send()
             }
         })
     } else {
-        res.status(404).json({ "message": "Not found!" })
+        res.status(404).json({ message: "Not found!" })
     }
 }
 

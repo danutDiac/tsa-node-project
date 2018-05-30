@@ -24,11 +24,10 @@ describe("DELETE /days/:id", () => {
         })
     })
 
-    it("it should return 200 on delete", done => {
+    it("it should return 204 on delete", done => {
         chai.request(server).delete("/days/0")
             .end((err, res) => {
-                res.should.have.status(200);
-                res.should.be.json;
+                res.should.have.status(204);
                 done();
             })
     })

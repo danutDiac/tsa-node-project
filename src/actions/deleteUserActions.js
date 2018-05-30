@@ -16,9 +16,11 @@ let deleteUser = (req, res) => {
         deleteUserFromDatabase(users, user)
         fs.writeFile('db/users.json', JSON.stringify(users), function (err) {
             if (err) {
-                res.status(500).json({ message: "Internal server error" })
+                res.status(500).json({
+                    serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+                })
             } else {
-                res.status(200).json({ message: "User deleted" })
+                res.status(204).send()
             }
         })
     } else {

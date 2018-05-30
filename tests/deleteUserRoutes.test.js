@@ -39,12 +39,10 @@ describe('DELETE /users/:id', function () {
                 done()
             })
     })
-    it('should return status 200 for id found', function (done) {
+    it('should return status 204 for id found', function (done) {
         chai.request(server).delete('/users/0')
             .end(function (err, res) {
-                res.should.have.status(200)
-                res.should.be.json
-                res.body.message.should.equal('User deleted')
+                res.should.have.status(204)
                 done()
             })
     })

@@ -16,13 +16,9 @@ Deletes the days off with the given id
     None
 
 * **Success Response:** <br>
-    * **Code:** 200 <br>
+    * **Code:** 204 <br>
       **Content:** 
-    ```javascript
-    {
-        message: "Days off deleted"
-    }
-    ```
+    None
 
 * **Error Response:** <br>
     * **Code:** 404 NOT FOUND <br>
@@ -36,7 +32,7 @@ Deletes the days off with the given id
       **Content:** 
     ```javascript
     {
-        message: "Internal server error."
+        serverErrorMessage: "the error was logged and we’ll be checking it shortly"
     }
     ```
  

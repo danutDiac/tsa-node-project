@@ -18,11 +18,7 @@ Deletes a single user with given id
 * **Success Response:** <br>
     * **Code:** 200 <br>
       **Content:** 
-    ```javascript
-    {
-        message: "User deleted"
-    }
-    ```
+    None
 
 * **Error Response:** <br>
     * **Code:** 404 NOT FOUND <br>
@@ -36,7 +32,7 @@ Deletes a single user with given id
       **Content:** 
     ```javascript
     {
-        message: "Internal server error"
+        serverErrorMessage: "the error was logged and we’ll be checking it shortly"
     }
     ```
  
