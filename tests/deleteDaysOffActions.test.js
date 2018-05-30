@@ -50,7 +50,7 @@ describe('Delete days off actions', () => {
                 done();
             })
         })
-        it('should not delete day from array for unexisting day', () => {
+        it('should not delete day from array for unexisting day', (done) => {
             readFile('db/daysOff.json')
             .then(data => {
                 const daysOff = JSON.parse(data);
