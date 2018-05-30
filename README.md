@@ -1,3 +1,4 @@
+
 # Node project general rules
 ## General
 * only use file-based database
@@ -18,5 +19,4 @@
 ## Functional
 * keep functions simple (single responsibility)
 * have at least 1 test for each function
-
 
