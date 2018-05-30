@@ -1,36 +1,26 @@
-let findUser = (users, id) => {
-    if (id < 0) return false;
-    for (let user of users) {
-        if (user["id"] === id) {
-            return user;
-        }
-    }
-    return false;
-}
+const { readFile, findItemById } = require("../helpers/helpers");
 
 let getUser = (request, response) => {
-    try {
-        let users = require("../../db/users.json");
-        let user = findUser(users, Number(request.params.id));
+    readFile("db/users.json")
+        .then(data => {
+            let users = JSON.parse(data);
+            let user = findItemById(users, Number(request.params.id));
 
-        if (user !== false) {
-            response.json(user);
-        }
-        else {
-            response.status(404);
+            if (user !== undefined) {
+                response.json(user);
+            } else {
+                response.status(404);
+                response.json({
+                    error: "User not found"
+                });
+            }
+        })
+        .catch(error => {
+            response.status(500);
             response.json({
-                "error": "User not found"
+                serverErrorMessage: "the error was logged and we’ll be checking it shortly"
             });
-        }
-    }
-    catch (err) {
-        response.status(500);
-        response.json({
-            "error": "Internal server error"
         });
-    }
-}
+};
 
-module.exports = { getUser,
-                   findUser }
-                   
+module.exports = { getUser };
