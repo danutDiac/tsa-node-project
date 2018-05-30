@@ -13,6 +13,8 @@ let reqValidData = (str, putMethod) => {
     //putMethod=1 daca aplicam metoda pe put
     //putMethod=0 daca apliam metoda pe patch
     let ok = "";
+    let users = require("../../db/users.json");
+
     if (str.firstName) {
         if (!/^[a-zA-Z]+$/.test(str.firstName))
             ok += "Ati introdus prenumele gresit" + "\n";
@@ -32,6 +34,10 @@ let reqValidData = (str, putMethod) => {
     if (str.email) {
         if (!/^([a-z0-9])+\@([a-z])+\.([a-z])+$/.test(str.email))
             ok += "Ati introdus emailul gresit" + "\n";
+
+        if (checkMail(str.email, users) === 1) {
+            ok += "Mailul folosit exista deja in baza de date";
+        }
     }
     else if (putMethod) {
         ok += "Nu ati introdus niciun email \n"
@@ -62,8 +68,6 @@ let idIdentification = (idNumb, arrOfObj) => {
 
 const editUserPatch = (req, res) => {
     let users = require("../../db/users.json");
-
-    
     let id = idIdentification(Number(req.params.id), users);
     
     if (id === -1) {
@@ -110,6 +114,9 @@ const editUserPut = (req, res) => {
 }
 
 module.exports = {
+    checkMail,
+    idIdentification,
     editUserPut,
-    editUserPatch
+    editUserPatch,
+    reqValidData
 }
