@@ -86,5 +86,5 @@ describe('Booking days module', () => {
 
         chai.expect(input).to.deep.equal(result);
     })
-
+    
 })
