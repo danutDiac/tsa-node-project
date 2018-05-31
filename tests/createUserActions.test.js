@@ -57,7 +57,6 @@ describe("Create user module actions", () => {
 
         it("Should return 1 when the validation is good", done => {
             let result = dataValid(users[2], users);
-            console.log(result);
             chai.expect(result).to.equal(1);
             done();
         });
@@ -68,9 +67,7 @@ describe("Create user module actions", () => {
         });
         it("Should return error when you add odd characters to the name", done => {
             let result = dataValid(users[1], users);
-            chai
-                .expect(result)
-                .to.equal("Ati introdus prenumele gresit" + "\n");
+            chai.expect(result).to.equal("Ati introdus prenumele gresit" + "\n");
             done();
         });
     });

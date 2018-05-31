@@ -5,7 +5,6 @@ let createUser = (req, res) => {
     readFile("db/users.json")
     .then(data => {
         const users = JSON.parse(data);
-        console.log(users)
         let body = req.body;
 
         if (dataValid(body, users) !== 1) {
