@@ -69,7 +69,7 @@ Returns a JSON with days off from an user
 
 
     ```javascript
-    fetch("localhost:3000/days/" , {method:'DELETE'});
+    fetch("localhost:3000/days/" , {method:'POST'});
 
     ```
 
