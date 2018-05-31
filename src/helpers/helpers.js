@@ -9,6 +9,12 @@ const writeFile = (path, data) => {
     });
 }
 
+// const writeFile = (path, data) => new Promise((resolve, reject) => {
+//     fs.writeFile(path, data, err => {
+//         err ? reject(err) : resolve()
+//     })
+// })
+
 const readFile = (path) => {
     return new Promise((resolve, reject) => {
         fs.readFile(path, (error, data) => {
@@ -18,19 +24,31 @@ const readFile = (path) => {
     })
 }
 
+// const readFile = path => new Promise((resolve, reject) => {
+//     fs.readFile(path, (err, data) => {
+//         err ? reject(err) : resolve(data)
+//     })
+// })
+
 const maxId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id;
 }
+
+// const maxId = array => array.length === 0 ? 0 : array[array.length - 1].id
 
 const newId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id + 1;
 }
 
+// const newId = array => array.length === 0 ? 0 : array[array.length - 1].id + 1
+
 const findItemById = (array, id) => {
     return array.find(item => item.id === id);
 }
+
+// const findItemById = (array, id) => array.find(item => item.id === id)
 
 module.exports = {
     writeFile,
