@@ -1,8 +1,7 @@
-let { createUser } = require("../actions/createUser");
-let { getUser } = require("../actions/getUsers");
-
 let router = require("express").Router();
 let fs = require('fs')
+let { getUser } = require("../actions/getUsersActions");
+let { createUser } = require("../actions/createUserActions");
 let { deleteUser } = require('../actions/deleteUserActions')
 
 router.post("/", createUser);

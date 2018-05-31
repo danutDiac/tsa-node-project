@@ -1,9 +1,9 @@
 # Retrieving user details
 
-Deletes a single user with given id
+Deletes the days off with the given id
 
 * **URL:** <br>
-    /users/:id
+    /days/:id
 
 * **Method:** <br>
     `DELETE`
@@ -16,7 +16,7 @@ Deletes a single user with given id
     None
 
 * **Success Response:** <br>
-    * **Code:** 200 <br>
+    * **Code:** 204 <br>
       **Content:** 
     None
 
@@ -25,7 +25,7 @@ Deletes a single user with given id
       **Content:** 
     ```javascript
     {
-        message: "User not found"
+        message: "Not found!"
     }
     ```
     * **Code:** 500 INTERNAL SERVER ERROR <br>
@@ -38,5 +38,5 @@ Deletes a single user with given id
  
 * **Sample Call:** <br>
     ```javascript
-    fetch("localhost:3000/users/0", {method:'DELETE'});
+    fetch("localhost:3000/days/0", {method:'DELETE'});
     ```
