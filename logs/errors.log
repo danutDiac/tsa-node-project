@@ -340,3 +340,22 @@
   "lastName": "cii",
   "email": "oaaaa@gmail.com"
 }
+[2018-05-31T17:04:13+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T17:04:13+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T17:04:13+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T17:04:13+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T17:04:13+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T17:04:13+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T17:04:13+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T17:04:38+03:00] PUT "/users/0" 400 OK - {
+  "firstName": "cipo",
+  "lastName": "cii",
+  "email": "oanaa@gmail.com",
+  "phone": "0987604621"
+}
+[2018-05-31T17:04:42+03:00] PUT "/users/0" 400 OK - {
+  "firstName": "cipo",
+  "lastName": "cii",
+  "email": "oanaa@gmail.com",
+  "phone": "09876d04621"
+}
