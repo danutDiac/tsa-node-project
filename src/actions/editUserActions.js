@@ -66,14 +66,14 @@ let idIdentification = (idNumb, arrOfObj) => {
     return -1;
 }
 
-let patchFct = (arr,newData,pos) => {
+let modifyUserWithFetch = (arr,newData,pos) => {
     (newData.firstName) ? arr[pos].firstName = newData.firstName :false;
     (newData.lastName) ? arr[pos].lastName = newData.lastName :false;
     (newData.email) ? arr[pos].email = newData.email :false;
     (newData.phone) ? arr[pos].phone = newData.phone :false;
 }
 
-let putFct = (arr,newData,pos) => {
+let modifyUserWithPut = (arr,newData,pos) => {
     arr[pos].firstName = newData.firstName;
     arr[pos].lastName = newData.lastName;
     arr[pos].email = newData.email;
@@ -97,7 +97,7 @@ const editUserPatch = (req, res) => {
                 }
 
                 else {
-                    patchFct(users,req.body,id);
+                    modifyUserWithFetch(users,req.body,id);
 
                     writeFile("db/users.json", JSON.stringify(users)).then(() => {
                         res.send(users[id]).status(201)
@@ -131,7 +131,7 @@ const editUserPut = (req, res) => {
             else {
                 if (reqValidData(req.body, 1,users) === 1) {
                     let PositionOfID = idIdentification(id, users);
-                    putFct(users,req.body,PositionOfID);
+                    modifyUserWithPut(users,req.body,PositionOfID);
                    
                     writeFile("db/users.json", JSON.stringify(users)).then(() => {
                         res.send(users[PositionOfID]).status(201)
@@ -165,5 +165,7 @@ module.exports = {
     idIdentification,
     editUserPut,
     editUserPatch,
-    reqValidData
+    reqValidData,
+    modifyUserWithFetch,
+    modifyUserWithPut
 }

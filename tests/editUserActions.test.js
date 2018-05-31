@@ -1,7 +1,5 @@
 const chai = require('chai');
-let { reqValidData } = require("../src/actions/editUserActions");
-const { checkMail } = require("../src/actions/editUserActions")
-const { idIdentification } = require("../src/actions/editUserActions")
+const { reqValidData ,checkMail,idIdentification,modifyUserWithFetch,modifyUserWithPut} = require("../src/actions/editUserActions");
 const should = chai.should();
 
 describe('Edit user module actions', () => {
@@ -35,6 +33,51 @@ describe('Edit user module actions', () => {
         chai.expect(result).to.deep.equal(0)
     })
 });
+
+    describe("modifyUserWithFetch",()=>{
+        const str = {
+            "firstName": "Anca",
+            "lastName": "Ioana",
+            "email": "anca.ioana@gmail.com",
+            "phone": "090290234"
+        }
+        const expectedObject={
+            "id":0,
+            "firstName": "Anca",
+            "lastName": "Ioana",
+            "email": "anca.ioana@gmail.com",
+            "phone": "090290234"
+        }
+        it("Should make the changes in users for patch!",()=>{
+            let pos=0;
+            modifyUserWithFetch(users, str, pos)
+            chai.expect(users[0]).to.deep.equal(expectedObject)
+        })
+    })
+
+    describe("modifyUserWithPut",()=>{
+        const str = {
+            "firstName": "Anca",
+            "lastName": "Ioana",
+            "email": "anca.ioana@gmail.com",
+            "phone": "090290234"
+        }
+        const expectedObject={
+            "id":0,
+            "firstName": "Anca",
+            "lastName": "Ioana",
+            "email": "anca.ioana@gmail.com",
+            "phone": "090290234"
+        }
+        it("Should make the changes in users for patch!",()=>{
+            let pos=0;
+            modifyUserWithPut(users, str, pos)
+            chai.expect(users[0]).to.deep.equal(expectedObject)
+        })
+    })
+
+
+
     describe("idIdentification", () => {
     it("Should return pozition = 0 if id is find",()=>{
        
@@ -51,6 +94,7 @@ describe('Edit user module actions', () => {
 
     })
 });
+
     describe("reqValiddata", () => {
     it('Should return 1 if all fields are correct edited', () => {
             const str = {
@@ -62,9 +106,6 @@ describe('Edit user module actions', () => {
             const result = reqValidData(str, 1,users);
             chai.expect(result).to.deep.equal(1);
         })
-  
-    
-
 
     it('Should return "Ati introdus emailul gresit" if email field is not valid', () => {
         const str = {

@@ -268,3 +268,38 @@
   "email": "as@gmail.com",
   "phone": "0732325452"
 }
+[2018-05-31T15:50:07+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T15:50:07+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T15:50:08+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T15:50:08+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T15:50:08+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T15:50:08+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T15:50:08+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:05:22+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:07:33+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:10:36+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:13:52+03:00] GET "/users/%220%22" 404 Not Found - {}
