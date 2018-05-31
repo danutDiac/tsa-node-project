@@ -24,7 +24,7 @@ Edits a user that can be selected by id. Editing can be done via two seperate me
 * **Success response** <br>
     * **Code:** 201 <br>
       **Content:**
-      `Updates data from the DB at the specified ID with new input. All specified fields in the Data Params section need to be utilized`
+      `Rewrites data from the DB at the specified ID with new input. All specified fields in the Data Params section need to be utilized`
 
 * **Error response** <br>
     * **Code:** 400 <br>
@@ -69,7 +69,7 @@ Edits a user that can be selected by id. Editing can be done via two seperate me
 * **Success response** <br>
     * **Code:** 201 <br>
       **Content:**
-      `Updates one of the specified fields from the DB, at the given ID.`
+      `Rewrites one of the specified fields or more from the DB, at the given ID.`
 
 * **Error response** <br>
     * **Code:** 400 <br>
