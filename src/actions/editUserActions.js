@@ -66,6 +66,20 @@ let idIdentification = (idNumb, arrOfObj) => {
     return -1;
 }
 
+let patchFct = (arr,newData,pos) => {
+    (newData.firstName) ? arr[pos].firstName = newData.firstName :false;
+    (newData.lastName) ? arr[pos].lastName = newData.lastName :false;
+    (newData.email) ? arr[pos].email = newData.email :false;
+    (newData.phone) ? arr[pos].phone = newData.phone :false;
+}
+
+let putFct = (arr,newData,pos) => {
+    arr[pos].firstName = newData.firstName;
+    arr[pos].lastName = newData.lastName;
+    arr[pos].email = newData.email;
+    arr[pos].phone = newData.phone;
+}
+
 const editUserPatch = (req, res) => {
     // let users = require("../../db/users.json");
     readFile("db/users.json")
@@ -83,10 +97,7 @@ const editUserPatch = (req, res) => {
                 }
 
                 else {
-                    (req.body.firstName) ? users[id].firstName = req.body.firstName : false;
-                    (req.body.lastName) ? users[id].lastName = req.body.lastName : false;
-                    (req.body.email) ? users[id].email = req.body.email : false;
-                    (req.body.phone) ? users[id].phone = req.body.phone : false;
+                    patchFct(users,req.body,id);
 
                     writeFile("db/users.json", JSON.stringify(users)).then(() => {
                         res.send(users[id]).status(201)
@@ -120,11 +131,8 @@ const editUserPut = (req, res) => {
             else {
                 if (reqValidData(req.body, 1,users) === 1) {
                     let PositionOfID = idIdentification(id, users);
-                    users[PositionOfID].firstName = req.body.firstName;
-                    users[PositionOfID].lastName = req.body.lastName;
-                    users[PositionOfID].email = req.body.email;
-                    users[PositionOfID].phone = req.body.phone;
-
+                    putFct(users,req.body,PositionOfID);
+                   
                     writeFile("db/users.json", JSON.stringify(users)).then(() => {
                         res.send(users[PositionOfID]).status(201)
                     })
