@@ -1,9 +1,1 @@
-[
-    {
-        "id": 0,
-        "firstName": "",
-        "lastName": "",
-        "email": "",
-        "phone": ""
-    }
-]
+[{"id":0,"firstName":"","lastName":"ceva","email":"","phone":""},{"firstName":"Dan","lastName":"Bilzerian","email":"xevanoiu@gmail.com","phone":"0734453423","id":1}]
