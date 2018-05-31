@@ -95,7 +95,7 @@ describe('Edit user module actions', () => {
     })
 });
 
-    describe("reqValiddata", () => {
+    describe("reqValidData", () => {
     it('Should return 1 if all fields are correct edited', () => {
             const str = {
                 "firstName": "Anca",
@@ -119,7 +119,7 @@ describe('Edit user module actions', () => {
         chai.expect(result).to.deep.equal(test);
     })
 
-    it('Should return "Nu ati introdus niciun email \n" if email field is empty', () => {
+    it('Should return "Nu ati introdus niciun email" if email field is empty', () => {
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
@@ -144,7 +144,7 @@ describe('Edit user module actions', () => {
         chai.expect(result).to.deep.equal(test);
 
     })
-    it('Should return "Nu ati introdus niciun prenume. \n" if firstName field is empty', () => {
+    it('Should return "Nu ati introdus niciun prenume." if firstName field is empty', () => {
         const str = {
             "firstName": "",
             "lastName": "Maria",
@@ -169,7 +169,7 @@ describe('Edit user module actions', () => {
         chai.expect(result).to.deep.equal(test);
     })
 
-    it('Should return "Nu ati introdus niciun nume. \n" if lastName field is empty', () => {
+    it('Should return "Nu ati introdus niciun nume." if lastName field is empty', () => {
         const str = {
             "firstName": "Anca",
             "lastName": "",
@@ -218,7 +218,6 @@ describe('Edit user module actions', () => {
         chai.expect(result).to.deep.equal(1);
 
     })
-
 
     it('Should return "Ati introdus emailul gresit" if email field is not valid', () => {
         const str = {

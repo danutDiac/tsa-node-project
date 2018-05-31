@@ -303,3 +303,40 @@
 [2018-05-31T16:13:52+03:00] GET "/users/-1" 404 Not Found - {}
 [2018-05-31T16:13:52+03:00] GET "/users/A" 404 Not Found - {}
 [2018-05-31T16:13:52+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:53:58+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:56:56+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T16:57:35+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T16:59:14+03:00] PATCH "/users/0" 400 OK - {
+  "firstName": "cipo",
+  "lastName": "cii",
+  "email": "oanaa@gmail.com",
+  "phone": "0987604621"
+}
+[2018-05-31T16:59:32+03:00] PUT "/users/0" 400 OK - {
+  "firstName": "cipo",
+  "lastName": "cii",
+  "email": "oaaa@gmail.com"
+}
+[2018-05-31T16:59:36+03:00] PUT "/users/0" 400 OK - {
+  "firstName": "cipo",
+  "lastName": "cii",
+  "email": "oaaaa@gmail.com"
+}
