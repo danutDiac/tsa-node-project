@@ -9,11 +9,11 @@ let checkMail = (newMail, allMails) => {
 };
 
 //metoda verifica daca elementele introduse de user sunt corecte si corespund campului corespunzator
-let reqValidData = (str, putMethod) => {
+let reqValidData = (str, putMethod,users) => {
     //putMethod=1 daca aplicam metoda pe put
     //putMethod=0 daca apliam metodaspe patch
     let ok = "";
-    let users = require("../../db/users.json");
+   // let users = require("../../db/users.json");
 
     if (str.firstName) {
         if (!/^[a-zA-Z]+$/.test(str.firstName))
@@ -77,7 +77,7 @@ const editUserPatch = (req, res) => {
                 res.json({ "message": "Invalid ID" }).status(400)
             }
             else {
-                let errMessage = reqValidData(req.body, 0);
+                let errMessage = reqValidData(req.body, 0,users);
                 if (errMessage !== 1) {
                     res.json({ "err": errMessage }).status(400);
                 }
@@ -118,7 +118,7 @@ const editUserPut = (req, res) => {
                 res.json({ "message": "Invalid ID" }).status(400)
             }
             else {
-                if (reqValidData(req.body, 1) === 1) {
+                if (reqValidData(req.body, 1,users) === 1) {
                     let PositionOfID = idIdentification(id, users);
                     users[PositionOfID].firstName = req.body.firstName;
                     users[PositionOfID].lastName = req.body.lastName;
@@ -137,7 +137,7 @@ const editUserPut = (req, res) => {
 
                 }
                 else {
-                    let errMessage = reqValidData(req.body, 1);
+                    let errMessage = reqValidData(req.body, 1,users);
                     res.json({ "err": errMessage }).status(400)
                 }
             }
