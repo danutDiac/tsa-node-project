@@ -4,7 +4,7 @@ const should = chai.should();
 describe('EditUser Module', () => {
 
     it("Should return 1 if mail already exist. ", () => {
-        const { checkMail } = require("../src/actions/editUser")
+        const { checkMail } = require("../src/actions/editUserActions")
         let users = [{
             "id": 0,
             "firstName": "Anca",
@@ -24,7 +24,7 @@ describe('EditUser Module', () => {
     })
 
     it("Should return 0 if mail not exist. ", () => {
-        const { checkMail } = require("../src/actions/editUser")
+        const { checkMail } = require("../src/actions/editUserActions")
         let users = [{
             "id": 0,
             "firstName": "Anca",
@@ -44,7 +44,7 @@ describe('EditUser Module', () => {
     })
 
     it("Should return pozition = 0 if id is find",()=>{
-        const { idIdentification } = require("../src/actions/editUser")
+        const { idIdentification } = require("../src/actions/editUserActions")
         let users = [{
             "id": 0,
             "firstName": "Anca",
@@ -59,7 +59,7 @@ describe('EditUser Module', () => {
     })
 
     it("Should return -1 if id is not find",()=>{
-        const { idIdentification } = require("../src/actions/editUser")
+        const { idIdentification } = require("../src/actions/editUserActions")
         let users = [{
             "id": 0,
             "firstName": "Anca",
@@ -75,7 +75,7 @@ describe('EditUser Module', () => {
 
     it('Should return 1 if all fields are correct edited', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
     
         const str = {
             "firstName": "Anca",
@@ -91,7 +91,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus emailul gresit" if email field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
        
         const str = {
             "firstName": "Anca",
@@ -107,7 +107,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Nu ati introdus niciun email \n" if email field is empty', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
@@ -122,7 +122,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus prenumele gresit" if firstName field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "1Anca",
             "lastName": "Maria",
@@ -136,7 +136,7 @@ describe('EditUser Module', () => {
     })
     it('Should return "Nu ati introdus niciun prenume. \n" if firstName field is empty', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "",
             "lastName": "Maria",
@@ -151,7 +151,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus numele gresit" if lastName field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "1Maria",
@@ -166,7 +166,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Nu ati introdus niciun nume. \n" if lastName field is empty', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "",
@@ -181,7 +181,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus gresit numarul de telefon" if phone field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
@@ -195,7 +195,7 @@ describe('EditUser Module', () => {
     })
     it('Should return "Nu ati introdus niciun numar de telefon" if phone field is empty', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
@@ -210,7 +210,7 @@ describe('EditUser Module', () => {
 
     it('Should return 1 if all fields are correct edited', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
@@ -225,7 +225,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus emailul gresit" if email field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
@@ -241,7 +241,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus prenumele gresit" if firstName field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "1Anca",
             "lastName": "Maria",
@@ -257,7 +257,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus numele gresit" if lastName field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "1Maria",
@@ -272,7 +272,7 @@ describe('EditUser Module', () => {
 
     it('Should return "Ati introdus gresit numarul de telefon" if phone field is not valid', () => {
 
-        const { reqValidData } = require('../src/actions/editUser');
+        const { reqValidData } = require('../src/actions/editUserActions');
         const str = {
             "firstName": "Anca",
             "lastName": "Maria",
