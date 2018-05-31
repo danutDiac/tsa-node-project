@@ -1,12 +1,12 @@
 # Retrieving user details
 
-Returns a JSON with information about a single user
+Deletes the days off with the given id
 
 * **URL:** <br>
-    /users/:id
+    /days/:id
 
 * **Method:** <br>
-    `GET`
+    `DELETE`
 
 * **URL Params** <br>
 **Required:** <br>
@@ -16,35 +16,27 @@ Returns a JSON with information about a single user
     None
 
 * **Success Response:** <br>
-    * **Code:** 200 <br>
+    * **Code:** 204 <br>
       **Content:** 
-    ```javascript
-        {
-            userId: 1, 
-            first_name: "Catalin",
-            last_name: "Popescu",
-            email: "catalin.popescu@gmail.com",
-            phone_number: "0745231445"
-    }
-    ```
+    None
 
 * **Error Response:** <br>
     * **Code:** 404 NOT FOUND <br>
       **Content:** 
     ```javascript
     {
-        error: "User not found"
+        message: "Not found!"
     }
     ```
     * **Code:** 500 INTERNAL SERVER ERROR <br>
       **Content:** 
     ```javascript
     {
-        error: "Internal server error"
+        serverErrorMessage: "the error was logged and we’ll be checking it shortly"
     }
     ```
  
 * **Sample Call:** <br>
     ```javascript
-    fetch("localhost:3000/users/1");
+    fetch("localhost:3000/days/0", {method:'DELETE'});
     ```

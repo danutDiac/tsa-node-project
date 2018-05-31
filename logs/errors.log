@@ -1,0 +1,14 @@
+[2018-05-31T10:25:15+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T10:25:15+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T10:25:15+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T10:25:15+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T10:25:15+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T10:25:15+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T10:25:15+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] GET "/users/A" 404 Not Found - {}
+[2018-05-31T10:27:02+03:00] GET "/users/%220%22" 404 Not Found - {}
