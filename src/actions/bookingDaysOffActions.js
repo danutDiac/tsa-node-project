@@ -47,47 +47,58 @@ const createNewJson = (daysOff, body, daysOffArray) => {
 }
 
 const bookDaysOff = (request, response) => {
-    readFile("db/daysOff.json")
+    readFile("db/users.json")
     .then(data => {
-        let daysOff = JSON.parse(data);
-        let daysOffArray = [];
+        const users = JSON.parse(data);
         const body = request["body"];
 
-        if (
-            findItemById(daysOff, Number(body["userId"])) !== false &&
-            isDateValid(body["startDate"]) &&
-            isDateValid(body["endDate"])
-        ) {
-            const startDate = new Date(body["startDate"]);
-            const endDate = new Date(body["endDate"]);
-            daysOffArray = createDaysOffArray(startDate, endDate);
-    
-            const newJson = createNewJson(daysOff, body, daysOffArray);
-            daysOff.push(newJson);
+        if (findItemById(users, Number(body["userId"])) !== undefined) {
+            readFile("db/daysOff.json")
+            .then(data => {
+                let daysOff = JSON.parse(data);
+                let daysOffArray = [];
+        
+                if (
+                    isDateValid(body["startDate"]) &&
+                    isDateValid(body["endDate"])
+                ) {
+                    const startDate = new Date(body["startDate"]);
+                    const endDate = new Date(body["endDate"]);
+                    daysOffArray = createDaysOffArray(startDate, endDate);
             
-            writeFile("db/daysOff.json", JSON.stringify(daysOff))
-            .then(() => {
-                response.status(200).send(`/days/${newJson["id"]}`);
+                    const newJson = createNewJson(daysOff, body, daysOffArray);
+                    daysOff.push(newJson);
+                    
+                    writeFile("db/daysOff.json", JSON.stringify(daysOff))
+                    .then(() => {
+                        response.status(200).send(`/days/${newJson["id"]}`);
+                    })
+                    .catch(error => {
+                        response.status(500).json({
+                            serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+                        });
+                    });
+                } else {
+                    response.status(400).json({
+                        error: "Bad request"
+                    });
+                }
             })
             .catch(error => {
-                response.status(500).send(JSON.stringify({
+                response.status(500).json({
                     serverErrorMessage: "the error was logged and we’ll be checking it shortly"
-                }));
-            });
+                });
+            })
         } else {
-            response.status(400).send(
-                JSON.stringify({
-                    error: "Bad request"
-                })
-            );
-        }
+        response.status(400).json({
+            error: "Bad request"
+        });
+    }
     })
     .catch(error => {
-        response.status(500).send(
-            JSON.stringify({
-                serverErrorMessage: "the error was logged and we’ll be checking it shortly"
-            })
-        );
+        response.status(500).json({
+            serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+        });
     })
 
 };
