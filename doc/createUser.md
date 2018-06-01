@@ -12,14 +12,16 @@ Returns a URL containing the ID of the new created user
     All the user details completed in the input fields given using body
     ```javascript
         {
-            id: number, 
-            firstName: string,
-            lastName: string,
-            email: string,
-            phone: string,
-            link: string
+            id: [number], 
+            firstName: [string],
+            lastName: [string],
+            email: [string],
+            phone: [string],
+            link: [string]
        }
        ```
+        Note: All specified fields need to take a valid series of input data.
+
 * **Success Response:** <br>
     * **Code:** 200 <br>
       **Content:** 

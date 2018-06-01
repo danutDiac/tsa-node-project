@@ -16,7 +16,7 @@ let createUser = (req, res) => {
         writeFile("db/users.json", JSON.stringify(users))
           .then(() => {
             let sentlink = body;
-            sentlink.link = `/users${sentlink.id}`;
+            sentlink.link = `/users/${sentlink.id}`;
             res.status(200).send(sentlink);
           })
           .catch(error => {
@@ -56,9 +56,7 @@ let dataValid = (body, users) => {
 
 let checkMail = (newMail, allMails) => {
   for (let i = 0; i < allMails.length; i++) {
-    // if (allMails[i].id !== newMail.id) {
     if (newMail.email === allMails[i].email) return 1;
-    // }
   }
   return 0;
 };

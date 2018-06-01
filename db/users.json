@@ -1,1 +1,17 @@
-[{"id":0,"firstName":"","lastName":"ceva","email":"","phone":""},{"firstName":"Dan","lastName":"Bilzerian","email":"xevanoiu@gmail.com","phone":"0734453423","id":1}]
+[
+  { "id": 0, "firstName": "", "lastName": "", "email": "", "phone": "" },
+  {
+    "firstName": "Dante",
+    "lastName": "Alighieri",
+    "email": "inferno@gmail.com",
+    "phone": "0734324343",
+    "id": 1
+  },
+  {
+    "firstName": "Dante",
+    "lastName": "Alighieri",
+    "email": "inferno@gmail.com",
+    "phone": "0734324343",
+    "id": 1
+  }
+]
