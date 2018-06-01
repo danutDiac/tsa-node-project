@@ -1,6 +1,6 @@
 # Booking days off
 
-Returns a JSON with days off from an user
+Creates a new vacation period for a said user.
 
 *   **URL:** <br>
     /days/
@@ -27,7 +27,12 @@ Returns a JSON with days off from an user
     **Content:**
 
     ```javascript
-    /days/1
+    {
+        "GET": "http://localhost:3000/days/1",
+        "PUT": "http://localhost:3000/days/1",
+        "PATCH": "http://localhost:3000/days/1",
+        "DELETE": "http://localhost:3000/days/1",
+    }
     ```
 
 * **DataBase interaction** <br>
@@ -69,7 +74,13 @@ Returns a JSON with days off from an user
 
 
     ```javascript
-    fetch("localhost:3000/days/" , {method:'POST'});
-
+    fetch("localhost:3000/days/" , { 
+        method: "POST",
+        body: {
+            “userId”: 0,
+            “startDate”: “2018-05-23”,
+            “endDate”: “2018-06-10”
+        }
+    });
     ```
 
