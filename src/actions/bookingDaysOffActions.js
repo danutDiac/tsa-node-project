@@ -5,6 +5,46 @@ const {
     newId
 } = require("../helpers/helpers");
 
+const bookDaysOff = (request, response) => {
+        const readAndParseUserFilePromise = readFile("db/users.json")
+            .then(parseJSON);
+            
+        const readAndParseDaysOffFilePromise = readFile("db/daysOff.json")
+            .then(parseJSON);
+
+        const validateUserPromise = Promise.all([
+            readAndParseUserFilePromise, 
+            validateBody(request["body"])
+        ])
+            .then(([users, body]) => {
+                return validateUserExists(users, body)
+                    .then(() => body)
+            })
+            
+        const createDaysOffPromise = (daysOff, body, daysOffArray) => createNewDaysOffJSON(daysOff, body, daysOffArray)
+            .then(newDaysOffJSON => {
+                return addNewDaysOffJSONInArray(daysOff, newDaysOffJSON)
+                    .then(writeFile.bind(null, "db/daysOff.json"))
+                    .then(sendResponse.bind(null, response, newDaysOffJSON));
+            })
+
+
+        validateUserPromise
+            .then(body => {
+                return Promise.all([
+                    createDaysOffArray(body),
+                    readAndParseDaysOffFilePromise
+                ])
+                    .then(([daysOffArray, daysOff]) => {
+                        createDaysOffPromise(daysOff, body, daysOffArray);
+                    })
+            })
+            .catch((error) => {
+                console.log(error);
+                sendError.bind(null, response)
+            });
+}
+
 const isDateValid = date => {
     const regex = /([0-9]{4})(-)([1][0-2]|[0][1-9])(-)([0][1-9]|[1-2][0-9]|([3][0-1]))/;
     return date !== undefined && typeof date === "string" && regex.test(date) ;
@@ -34,7 +74,8 @@ const validateBody = (body) => {
             "status": 400,
             "message": rejectStatus
         });
-        resolve();
+
+        resolve(body);
     });
 }
 
@@ -46,21 +87,21 @@ const parseJSON = (data) => {
         catch (error) {
             reject({
                 "status": 500,
-                "message": error
+                "message": "the error was logged and we’ll be checking it shortly"
             });
         }
     })
 }
 
-const validateUserId = (users, id) => {
+const validateUserExists = (users, body) => {
     return new Promise((resolve, reject) => {
-        if (findItemById(users, id) === undefined) {
+        if (findItemById(users, body["userId"]) === undefined) {
             reject({
                 "status": 404,
                 "message": "User not found"
             });
         }
-        resolve();
+        resolve(body);
     })
 }
 
@@ -69,14 +110,12 @@ const formatDate = date => {
     else return String(date);
 }
 
-const createDaysOffArray = (startDate, endDate) => {
+const createDaysOffArray = (body) => {
     return new Promise((resolve, reject) => {
-        startDate = new Date(startDate);
-        endDate = new Date(endDate);
+        startDate = new Date(body["startDate"]);
+        endDate = new Date(body["endDate"]);
 
         let daysOffArray = [];
-        let month = "";
-        let day = "";
 
         if (startDate > endDate) {
             reject({
@@ -96,68 +135,40 @@ const createDaysOffArray = (startDate, endDate) => {
     })
 }
 
-const createNewJson = (daysOff, body, daysOffArray) => {
+const createNewDaysOffJSON = (daysOff, body, daysOffArray) => {
     return new Promise((resolve, reject) => {
         resolve({
             id: newId(daysOff),
             userId: body["userId"],
             daysOff: daysOffArray
         });
+        
     })
 }
 
-const addNewJsonInArray = (daysOff, newJson) => {
+const addNewDaysOffJSONInArray = (daysOff, newDaysOffJSON) => {
     return new Promise((resolve, reject) => {
-        daysOff.push(newJson);
-        resolve(daysOff);
+        daysOff.push(newDaysOffJSON);
+        resolve(JSON.stringify(daysOff));
     })
 }
 
-const bookDaysOff = (request, response) => {
-    let daysOffArray = undefined;
-    let newJson = undefined;
-    let daysOff = undefined;
+const sendResponse = (response, newDaysOffJSON) => {
+    return new Promise((resolve, reject) => {
+        response.status(200).json({
+            "GET": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
+            "PATCH": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
+            "PUT": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
+            "DELETE": `http://localhost:3000/days/${newDaysOffJSON["id"]}`
+        });
+        resolve();
+    })
+}
 
-    validateBody(request.body)
-        .then(() => {
-            return readFile("db/users.json");
-        })
-        .then(parseJSON)
-        .then((users) => {
-            return validateUserId(users, Number(request.body["userId"]))
-        })
-        .then(() => {
-            return createDaysOffArray(request.body["startDate"], request.body["endDate"])
-        })
-        .then((createdDaysOffArray) => {
-            daysOffArray = createdDaysOffArray;
-            return readFile("db/daysOff.json")
-        })
-        .then(parseJSON)
-        .then((createdDaysOff) => {
-            daysOff = createdDaysOff;
-            return createNewJson(daysOff, request.body, daysOffArray)
-        })
-        .then((createdJson) => {
-            newJson = createdJson;
-            return addNewJsonInArray(daysOff, newJson);
-        })
-        .then((daysOff) => {
-            return writeFile("db/daysOff.json", JSON.stringify(daysOff));
-        })
-        .then(() => {
-            response.status(200).json({
-                "GET": `http://localhost:3000/days/${newJson["id"]}`,
-                "PATCH": `http://localhost:3000/days/${newJson["id"]}`,
-                "PUT": `http://localhost:3000/days/${newJson["id"]}`,
-                "DELETE": `http://localhost:3000/days/${newJson["id"]}`
-            });
-        })
-        .catch((error) => {
-            response.status(error["status"]).json({
-                "error": error["message"]
-            });
-        })
+const sendError = (response, error) => {
+    response.status(error["status"]).json({
+        "error": error["message"]
+    });
 }
 
 module.exports = {
@@ -165,9 +176,9 @@ module.exports = {
     isDateIntervalOk,
     validateBody,
     parseJSON,
-    validateUserId,
+    validateUserExists,
     formatDate,
     createDaysOffArray,
-    createNewJson,
+    createNewDaysOffJSON,
     bookDaysOff
 };
