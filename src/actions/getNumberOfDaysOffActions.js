@@ -20,7 +20,7 @@ let getDaysOff=(req,res)=>{
             res.send(remainingDays)
         }
         else{
-            res.status(404).json({message:"Userul cautat nu exista."})
+            res.status(404).json({message:"User not found"})
         }
 
     })
