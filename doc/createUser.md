@@ -10,16 +10,29 @@ Returns a URL containing the ID of the new created user
     `Data in body`
 * **Data Params** <br>
     All the user details completed in the input fields given using body
+    ```javascript
+        {
+            id: [number], 
+            firstName: [string],
+            lastName: [string],
+            email: [string],
+            phone: [string],
+            link: [string]
+       }
+       ```
+        Note: All specified fields need to take a valid series of input data.
+
 * **Success Response:** <br>
     * **Code:** 200 <br>
       **Content:** 
       ```javascript
         {
-            userId: 1, 
-            first_name: “Ion”,
-            last_name: “Neculce”,
+            id: 1, 
+            firstName: "Ion",
+            lastName: "Neculce",
             email: "cronicar@gmail.com",
-            phone_number: "0720557248”
+            phone: "0720557248",
+            link: "users/1"
        }
        ```
 * **Error Response:** <br>
@@ -27,7 +40,7 @@ Returns a URL containing the ID of the new created user
       **Content:** 
       ```javascript
       {
-         error_fname: “Ati introdus prenumele gresit”,
+        error_fname: “Ati introdus prenumele gresit”,
 	    error_lname: “Ati introdus numele gresit”,
 	    error_email: “Ati introdus emailul gresit”,
 	    error_phone: “Ati introdus gresit numarul de telefon”
