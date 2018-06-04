@@ -1,17 +1,1 @@
-[
-  { "id": 0, "firstName": "", "lastName": "", "email": "", "phone": "" },
-  {
-    "firstName": "Dante",
-    "lastName": "Alighieri",
-    "email": "inferno@gmail.com",
-    "phone": "0734324343",
-    "id": 1
-  },
-  {
-    "firstName": "Dante",
-    "lastName": "Alighieri",
-    "email": "inferno@gmail.com",
-    "phone": "0734324343",
-    "id": 2 
-  }
-]
+[{"id":0,"firstName":"Lenuta","lastName":"Udrea","email":"elena@udrea.com","phone":"089898989"},{"id":1,"firstName":"Traian","lastName":"Basescu","email":"traian@president.ro","phone":"07834243"}]

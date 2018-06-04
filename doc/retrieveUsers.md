@@ -1,9 +1,9 @@
-# Retrieving user details
+# Retrieving users
 
-Returns a JSON with information about a list of users based on lastname
+Returns a JSON with information about a list of users 
 
 * **URL:** <br>
-    /users/retrieve/:name
+    /users/
 
 * **Method:** <br>
     `GET`
@@ -19,13 +19,14 @@ Returns a JSON with information about a list of users based on lastname
     * **Code:** 200 <br>
       **Content:** 
     ```javascript
-        {
+        [{
             id: 1, 
             firstName: "Grigore",
             lastName: "Ureche",
             email: "letopiset@gmail.com",
             phone: "0745231445"
-    }
+        },...
+        ]
     ```
 
 * **Error Response:** <br>
@@ -33,7 +34,7 @@ Returns a JSON with information about a list of users based on lastname
       **Content:** 
     ```javascript
     {
-        serverErrorMessage: "User not found"
+        serverErrorMessage: "Users not found"
     }
     ```
     * **Code:** 500 INTERNAL SERVER ERROR <br>
@@ -46,5 +47,5 @@ Returns a JSON with information about a list of users based on lastname
  
 * **Sample Call:** <br>
     ```javascript
-    fetch("localhost:3000/users/retrieve/Alighieri");
+    fetch("localhost:3000/users/");
     ```
