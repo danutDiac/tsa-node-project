@@ -7,7 +7,7 @@ let { retrieveUsers } = require('../actions/retrieveUsersActions');
 
 router.post("/", createUser);
 router.get("/:id", getUser);
-router.get("/retrieve/:name",retrieveUsers);
+router.get("/",retrieveUsers);
 router.delete('/:id', deleteUser)
 
 module.exports = router;
