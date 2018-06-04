@@ -43,10 +43,10 @@ describe('Booking days module', () => {
     })
 
     it("Should log days correctly for startdate = 2018-10-20 and enddate = 2018-10-30", (done) => {
-        const { createDaysOffArray } = require('../src/actions/bookingDaysOffActions');
+        const { daysOffRangeToArray } = require('../src/actions/bookingDaysOffActions');
         const startDate = "2018-10-20";
         const endDate = "2018-10-30";
-        createDaysOffArray(startDate, endDate)
+        daysOffRangeToArray(startDate, endDate)
         .then(input => {
             const result = [
                 "2018-10-22",
@@ -57,17 +57,17 @@ describe('Booking days module', () => {
                 "2018-10-29",
                 "2018-10-30"
             ];
-    
+
             chai.expect(input).to.deep.equal(result);
             done();
         })
     })
-    
+
     it("Should log days correctly for startdate = 2018-10-20 and enddate = 2018-11-04", (done) => {
-        const { createDaysOffArray } = require('../src/actions/bookingDaysOffActions');
+        const { daysOffRangeToArray } = require('../src/actions/bookingDaysOffActions');
         const startDate = "2018-10-20";
         const endDate = "2018-11-04";
-        createDaysOffArray(startDate, endDate)
+        daysOffRangeToArray(startDate, endDate)
         .then(input => {
             const result = [
                 "2018-10-22",
@@ -81,7 +81,7 @@ describe('Booking days module', () => {
                 "2018-11-01",
                 "2018-11-02",
             ];
-    
+
             chai.expect(input).to.deep.equal(result);
             done();
         })
@@ -91,14 +91,14 @@ describe('Booking days module', () => {
     })
 
     it("Should return [] for startdate = 2018-10-20 and enddate = 2018-10-10", (done) => {
-        const { createDaysOffArray } = require('../src/actions/bookingDaysOffActions');
+        const { daysOffRangeToArray } = require('../src/actions/bookingDaysOffActions');
         const startDate = "2018-10-20";
         const endDate = "2018-10-10";
-        createDaysOffArray(startDate, endDate)
+        daysOffRangeToArray(startDate, endDate)
         .catch(error => {
             chai.expect(error.message).to.deep.equal("End date lower than start date");
             done();
         })
     })
-    
+
 })
