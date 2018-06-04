@@ -7,7 +7,13 @@ const {
 
 const isDateValid = date => {
     const regex = /([0-9]{4})(-)([1][0-2]|[0][1-9])(-)([0][1-9]|[1-2][0-9]|([3][0-1]))/;
-    return date !== undefined && typeof date === "string" && regex.test(date) && (new Date(date).getFullYear()) <= (new Date().getFullYear() + 3);
+    return date !== undefined && typeof date === "string" && regex.test(date) ;
+}
+
+const isDateIntervalOk = (date, dateName) => {
+    if (new Date(date).getFullYear() > (new Date().getFullYear() + 3)) return dateName + " year should not be set 3 years in the future\n";
+    else if (new Date(date).setHours(0,0,0,0) < new Date().setHours(0,0,0,0)) return  dateName + " should not be lower than today\n";
+    else return "";
 }
 
 const validateBody = (body) => {
@@ -19,9 +25,11 @@ const validateBody = (body) => {
         if (!isDateValid(body["startDate"])) {
             rejectStatus += "Start date is invalid\n";
         }
+        rejectStatus += isDateIntervalOk(body["startDate"], "Start date");
         if (!isDateValid(body["endDate"])) {
             rejectStatus += "End date is invalid\n";
         }
+        rejectStatus += isDateIntervalOk(body["endDate"], "End date");
         if (rejectStatus !== "") reject({
             "status": 400,
             "message": rejectStatus
@@ -154,6 +162,12 @@ const bookDaysOff = (request, response) => {
 
 module.exports = {
     isDateValid,
+    isDateIntervalOk,
+    validateBody,
+    parseJSON,
+    validateUserId,
+    formatDate,
     createDaysOffArray,
+    createNewJson,
     bookDaysOff
 };
