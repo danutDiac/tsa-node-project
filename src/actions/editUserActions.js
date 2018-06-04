@@ -139,7 +139,7 @@ const editUserPut = (req, res) => {
                         .catch(error => {
                             res.status(500);
                             res.json({
-                                serverErrorMessage: "AICI !!!the error was logged and we’ll be checking it shortly"
+                                serverErrorMessage: "the error was logged and we’ll be checking it shortly"
                             })
                         })
 
@@ -154,7 +154,7 @@ const editUserPut = (req, res) => {
         .catch(error => {
             res.status(500);
             res.json({
-                serverErrorMessage: "AICI 2! the error was logged and we’ll be checking it shortly"
+                serverErrorMessage: "the error was logged and we’ll be checking it shortly"
             });
         });
 
