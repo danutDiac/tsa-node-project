@@ -48,6 +48,10 @@ const findItemById = (array, id) => {
     return array.find(item => item.id === id);
 }
 
+const findItemByUserId = (array, id) => {
+    return array.filter(item => item.userId === id);
+}
+
 // const findItemById = (array, id) => array.find(item => item.id === id)
 
 module.exports = {
@@ -55,5 +59,6 @@ module.exports = {
     readFile,
     maxId,
     newId,
-    findItemById
+    findItemById,
+    findItemByUserId
 }
