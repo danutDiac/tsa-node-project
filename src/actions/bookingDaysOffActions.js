@@ -63,7 +63,8 @@ const validateBody = (body) => {
         if (rejectStatus !== "") reject({
             "status": 400,
             "message": rejectStatus
-        });
+        })
+        else
 
         resolve();
     });
