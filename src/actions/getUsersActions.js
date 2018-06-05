@@ -1,5 +1,18 @@
 const { readFile, findItemById, getJSONFromFile } = require("../helpers/helpers");
 
+const parseJSONFromFile = (path) => {
+    return new Promise((resolve, reject) => {
+        getJSONFromFile(path)
+            .then(resolve)
+            .catch(error => {
+                reject({
+                    status: 500,
+                    message: 'the error was logged and we’ll be checking it shortly'
+                })
+            })
+    })
+}
+
 const getUserFromDB = (userID, db) => {
     return new Promise((resolve, reject) => {
         let user = findItemById(db, userID);
@@ -18,9 +31,9 @@ const sendResponse = (request, response, user) => {
     return new Promise((resolve, reject) => {
         try {
             user.links = {
-                "PUT": `http://localhost:3000/users${Number(request.params.id)}`,
-                "PATCH": `http://localhost:3000/users${Number(request.params.id)}`,
-                "DELETE": `http://localhost:3000/users${Number(request.params.id)}`
+                "PUT": `http://localhost:3000/users/${Number(request.params.id)}`,
+                "PATCH": `http://localhost:3000/users/${Number(request.params.id)}`,
+                "DELETE": `http://localhost:3000/users/${Number(request.params.id)}`
             }
             response.status(200).send(user);
             resolve()
@@ -28,19 +41,6 @@ const sendResponse = (request, response, user) => {
         catch (err) {
             reject(err);
         }
-    })
-}
-
-const parseJSONFromFile = (path) => {
-    return new Promise((resolve, reject) => {
-        getJSONFromFile(path)
-            .then(resolve)
-            .catch(error => {
-                reject({
-                    status: 500,
-                    message: 'the error was logged and we’ll be checking it shortly'
-                })
-            })
     })
 }
 
@@ -56,5 +56,9 @@ let getUser = (request, response) => {
         .catch(sendError.bind(null, response))
 };
 
-module.exports = { getUser };
+module.exports = {
+    parseJSONFromFile,
+    getUserFromDB,
+    getUser 
+};
 
