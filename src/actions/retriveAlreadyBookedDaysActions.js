@@ -70,6 +70,7 @@ const retriveAlreadyBookedDays = (request, response) => {
   };
   module.exports = {
     retriveAlreadyBookedDays,
-    findBookedDays
+    findBookedDays,
+    getAlreadyBookedDays
     
   };
