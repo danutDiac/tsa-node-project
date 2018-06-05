@@ -30,6 +30,15 @@ const readFile = (path) => {
 //     })
 // })
 
+const getJSONFromFile = path => {
+    return readFile(path)
+        .then(data => JSON.parse(data))
+        .then(p => {
+            return p
+        })
+       
+}
+
 const maxId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id;
@@ -55,5 +64,6 @@ module.exports = {
     readFile,
     maxId,
     newId,
-    findItemById
+    findItemById,
+    getJSONFromFile
 }
