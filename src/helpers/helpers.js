@@ -36,7 +36,7 @@ const getJSONFromFile = path => {
         .then(p => {
             return p
         })
-       
+        
 }
 
 const maxId = (array) => {

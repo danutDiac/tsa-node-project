@@ -1,16 +1,14 @@
 const { getJSONFromFile } = require("../helpers/helpers")
 
 const parseJSONFromFile = (path) => {
-    return new Promise((resolve, reject) => {
-        getJSONFromFile(path)
-            .then(resolve)
-            .catch(error => {
-                reject({
-                    status: 500,
-                    message: 'the error was logged and we’ll be checking it shortly'
+        return getJSONFromFile(path)
+                .then((data)=> {return data})
+                .catch((err)=>{
+                    throw {
+                        status: 500,
+                        message: 'the error was logged and we’ll be checking it shortly'
+                    }
                 })
-            })
-    })
 }
 
 const findBookedDays =  (userId, daysOff) => {
