@@ -37,24 +37,16 @@ let deleteDaysOff = (req, res) => {
             serverErrorMessage: "the error was logged and we’ll be checking it shortly"
         });
     })
-    // let id = req.params.id;
-    // let result = findDaysOff(id);
-    // if (result) {
-    //     deleteDaysOffFromArray(daysOff, result);
-    //     fs.writeFile('db/daysOff.json', JSON.stringify(daysOff), err => {
-    //         if (err) {
-    //             res.status(500).json({
-    //                 serverErrorMessage: "the error was logged and we’ll be checking it shortly"
-    //             })
-    //         } else {
-    //         }
-    //     })
-    // } else {
-    //     res.status(404).json({ message: "Not found!" })
-    // }
+
 }
 
-module.exports = {
-    deleteDaysOff,
-    deleteDaysOffFromArray
+if (process.env.NODE_ENV == "dev") {
+    module.exports = {
+        deleteDaysOff,
+        deleteDaysOffFromArray
+    }
+} else {
+    module.exports = {
+        deleteDaysOff
+    }
 }
