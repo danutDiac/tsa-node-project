@@ -1,19 +1,5 @@
 const { readFile, findItemById, parseJSON } = require("../helpers/helpers");
 
-const parseJSONFromFile = (path) => {
-    return new Promise((resolve, reject) => {
-        readFile(path)
-            .then(parseJSON)
-            .then(resolve)
-            .catch(error => {
-                reject({
-                    status: 500,
-                    message: 'the error was logged and we’ll be checking it shortly'
-                })
-            })
-    })
-}
-
 const getUserFromDB = (userID, db) => {
     return new Promise((resolve, reject) => {
         let user = findItemById(db, userID);
@@ -42,6 +28,20 @@ const sendResponse = (request, response, user) => {
         catch (err) {
             reject(err);
         }
+    })
+}
+
+const parseJSONFromFile = (path) => {
+    return new Promise((resolve, reject) => {
+        readFile(path)
+            .then(parseJSON)
+            .then(resolve)
+            .catch(error => {
+                reject({
+                    status: 500,
+                    message: 'the error was logged and we’ll be checking it shortly'
+                })
+            })
     })
 }
 

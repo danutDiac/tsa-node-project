@@ -1,0 +1,10 @@
+[2018-06-06T14:51:45+03:00] GET "/days/0" 404 Not Found - {}
+[2018-06-06T14:51:59+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-06T14:52:05+03:00] GET "/users/a" 404 Not Found - {}
+[2018-06-06T15:04:50+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-06T15:04:50+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-06T15:04:50+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-06T15:04:50+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-06T15:04:50+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-06T15:04:51+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-06T15:04:51+03:00] GET "/users/%220%22" 404 Not Found - {}

@@ -24,6 +24,12 @@ const readFile = path => {
     });
 };
 
+// const readFile = path => new Promise((resolve, reject) => {
+//     fs.readFile(path, (err, data) => {
+//         err ? reject(err) : resolve(data)
+//     })
+// })
+
 const parseJSON = data => {
     return new Promise((resolve, reject) => {
         try {
@@ -34,21 +40,7 @@ const parseJSON = data => {
     });
 };
 
-const getJSONFromFile = path => {
-    return readFile(path)
-        .then(data => JSON.parse(data))
-        .then(p => {
-            return p;
-        });
-};
-
-// const readFile = path => new Promise((resolve, reject) => {
-//     fs.readFile(path, (err, data) => {
-//         err ? reject(err) : resolve(data)
-//     })
-// })
-
-const maxId = array => {
+const maxId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id;
 };
@@ -74,6 +66,5 @@ module.exports = {
     parseJSON,
     maxId,
     newId,
-    findItemById,
-    getJSONFromFile
-};
+    findItemById
+}
