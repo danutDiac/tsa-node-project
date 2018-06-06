@@ -1,0 +1,7 @@
+[2018-06-06T15:57:22+03:00] GET "/users/1" 404 Not Found - {}
+[2018-06-06T15:59:50+03:00] POST "/users/0" 404 Not Found - {
+  "firstName": "Dante",
+  "lastName": "Alighieri",
+  "email": "inferno@gmail.com",
+  "phone": "0734324343"
+}
