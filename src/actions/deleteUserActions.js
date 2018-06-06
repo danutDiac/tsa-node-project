@@ -40,7 +40,13 @@ let deleteUser = (req, res) => {
         });
 };
 
-module.exports = {
-    deleteUserFromDatabase,
-    deleteUser
-};
+if (process.env.NODE_ENV == "dev") {
+    module.exports = {
+        deleteUserFromDatabase,
+        deleteUser
+    }
+} else {
+    module.exports = {
+        deleteUser
+    }
+}
