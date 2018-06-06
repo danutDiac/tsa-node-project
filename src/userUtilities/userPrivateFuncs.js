@@ -1,21 +1,10 @@
 
 
 let checkMail = (newMail, allMails) => {
-    return new Promise((resolve, reject) => {
-
-        const duplicate = allMails.find(item => newMail === item.email);
-        if (duplicate !== undefined) {
-            resolve();
-        }
-        else {
-
-            reject({
-                "status": 400,
-                "message": "Invalid email"
-            });
-        }
-
-    })
+    for (let i = 0; i < allMails.length; i++) {
+        if (newMail === allMails[i].email) return 1;
+    }
+    return 0;
 };
 
 let reqValidData = (body, users, putMethod) => {
@@ -24,10 +13,6 @@ let reqValidData = (body, users, putMethod) => {
     return new Promise((resolve, reject) => {
 
         let ok = "";
-        if (putMethod === 0 && Object.keys(body).length === 4) {
-            ok += "Ati introdus prea multe date de modificat"
-        }
-
         if (body.firstName) {
             if (!/^[a-zA-Z]+$/.test(body.firstName))
                 ok += "Ati introdus prenumele gresit" + "\n";

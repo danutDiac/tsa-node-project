@@ -5,18 +5,18 @@ let dataPATCH = (req, res, data) => {
 
     const body = req["body"];
     const id = Number(req["params"].id)
-    
+
     return parseJSON(data)
-        .then(users => 
-                reqValidData(body, users, 0)
+        .then(users =>
+            reqValidData(body, users, 0)
                 .then(idIdentification.bind(null, id, users))
                 .then(line => replacePATCH(body, users, line)
                     .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
-                    .then( () => res.status(201).json(users[line])))
-            )
+                    .then(() => res.status(201).json(users[line])))
+        )
         .catch(err => {
             console.log(err)
-            res.status(err["status"]).json({"message": err["message"]})
+            res.status(err["status"]).json({ "message": err["message"] })
         })
 }
 
@@ -24,19 +24,19 @@ let dataPUT = (req, res, data) => {
 
     const body = req["body"];
     const id = Number(req["params"].id)
-    
+
     return parseJSON(data)
-    .then(users => 
+        .then(users =>
             reqValidData(body, users, 1)
-            .then(idIdentification.bind(null, id, users))
-            .then(line => replacePUT(body, users, line)
-                .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
-                .then( () => res.status(201).json(users[line])))
+                .then(idIdentification.bind(null, id, users))
+                .then(line => replacePUT(body, users, line)
+                    .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
+                    .then(() => res.status(201).json(users[line])))
         )
-    .catch(err => {
-        console.log(err)
-        res.status(err["status"]).json({"message": err["message"]})
-    })
+        .catch(err => {
+            console.log(err)
+            res.status(err["status"]).json({ "message": err["message"] })
+        })
 }
 
 

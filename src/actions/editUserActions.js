@@ -8,7 +8,7 @@ const editUserPatch = (req, res) => {
         .then((data) => dataPATCH(req, res, data))
         .catch(error => {
             res.status(500);
-            res.json({"Message": "error has logged"});
+            res.json({"Message": "PATCH ERROR: error has logged"});
         })
 }
 
@@ -19,7 +19,7 @@ const editUserPut = (req, res) => {
         .catch(error =>{
             console.log(error);
             res.status(500);
-            res.json({"message": "the error has logged"});
+            res.json({"message": "PUT ERROR: the error has logged"});
         })
 
 }
