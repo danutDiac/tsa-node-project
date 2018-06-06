@@ -2,7 +2,6 @@ const { getJSONFromFile } = require("../helpers/helpers")
 
 const parseJSONFromFile = (path) => {
         return getJSONFromFile(path)
-                .then((data)=> {return data})
                 .catch((err)=>{
                     throw {
                         status: 500,

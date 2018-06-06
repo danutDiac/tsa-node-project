@@ -33,9 +33,6 @@ const readFile = (path) => {
 const getJSONFromFile = path => {
     return readFile(path)
         .then(data => JSON.parse(data))
-        .then(p => {
-            return p
-        })
         
 }
 

@@ -81,3 +81,6 @@
 [2018-06-05T14:42:25+03:00] GET "/users/-1" 404 Not Found - {}
 [2018-06-05T14:42:25+03:00] GET "/users/A" 404 Not Found - {}
 [2018-06-05T14:42:25+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-06T11:08:39+03:00] GET "/days/3" 404 Not Found - {}
+[2018-06-06T11:08:53+03:00] GET "/days/3" 500 Internal Server Error - {}
+[2018-06-06T11:10:30+03:00] GET "/days/3" 404 Not Found - {}
