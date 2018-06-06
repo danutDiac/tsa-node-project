@@ -1,5 +1,5 @@
 let { writeFile, readFile, parseJSON } = require("../helpers/helpers")
-let { checkMail, reqValidData, idIdentification, replacePATCH, replacePUT } = require("./userPrivateFuncs")
+let { checkMail, reqValidData, getIdIndex, replacePATCH, replacePUT } = require("./userPrivateFuncs")
 
 let dataPATCH = (req, res, data) => {
 
@@ -9,7 +9,7 @@ let dataPATCH = (req, res, data) => {
     return parseJSON(data)
         .then(users =>
             reqValidData(body, users, 0)
-                .then(idIdentification.bind(null, id, users))
+                .then(getIdIndex.bind(null, id, users))
                 .then(line => replacePATCH(body, users, line)
                     .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
                     .then(() => res.status(201).json(users[line])))
@@ -28,7 +28,7 @@ let dataPUT = (req, res, data) => {
     return parseJSON(data)
         .then(users =>
             reqValidData(body, users, 1)
-                .then(idIdentification.bind(null, id, users))
+                .then(getIdIndex.bind(null, id, users))
                 .then(line => replacePUT(body, users, line)
                     .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
                     .then(() => res.status(201).json(users[line])))

@@ -62,7 +62,7 @@ let reqValidData = (body, users, putMethod) => {
     })
 };
 
-let idIdentification = (idNumb, arrOfObj) => {
+let getIdIndex = (idNumb, arrOfObj) => {
     return new Promise((resolve, reject) => {
 
         const line = arrOfObj.findIndex(item => item.id === idNumb)
@@ -105,4 +105,4 @@ let replacePUT = (body, users, line) => {
 }
 
 
-module.exports = { checkMail, reqValidData, idIdentification, replacePATCH, replacePUT }
+module.exports = { checkMail, reqValidData, getIdIndex, replacePATCH, replacePUT }

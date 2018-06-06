@@ -1,6 +1,6 @@
 let { writeFile, readFile } = require("../helpers/helpers")
 let { dataPATCH, dataPUT } = require('../userUtilities/editUserFuncs')
-let { checkMail, reqValidData, idIdentification } = require('../userUtilities/userPrivateFuncs')
+let { checkMail, reqValidData, getIdIndex } = require('../userUtilities/userPrivateFuncs')
 
 const editUserPatch = (req, res) => {
     // let users = require("../../db/users.json");
