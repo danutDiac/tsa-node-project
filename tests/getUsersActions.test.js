@@ -25,10 +25,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = 0;
-            const input = findItemById(users, userId);
-            const result = users[0];
+            const foundUser = findItemById(users, userId);
+            const testUser = users[0];
             
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
@@ -38,10 +38,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = -1;
-            const input = findItemById(users, userId);
-            const result = undefined;
+            const foundUser = findItemById(users, userId);
+            const testUser = undefined;
 
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
@@ -51,10 +51,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = 'A';
-            const input = findItemById(users, userId);
-            const result = undefined;
+            const foundUser = findItemById(users, userId);
+            const testUser = undefined;
 
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
@@ -64,10 +64,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = '0';
-            const input = findItemById(users, userId);
-            const result = undefined;
+            const foundUser = findItemById(users, userId);
+            const testUser = undefined;
 
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
