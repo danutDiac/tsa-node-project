@@ -24,17 +24,21 @@ const readFile = (path) => {
     })
 }
 
-const getJSONFromFile = path => {
-    return readFile(path)
-        .then(data => JSON.parse(data))    
-}
-
-
 // const readFile = path => new Promise((resolve, reject) => {
 //     fs.readFile(path, (err, data) => {
 //         err ? reject(err) : resolve(data)
 //     })
 // })
+
+const parseJSON = data => {
+    return new Promise((resolve, reject) => {
+        try {
+            resolve(JSON.parse(data));
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
 const maxId = (array) => {
     if (array.length === 0) return 0;
@@ -59,8 +63,8 @@ const findItemById = (array, id) => {
 module.exports = {
     writeFile,
     readFile,
+    parseJSON,
     maxId,
     newId,
-    findItemById,
-    getJSONFromFile
+    findItemById
 }

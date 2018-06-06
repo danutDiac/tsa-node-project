@@ -1,4 +1,4 @@
-const { readFile, findItemById, getJSONFromFile } = require("../helpers/helpers");
+const { readFile, findItemById, parseJSON } = require("../helpers/helpers");
 
 const getUserFromDB = (userID, db) => {
     return new Promise((resolve, reject) => {
@@ -33,7 +33,8 @@ const sendResponse = (request, response, user) => {
 
 const parseJSONFromFile = (path) => {
     return new Promise((resolve, reject) => {
-        getJSONFromFile(path)
+        readFile(path)
+            .then(parseJSON)
             .then(resolve)
             .catch(error => {
                 reject({
