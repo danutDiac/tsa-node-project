@@ -18,9 +18,9 @@ const sendResponse = (request, response, user) => {
     return new Promise((resolve, reject) => {
         try {
             user.links = {
-                "PUT": `http://localhost:3000/users${Number(request.params.id)}`,
-                "PATCH": `http://localhost:3000/users${Number(request.params.id)}`,
-                "DELETE": `http://localhost:3000/users${Number(request.params.id)}`
+                "PUT": `http://localhost:3000/users/${Number(request.params.id)}`,
+                "PATCH": `http://localhost:3000/users/${Number(request.params.id)}`,
+                "DELETE": `http://localhost:3000/users/${Number(request.params.id)}`
             }
             response.status(200).send(user);
             resolve()
@@ -57,5 +57,9 @@ let getUser = (request, response) => {
         .catch(sendError.bind(null, response))
 };
 
-module.exports = { getUser };
+module.exports = {
+    parseJSONFromFile,
+    getUserFromDB,
+    getUser 
+};
 

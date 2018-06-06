@@ -1,16 +1,15 @@
 const chai = require("chai");
-const { readFile, writeFile, findItemById } = require("../src/helpers/helpers");
+const { readFile, writeFile, findItemById, getJSONFromFile } = require("../src/helpers/helpers");
 
-describe("GetUsers module actions", (done) => {
-
-    before(function (done) {
+describe("GetUsers module actions", done => {
+    before(done => {
         const users = [
             {
-                "id": 0,
-                "firstName": "",
-                "lastName": "",
-                "email": "",
-                "phone": ""
+                id: 0,
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: ""
             }
         ]
         
@@ -30,7 +29,7 @@ describe("GetUsers module actions", (done) => {
             
             chai.expect(foundUser).to.deep.equal(testUser);
             done();
-        })
+        });
     });
 
     it("Should return user with id -1", (done) => {

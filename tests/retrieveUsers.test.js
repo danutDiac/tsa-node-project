@@ -24,6 +24,22 @@ describe("GetUser module routes", () => {
       }
     ];
 
+    after((done) => {
+      const users = [
+          {
+              id: 0,
+              firstName: "",
+              lastName: "",
+              email: "",
+              phone: ""
+          }
+      ];
+
+      writeFile("db/users.json", JSON.stringify(users)).then(() => {
+          done();
+      });
+  });
+
     writeFile("db/users.json", JSON.stringify(users)).then(() => {
       done();
     });
