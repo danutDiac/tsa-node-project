@@ -21,21 +21,21 @@ describe("retriveAlreadyBookedDays module actions", (done) => {
 
         it("Should return an array with the days already booked by user with id 0", done => {
             const { findBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions");
-            const input = 0
-            const output = findBookedDays(input, daysOff);
+            const userId = 0
+            const bookedDays = findBookedDays(userId, daysOff);
             const result = [2018-06-04, 2018-06-05,2018-08-23, 2018-08-24, 2018-08-27, 2018-08-28]
 
-            chai.expect(output).to.deep.equal(result);
+            chai.expect(bookedDays).to.deep.equal(result);
             done();
         })
 
         it("should return an empty array for user with id 2", done => {
             const { findBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions");
-            const input = 2;
-            const output = findBookedDays(2, daysOff);
+            const userId = 2;
+            const bookedDays = findBookedDays(userId, daysOff);
             const result = [];
 
-            chai.expect(output).to.deep.equal(result);
+            chai.expect(bookedDays).to.deep.equal(result);
             done()
         })
             })
@@ -44,12 +44,12 @@ describe("retriveAlreadyBookedDays module actions", (done) => {
 
         it("Should return the message 'User not found/no days booked yet', for user with id 2", done => {
         const { getAlreadyBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions");
-        const input = 2;
+        const userId = 2;
         const result = {
             "status" : 404,
             "message": "User not found/no days booked yet"
         }
-        getAlreadyBookedDays(input, daysOff)
+        getAlreadyBookedDays(userId, daysOff)
             .catch(err => {
                 chai.expect(err).to.deep.equal(result);
                 done();
