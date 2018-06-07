@@ -5,7 +5,6 @@ const server = require("../src/main.js");
 chai.use(chaiHttp);
 
 describe('GetUser module routes', () => {
-
     it("Should return user with id 0", (done) => {
         const input = `/users/0`;
         let result = require("../db/users.json")[0];
