@@ -60,11 +60,24 @@ const findItemById = (array, id) => {
 
 // const findItemById = (array, id) => array.find(item => item.id === id)
 
+let sendErrorMessage = ({err, res}) => {
+    return res.status(500).json({
+        serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+    })
+}
+
+let sendSuccessMessage = (status, body, res) => {
+    
+    return res.status(status).json(body)
+}
+
 module.exports = {
     writeFile,
     readFile,
     parseJSON,
     maxId,
     newId,
-    findItemById
+    findItemById,
+    sendErrorMessage,
+    sendSuccessMessage
 }
