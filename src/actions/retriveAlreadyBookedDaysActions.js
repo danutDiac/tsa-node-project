@@ -13,8 +13,8 @@ const parseJSONFromFile = (path) => {
 const findBookedDays =  (userId, daysOff) => {
     let daysBooked = [];
     daysOff.forEach(element => {
-      if (element["userId"] === userId) {
-        daysBooked.push(...element["daysOff"]);
+      if (element.userId === userId) {
+        daysBooked.push(...element.daysOff);
       }
     });
     return daysBooked;
