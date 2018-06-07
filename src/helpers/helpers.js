@@ -7,7 +7,7 @@ const writeFile = (path, data) => {
             else resolve();
         });
     });
-}
+};
 
 // const writeFile = (path, data) => new Promise((resolve, reject) => {
 //     fs.writeFile(path, data, err => {
@@ -15,14 +15,14 @@ const writeFile = (path, data) => {
 //     })
 // })
 
-const readFile = (path) => {
+const readFile = path => {
     return new Promise((resolve, reject) => {
         fs.readFile(path, (error, data) => {
             if (error) reject(error);
             else resolve(data);
-        })
-    })
-}
+        });
+    });
+};
 
 // const readFile = path => new Promise((resolve, reject) => {
 //     fs.readFile(path, (err, data) => {
@@ -30,37 +30,41 @@ const readFile = (path) => {
 //     })
 // })
 
-const getJSONFromFile = path => {
-    return readFile(path)
-        .then(data => JSON.parse(data))
-        
-}
+const parseJSON = data => {
+    return new Promise((resolve, reject) => {
+        try {
+            resolve(JSON.parse(data));
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
 
 const maxId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id;
-}
+};
 
 // const maxId = array => array.length === 0 ? 0 : array[array.length - 1].id
 
-const newId = (array) => {
+const newId = array => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id + 1;
-}
+};
 
 // const newId = array => array.length === 0 ? 0 : array[array.length - 1].id + 1
 
 const findItemById = (array, id) => {
     return array.find(item => item.id === id);
-}
+};
 
 // const findItemById = (array, id) => array.find(item => item.id === id)
 
 module.exports = {
     writeFile,
     readFile,
+    parseJSON,
     maxId,
     newId,
-    findItemById,
-    getJSONFromFile
+    findItemById
 }
