@@ -16,7 +16,12 @@ let createUser = (req, res) => {
         writeFile("db/users.json", JSON.stringify(users))
           .then(() => {
             let sentlink = body;
-            sentlink.link = `/users/${sentlink.id}`;
+            sentlink.link = {
+              GET: `/users/${sentlink.id}`,
+              PUT: `/users/${sentlink.id}`,
+              PATCH: `/users/${sentlink.id}`,
+              DELETE: `/users/${sentlink.id}`
+            };
             res.status(200).send(sentlink);
           })
           .catch(error => {
@@ -60,9 +65,14 @@ let checkMail = (newMail, allMails) => {
   }
   return 0;
 };
-
-module.exports = {
-  createUser,
-  dataValid,
-  checkMail
-};
+if (process.env.NODE_ENV == "dev") {
+  module.exports = {
+    createUser,
+    dataValid,
+    checkMail
+  };
+} else {
+  module.exports = {
+    createUser
+  };
+}
