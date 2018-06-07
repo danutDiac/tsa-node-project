@@ -65,9 +65,17 @@ const retriveAlreadyBookedDays = (request, response) => {
         .catch(sendError.bind(null, response))
     
   };
-  module.exports = {
-    retriveAlreadyBookedDays,
-    findBookedDays,
-    getAlreadyBookedDays
-    
-  };
+  if(process.env.NODE_ENV === "dev")
+  {
+      module.exports = {
+        retriveAlreadyBookedDays,
+        findBookedDays,
+        getAlreadyBookedDays
+        
+      }
+  }
+  else{
+    module.exports = {
+        retriveAlreadyBookedDays
+      }
+  }
