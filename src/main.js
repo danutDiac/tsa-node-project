@@ -9,6 +9,7 @@ let daysRouter = require("./routes/days");
 let nationalDaysRouter = require("./routes/nationalDays");
 let config = require("../config/config");
 let User = require("../src/models/userModel");
+let DaysOff = require("../src/models/daysOffModel")
 
 let app = express();
 
@@ -34,10 +35,19 @@ mongoose.connect(config.mongoUrl, (err, res) => {
             email: "gigel@mura.ro",
             phone: "0749666000"
         })
-        newUser.save((err, User) => {
+        newUser.save((err, user) => {
             if (err) {
                 console.log(err);
             }
+            let newDaysOff = new DaysOff({
+                userId: user._id,
+                daysOff: ["2018-02-20","2018-02-21"]
+            })
+            newDaysOff.save((err, DaysOff) => {
+                if (err) {
+                    console.log(err);
+                }
+            });
         });
     }
     
