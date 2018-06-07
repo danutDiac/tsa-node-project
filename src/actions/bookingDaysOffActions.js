@@ -49,17 +49,17 @@ const isDateIntervalOk = (date, dateName) => {
 const validateBody = (body) => {
     return new Promise((resolve, reject) => {
         let rejectStatus = ""
-        if (Number.isNaN(Number(body["userId"]))) {
+        if (Number.isNaN(Number(body.userId))) {
             rejectStatus += "User id is not a number\n"
         }
-        if (!isDateValid(body["startDate"])) {
+        if (!isDateValid(body.startDate)) {
             rejectStatus += "Start date is invalid\n";
         }
-        rejectStatus += isDateIntervalOk(body["startDate"], "Start date");
-        if (!isDateValid(body["endDate"])) {
+        rejectStatus += isDateIntervalOk(body.startDate, "Start date");
+        if (!isDateValid(body.endDate)) {
             rejectStatus += "End date is invalid\n";
         }
-        rejectStatus += isDateIntervalOk(body["endDate"], "End date");
+        rejectStatus += isDateIntervalOk(body.endDate, "End date");
         if (rejectStatus !== "") reject({
             "status": 400,
             "message": rejectStatus
@@ -73,7 +73,7 @@ const validateBody = (body) => {
 
 const validateUserExists = (body, users) => {
     return new Promise((resolve, reject) => {
-        if (findItemById(users, body["userId"]) === undefined) {
+        if (findItemById(users, body.userId) === undefined) {
             reject({
                 "status": 404,
                 "message": "User not found"
@@ -135,10 +135,10 @@ const sendResponse = (response, newDaysOffJSON) => {
     return new Promise((resolve, reject) => {
 		try {
 			response.status(200).json({
-				"GET": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
-				"PATCH": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
-				"PUT": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
-				"DELETE": `http://localhost:3000/days/${newDaysOffJSON["id"]}`
+				"GET": `http://localhost:3000/days/${newDaysOffJSON.id}`,
+				"PATCH": `http://localhost:3000/days/${newDaysOffJSON.id}`,
+				"PUT": `http://localhost:3000/days/${newDaysOffJSON.id}`,
+				"DELETE": `http://localhost:3000/days/${newDaysOffJSON.id}`
 			});
 			resolve();
 		} catch(err) {
@@ -154,12 +154,11 @@ const sendError = (response) => {
 		message: 'the error was logged and we’ll be checking it shortly'
 	}
 
-    response.status(error["status"]).json({
-		"error": error["message"]
+    response.status(error.status).json({
+		"error": error.message
     });
 }
 
-<<<<<<< HEAD
 if (process.env.NODE_ENV === "dev") {
     module.exports = {
         isDateValid,
@@ -177,15 +176,3 @@ else {
         bookDaysOff
     };
 }
-=======
-module.exports = {
-    isDateValid,
-    isDateIntervalOk,
-    validateBody,
-    validateUserExists,
-    formatDate,
-    daysOffRangeToArray,
-    createNewDaysOffJSON,
-    bookDaysOff
-};
->>>>>>> 023e67fea9289a85c851065581c69fb9485e7a03
