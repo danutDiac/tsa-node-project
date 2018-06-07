@@ -52,13 +52,14 @@ const newId = array => {
     return array[array.length - 1].id + 1;
 };
 
-// const newId = array => array.length === 0 ? 0 : array[array.length - 1].id + 1
 
 const findItemById = (array, id) => {
     return array.find(item => item.id === id);
 };
 
-// const findItemById = (array, id) => array.find(item => item.id === id)
+const findItemByUserId = (array, id) => {
+    return array.filter(item => item.userId === id);
+}
 
 module.exports = {
     writeFile,
