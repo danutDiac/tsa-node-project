@@ -9,6 +9,12 @@ const writeFile = (path, data) => {
     });
 };
 
+// const writeFile = (path, data) => new Promise((resolve, reject) => {
+//     fs.writeFile(path, data, err => {
+//         err ? reject(err) : resolve()
+//     })
+// })
+
 const readFile = path => {
     return new Promise((resolve, reject) => {
         fs.readFile(path, (error, data) => {
@@ -17,6 +23,12 @@ const readFile = path => {
         });
     });
 };
+
+// const readFile = path => new Promise((resolve, reject) => {
+//     fs.readFile(path, (err, data) => {
+//         err ? reject(err) : resolve(data)
+//     })
+// })
 
 const parseJSON = data => {
     return new Promise((resolve, reject) => {
@@ -32,6 +44,8 @@ const maxId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id;
 };
+
+// const maxId = array => array.length === 0 ? 0 : array[array.length - 1].id
 
 const newId = array => {
     if (array.length === 0) return 0;

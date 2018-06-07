@@ -7,7 +7,12 @@ chai.use(chaiHttp);
 describe('GetUser module routes', () => {
     it("Should return user with id 0", (done) => {
         const input = `/users/0`;
-        const result = require("../db/users.json")[0];
+        let result = require("../db/users.json")[0];
+        result["links"] = {
+            PUT: `http://localhost:3000/users/0`,
+            PATCH: `http://localhost:3000/users/0`,
+            DELETE: `http://localhost:3000/users/0`
+        };
 
         chai.request(server)
             .get(input)

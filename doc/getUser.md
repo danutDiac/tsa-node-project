@@ -25,6 +25,11 @@ Returns a JSON with information about a single user
             last_name: "Popescu",
             email: "catalin.popescu@gmail.com",
             phone_number: "0745231445"
+            links: {
+                PUT: "http://localhost:3000/users/1",
+                PATCH: "http://localhost:3000/users/1",
+                DELETE: "http://localhost:3000/users/1"
+            }
     }
     ```
 
@@ -40,7 +45,7 @@ Returns a JSON with information about a single user
       **Content:** 
     ```javascript
     {
-        error: "Internal server error"
+        error: "the error was logged and we’ll be checking it shortly"
     }
     ```
  
