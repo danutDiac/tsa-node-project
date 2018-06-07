@@ -1,5 +1,5 @@
 const chai = require('chai');
-const { checkMail, replacePATCH, replacePUT, getIdIndex, reqValidData } = require("../src/userUtilities/userPrivateFuncs");
+const { checkMail, replacePATCH, replacePUT, getIdIndex, reqValidData } = require("../src/actions/editUserActions");
 const should = chai.should();
 
 describe('Edit user module actions', () => {
