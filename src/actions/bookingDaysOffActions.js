@@ -2,8 +2,38 @@ const {
     readFile,
     writeFile,
     findItemById,
-    newId
+	newId,
+	getJSONFromFile
 } = require("../helpers/helpers");
+
+const bookDaysOff = (request, response) => {
+	const body = request.body
+
+	const getDaysOffCollections = () => {
+		return Promise.all([
+			daysOffRangeToArray(body.startDate, body.endDate),
+			getJSONFromFile("db/daysOff.json")
+		])
+	}
+
+	const saveDaysOff = (allDaysOff, newDaysOffJSON) =>
+		addNewDaysOffJSONInArray(allDaysOff, newDaysOffJSON)
+			.then(writeFile.bind(null, "db/daysOff.json"))
+			.then(() => newDaysOffJSON)
+
+	const createAndSaveDaysOffFlow = ([newDaysOff, allDaysOff]) =>
+		createNewDaysOffJSON(allDaysOff, body.userId, newDaysOff)
+			.then(saveDaysOff.bind(null, allDaysOff))
+
+	validateBody(body)
+		.then(getJSONFromFile.bind(null, "db/users.json"))
+		.then(validateUserExists.bind(null, body))
+		.then(getDaysOffCollections)
+		.then(createAndSaveDaysOffFlow)
+		.then(sendResponse.bind(null, response))
+		.catch(sendError.bind(null, response));
+
+}
 
 const isDateValid = date => {
     const regex = /([0-9]{4})(-)([1][0-2]|[0][1-9])(-)([0][1-9]|[1-2][0-9]|([3][0-1]))/;
@@ -33,33 +63,22 @@ const validateBody = (body) => {
         if (rejectStatus !== "") reject({
             "status": 400,
             "message": rejectStatus
-        });
+        })
+        else
+
         resolve();
     });
 }
 
-const parseJSON = (data) => {
-    return new Promise((resolve, reject) => {
-        try {
-            resolve(JSON.parse(data));
-        }
-        catch (error) {
-            reject({
-                "status": 500,
-                "message": error
-            });
-        }
-    })
-}
 
-const validateUserId = (users, id) => {
+const validateUserExists = (body, users) => {
     return new Promise((resolve, reject) => {
-        if (findItemById(users, id) === undefined) {
+        if (findItemById(users, body["userId"]) === undefined) {
             reject({
                 "status": 404,
                 "message": "User not found"
             });
-        }
+		}
         resolve();
     })
 }
@@ -69,14 +88,12 @@ const formatDate = date => {
     else return String(date);
 }
 
-const createDaysOffArray = (startDate, endDate) => {
+const daysOffRangeToArray = (startDate, endDate) => {
     return new Promise((resolve, reject) => {
         startDate = new Date(startDate);
         endDate = new Date(endDate);
 
         let daysOffArray = [];
-        let month = "";
-        let day = "";
 
         if (startDate > endDate) {
             reject({
@@ -91,75 +108,58 @@ const createDaysOffArray = (startDate, endDate) => {
                 daysOffArray.push(`${startDate.getFullYear()}-${formatDate(startDate.getUTCMonth() + 1)}-${formatDate(startDate.getDate())}`);
             }
         }
-        
+
         resolve(daysOffArray);
     })
 }
 
-const createNewJson = (daysOff, body, daysOffArray) => {
+const createNewDaysOffJSON = (daysOff, userId, daysOffArray) => {
     return new Promise((resolve, reject) => {
         resolve({
             id: newId(daysOff),
-            userId: body["userId"],
+            userId: userId,
             daysOff: daysOffArray
         });
+
     })
 }
 
-const addNewJsonInArray = (daysOff, newJson) => {
+const addNewDaysOffJSONInArray = (daysOff, newDaysOffJSON) => {
     return new Promise((resolve, reject) => {
-        daysOff.push(newJson);
-        resolve(daysOff);
+        daysOff.push(newDaysOffJSON);
+        resolve(JSON.stringify(daysOff));
     })
 }
 
-const bookDaysOff = (request, response) => {
-    let daysOffArray = undefined;
-    let newJson = undefined;
-    let daysOff = undefined;
-
-    validateBody(request.body)
-        .then(() => {
-            return readFile("db/users.json");
-        })
-        .then(parseJSON)
-        .then((users) => {
-            return validateUserId(users, Number(request.body["userId"]))
-        })
-        .then(() => {
-            return createDaysOffArray(request.body["startDate"], request.body["endDate"])
-        })
-        .then((createdDaysOffArray) => {
-            daysOffArray = createdDaysOffArray;
-            return readFile("db/daysOff.json")
-        })
-        .then(parseJSON)
-        .then((createdDaysOff) => {
-            daysOff = createdDaysOff;
-            return createNewJson(daysOff, request.body, daysOffArray)
-        })
-        .then((createdJson) => {
-            newJson = createdJson;
-            return addNewJsonInArray(daysOff, newJson);
-        })
-        .then((daysOff) => {
-            return writeFile("db/daysOff.json", JSON.stringify(daysOff));
-        })
-        .then(() => {
-            response.status(200).json({
-                "GET": `http://localhost:3000/days/${newJson["id"]}`,
-                "PATCH": `http://localhost:3000/days/${newJson["id"]}`,
-                "PUT": `http://localhost:3000/days/${newJson["id"]}`,
-                "DELETE": `http://localhost:3000/days/${newJson["id"]}`
-            });
-        })
-        .catch((error) => {
-            response.status(error["status"]).json({
-                "error": error["message"]
-            });
-        })
+const sendResponse = (response, newDaysOffJSON) => {
+    return new Promise((resolve, reject) => {
+		try {
+			response.status(200).json({
+				"GET": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
+				"PATCH": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
+				"PUT": `http://localhost:3000/days/${newDaysOffJSON["id"]}`,
+				"DELETE": `http://localhost:3000/days/${newDaysOffJSON["id"]}`
+			});
+			resolve();
+		} catch(err) {
+			console.log(err)
+			reject(err)
+		}
+    })
 }
 
+const sendError = (response) => {
+	const error = {
+		status: '500',
+		message: 'the error was logged and we’ll be checking it shortly'
+	}
+
+    response.status(error["status"]).json({
+		"error": error["message"]
+    });
+}
+
+<<<<<<< HEAD
 if (process.env.NODE_ENV === "dev") {
     module.exports = {
         isDateValid,
@@ -177,3 +177,15 @@ else {
         bookDaysOff
     };
 }
+=======
+module.exports = {
+    isDateValid,
+    isDateIntervalOk,
+    validateBody,
+    validateUserExists,
+    formatDate,
+    daysOffRangeToArray,
+    createNewDaysOffJSON,
+    bookDaysOff
+};
+>>>>>>> 023e67fea9289a85c851065581c69fb9485e7a03

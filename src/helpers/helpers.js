@@ -24,6 +24,18 @@ const readFile = (path) => {
     })
 }
 
+const getJSONFromFile = path => {
+	return readFile(path)
+		.then(data => JSON.parse(data))
+		.then(p => {
+			return p
+		})
+		.catch(err => {
+			console.log(err)
+		})
+}
+
+
 // const readFile = path => new Promise((resolve, reject) => {
 //     fs.readFile(path, (err, data) => {
 //         err ? reject(err) : resolve(data)
@@ -55,5 +67,6 @@ module.exports = {
     readFile,
     maxId,
     newId,
-    findItemById
+	findItemById,
+	getJSONFromFile
 }
