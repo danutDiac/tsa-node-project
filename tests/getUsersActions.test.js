@@ -1,16 +1,15 @@
 const chai = require("chai");
-const { readFile, writeFile, findItemById } = require("../src/helpers/helpers");
+const { readFile, writeFile, findItemById, getJSONFromFile } = require("../src/helpers/helpers");
 
-describe("GetUsers module actions", (done) => {
-
-    before(function (done) {
+describe("GetUsers module actions", done => {
+    before(done => {
         const users = [
             {
-                "id": 0,
-                "firstName": "",
-                "lastName": "",
-                "email": "",
-                "phone": ""
+                id: 0,
+                firstName: "",
+                lastName: "",
+                email: "",
+                phone: ""
             }
         ]
         
@@ -25,12 +24,12 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = 0;
-            const input = findItemById(users, userId);
-            const result = users[0];
+            const foundUser = findItemById(users, userId);
+            const testUser = users[0];
             
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
-        })
+        });
     });
 
     it("Should return user with id -1", (done) => {
@@ -38,10 +37,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = -1;
-            const input = findItemById(users, userId);
-            const result = undefined;
+            const foundUser = findItemById(users, userId);
+            const testUser = undefined;
 
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
@@ -51,10 +50,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = 'A';
-            const input = findItemById(users, userId);
-            const result = undefined;
+            const foundUser = findItemById(users, userId);
+            const testUser = undefined;
 
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
@@ -64,10 +63,10 @@ describe("GetUsers module actions", (done) => {
         .then(data => {
             const users = JSON.parse(data);
             const userId = '0';
-            const input = findItemById(users, userId);
-            const result = undefined;
+            const foundUser = findItemById(users, userId);
+            const testUser = undefined;
 
-            chai.expect(input).to.deep.equal(result);
+            chai.expect(foundUser).to.deep.equal(testUser);
             done();
         })
     });
