@@ -17,7 +17,10 @@ let deleteUser = (req, res) => {
 
                 writeFile("db/users.json", JSON.stringify(users))
                     .then(() => {
-                        res.status(204).send();
+                        res.status(200).json({
+                            "GET": req.headers.host + req.baseUrl,
+                            "POST": req.headers.host + req.baseUrl
+                        });
                     })
                     .catch(error => {
                         res.status(500).json({
