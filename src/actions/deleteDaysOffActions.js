@@ -18,7 +18,10 @@ let deleteDaysOff = (req, res) => {
 
             writeFile("db/daysOff.json", JSON.stringify(daysOff))
             .then(() => {
-                res.status(204).send()
+                res.status(200).json({
+                    "GET": req.headers.host + req.baseUrl,
+                    "POST": req.headers.host + req.baseUrl
+                });
             })
             .catch(error => {
                 response.status(500);
