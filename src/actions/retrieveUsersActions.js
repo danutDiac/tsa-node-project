@@ -5,11 +5,9 @@ let retrieveUsers = (req, res) => {
     .then(data => {
       let users = JSON.parse(data);
       if (users) {
-        res.status(200);
-        res.json(users);
+        res.status(200).json(users);
       } else {
-        res.status(404);
-        res.json({
+        res.status(404).json({
           serverErrorMessage: "User not found"
         });
       }
