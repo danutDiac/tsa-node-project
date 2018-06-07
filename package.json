@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/main.js --watch src",
-    "test": "mocha 'tests/*.js' --exit"
+    "start": "NODE_ENV=dev nodemon src/main.js --watch src",
+    "test": "NODE_ENV=dev mocha 'tests/*.js' --exit"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "express": "^4.16.3",
     "mocha": "^5.2.0",
     "moment-timezone": "^0.5.17",
+    "mongoose": "^5.1.4",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
