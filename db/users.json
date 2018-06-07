@@ -1,1 +1,9 @@
-[{"id":0,"firstName":"","lastName":"","email":"","phone":""}]
+[
+    {
+        "id": 0,
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "phone": ""
+    }
+]
