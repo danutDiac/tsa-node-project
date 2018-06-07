@@ -54,7 +54,7 @@ const findBookedDays =  (userId, daysOff) => {
   }
 
 const sendError = (response, err) => {
-    response.status(err["status"]).json({ "error": err["message"] });
+    response.status(err.status).json({ "error": err.message });
 }
   
 
