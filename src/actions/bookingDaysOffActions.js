@@ -160,14 +160,20 @@ const bookDaysOff = (request, response) => {
         })
 }
 
-module.exports = {
-    isDateValid,
-    isDateIntervalOk,
-    validateBody,
-    parseJSON,
-    validateUserId,
-    formatDate,
-    createDaysOffArray,
-    createNewJson,
-    bookDaysOff
-};
+if (process.env.NODE_ENV === "dev") {
+    module.exports = {
+        isDateValid,
+        isDateIntervalOk,
+        validateBody,
+        validateUserExists,
+        formatDate,
+        daysOffRangeToArray,
+        createNewDaysOffJSON,
+        bookDaysOff
+    };
+}
+else {
+    module.exports = {
+        bookDaysOff
+    };
+}
