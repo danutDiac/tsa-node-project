@@ -1,4 +1,4 @@
-let { writeFile, readFile,parseJSONnpm  } = require("../helpers/helpers")
+let { writeFile, readFile,parseJSON  } = require("../helpers/helpers")
 
 let dataPATCH = (req, res, data) => {
 
