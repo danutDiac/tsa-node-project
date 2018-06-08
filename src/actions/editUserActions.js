@@ -1,4 +1,4 @@
-let { writeFile, readFile,parseJSON  } = require("../helpers/helpers")
+let { writeFile, readFile, parseJSON } = require("../helpers/helpers")
 
 let dataPATCH = (req, res, data) => {
 
@@ -11,11 +11,22 @@ let dataPATCH = (req, res, data) => {
                 .then(getIdIndex.bind(null, id, users))
                 .then(line => replacePATCH(body, users, line)
                     .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
-                    .then(() => res.status(201).json(users[line])))
+                    .then(() => res.status(201).json({
+                        "users": users[line],
+                        "links": {
+                            "GET": req.headers.host + req.originalUrl,
+                            "PUT": req.headers.host + req.originalUrl,
+                            "DELETE": req.headers.host + req.originalUrl,
+                            "POST": req.headers.host + req.baseUrl
+                        }
+                    })
+                    )
+                )
+                .catch(err => {
+                    console.log(err)
+                    res.status(err["status"]).json({ "message": err["message"] })
+                })
         )
-        .catch(err => {
-            res.status(err["status"]).json({ "message": err["message"] })
-        })
 }
 
 let dataPUT = (req, res, data) => {
@@ -29,7 +40,15 @@ let dataPUT = (req, res, data) => {
                 .then(getIdIndex.bind(null, id, users))
                 .then(line => replacePUT(body, users, line)
                     .then(writeFile.bind(null, "db/users.json", JSON.stringify(users)))
-                    .then(() => res.status(201).json(users[line])))
+                    .then(() => res.status(201).json({
+                        "users": users[line],
+                        "links": {
+                            "GET": req.headers.host + req.originalUrl,
+                            "PUT": req.headers.host + req.originalUrl,
+                            "DELETE": req.headers.host + req.originalUrl,
+                            "POST": req.headers.host + req.baseUrl
+                        }
+                    })))
         )
         .catch(err => {
             res.status(err["status"]).json({ "message": err["message"] })
@@ -161,7 +180,6 @@ const editUserPut = (req, res) => {
             res.status(500);
             res.json({ "message": "PUT ERROR: the error has logged" });
         })
-
 }
 if (process.env.NODE_ENV == "dev") {
     module.exports = {
