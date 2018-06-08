@@ -4,7 +4,7 @@ const editUserPut = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body)
         .then(user => {
             res.status(200).json({
-                updatedUser: user,
+                updatedUser: User.findById(req.params.id),
                 links: {
                     "GET": req.headers.host + req.originalUrl,
                     "PUT": req.headers.host + req.originalUrl,
