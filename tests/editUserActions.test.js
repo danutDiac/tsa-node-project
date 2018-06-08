@@ -1,6 +1,15 @@
 const chai = require('chai');
-const { checkMail, replacePATCH, replacePUT, getIdIndex, reqValidData } = require("../src/actions/editUserActions");
+const { checkMail, reqValidData } = require("../src/actions/editUserActions");
 const should = chai.should();
+
+const mongoose = require("mongoose")
+const config = require("../config/config")
+const chaiHttp = require('chai-http')
+const server = require('../src/main')
+
+chai.use(chaiHttp)
+
+let User = require("../src/models/userModel")
 
 describe('Edit user module actions', () => {
     let users = [{
@@ -33,79 +42,6 @@ describe('Edit user module actions', () => {
             const result = checkMail(str.email, users)
             chai.expect(result).to.deep.equal(0)
             done();
-        })
-    });
-
-    describe("modifyUserWithPatch", () => {
-        const str = {
-            "firstName": "Anca",
-            "lastName": "Ioana",
-            "email": "anca.ioana@gmail.com",
-            "phone": "090290234"
-        }
-        const expectedObject = {
-            "id": 0,
-            "firstName": "Anca",
-            "lastName": "Ioana",
-            "email": "anca.ioana@gmail.com",
-            "phone": "090290234"
-        }
-        it("Should make the changes in users for patch!", (done) => {
-            let pos = 0;
-            replacePATCH(str, users, pos)
-                .then(
-                    chai.expect(users[0]).to.deep.equal(expectedObject))
-            done();
-        })
-    })
-
-    describe("modifyUserWithPut", () => {
-        const str = {
-            "firstName": "Anca",
-            "lastName": "Ioana",
-            "email": "anca.ioana@gmail.com",
-            "phone": "090290234"
-        }
-        const expectedObject = {
-            "id": 0,
-            "firstName": "Anca",
-            "lastName": "Ioana",
-            "email": "anca.ioana@gmail.com",
-            "phone": "090290234"
-        }
-        it("Should make the changes in users for Put!", (done) => {
-            let pos = 0;
-            replacePUT(str, users, pos)
-                .then(
-                    chai.expect(users[0]).to.deep.equal(expectedObject))
-            done();
-        })
-    })
-
-
-
-    describe("getIdIndex", () => {
-        it("Should return pozition = 0 if id is find", (done) => {
-
-            let idNumb = 0
-            const result = getIdIndex(idNumb, users)
-                .then(data => {
-                    chai.expect(data).to.deep.equal(idNumb)
-                    done();
-                });
-        })
-
-        it("Should return -1 if id is not find", (done) => {
-            let idNumb = 3
-            const output = {
-                "status": 400,
-                "message": "Invalid ID"
-            }
-            const result = getIdIndex(idNumb, users)
-                .catch(err => {
-                    chai.expect(err).to.deep.equal(output)
-                    done();
-                });
         })
     });
 

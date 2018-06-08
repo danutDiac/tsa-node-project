@@ -116,7 +116,9 @@ let reqValidData = (body, users, putMethod) => {
 if (process.env.NODE_ENV == "dev") {
     module.exports = {
         editUserPut,
-        editUserPatch
+        editUserPatch,
+        reqValidData,
+        checkMail
     }
 } else {
     module.exports = {
