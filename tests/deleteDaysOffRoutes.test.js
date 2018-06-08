@@ -1,52 +1,59 @@
-let mocha = require("mocha");
+const mongoose = require("mongoose")
+const config = require("../config/config")
 let chai = require("chai");
 let chaiHttp = require("chai-http");
-let should = chai.should();
 let server = require("../src/main.js");
-let fs = require("fs");
+let should = chai.should();
 chai.use(chaiHttp);
 
-describe("DELETE /days/:id", () => {
-    afterEach(done => {
-        let days = [
-            {
-                "id": 0,
-                "userId": 0,
-                "daysOff": ["2018-02-20", "2018-02-21"]
-            }
-        ];
+let User = require("../src/models/userModel")
+let DaysOff = require("../src/models/daysOffModel")
 
-        fs.writeFile('db/daysOff.json', JSON.stringify(days), err => {
-            if (err) {
-                console.log(err);
-            }
-            done();
+describe("DELETE /days/:id", () => {
+    let id
+    beforeEach(function (done) {
+        mongoose.connect(config.mongoUrl).then(() => {
+            mongoose.connection.db.dropDatabase()
+            let newUser = new User({
+                "firstName": "Flow",
+                "lastName": "Bamboozle",
+                "email": "flo@w.com",
+                "phone": "0749666666"
+            })
+            newUser.save().then(user => {
+                let newDaysOff = new DaysOff({
+                    userId: user._id,
+                    daysOff: ["2018-02-20", "2018-02-21"]
+                })
+                newDaysOff.save().then(daysOff => {
+                    id = daysOff._id
+                    done()
+                })
+            })
+                .catch(err => {
+                    done()
+                });
         })
     })
-
-    it("it should return 200 on delete", done => {
-        chai.request(server).delete("/days/0")
-            .end((err, res) => {
-                res.should.have.status(200);
-                done();
+    it("should return status 200 for id found", function (done) {
+        chai.request(server).delete(`/days/${id}`)
+            .end(function (err, res) {
+                res.should.have.status(200)
+                done()
             })
     })
-
-    it("it should return 404 if not found", done => {
-        chai.request(server).delete("/days/-1")
-            .end((err, res) => {
-                res.should.have.status(404);
-                res.should.be.json;
-                done();
-            })
+    it("should return 404 if id not found", function(done) {
+        chai.request(server).delete(`/days/123456789abv`)
+        .end(function(err, res) {
+            res.should.have.status(404)
+            done()
+        })
     })
-
-    it("it should return 404 for invalid id", done => {
-        chai.request(server).delete("/days/A")
-            .end((err, res) => {
-                res.should.have.status(404);
-                res.should.be.json;
-                done();
-            })
+    it("should return 400 for invalid id", function(done) {
+        chai.request(server).delete(`/days/123456789ab`)
+        .end(function(err, res) {
+            res.should.have.status(400)
+            done()
+        })
     })
 })
