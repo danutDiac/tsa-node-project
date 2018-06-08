@@ -7,7 +7,7 @@ let daysOffSchema = new Schema({
         ref : 'users',
         require : true
     },
-    daysOff :[]
+    daysOff :[String]
 })
 let DaysOff = mongoose.model('daysOff',daysOffSchema);
 module.exports = DaysOff
