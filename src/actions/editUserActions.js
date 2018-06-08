@@ -14,7 +14,6 @@ let dataPATCH = (req, res, data) => {
                     .then(() => res.status(201).json(users[line])))
         )
         .catch(err => {
-            console.log(err)
             res.status(err["status"]).json({ "message": err["message"] })
         })
 }
@@ -33,7 +32,6 @@ let dataPUT = (req, res, data) => {
                     .then(() => res.status(201).json(users[line])))
         )
         .catch(err => {
-            console.log(err)
             res.status(err["status"]).json({ "message": err["message"] })
         })
 }
