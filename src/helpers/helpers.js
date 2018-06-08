@@ -40,6 +40,33 @@ const parseJSON = data => {
     });
 };
 
+function runGeneratorFlow(generator) {
+	const runGenerator = generator()
+	let value, nextStep = runGenerator.next()
+
+
+	runSteps(nextStep)
+
+	function runSteps(step) {
+		if(!step.done) {
+			let stepResult = step.value
+			if (stepResult === undefined) {
+				runSteps(runGenerator.next())
+			}
+
+			if (stepResult.then !== undefined) {
+				stepResult.then(value => {
+					runSteps(runGenerator.next(value))
+				}).catch(promiseStepError => {
+					console.log("promise step error", promiseStepError)
+				})
+			} else {
+				runSteps(runGenerator.next(stepResult))
+			}
+		}
+	}
+}
+
 const maxId = (array) => {
     if (array.length === 0) return 0;
     return array[array.length - 1].id;
@@ -67,5 +94,6 @@ module.exports = {
     parseJSON,
     maxId,
     newId,
-    findItemById
+	findItemById,
+	runGeneratorFlow
 }

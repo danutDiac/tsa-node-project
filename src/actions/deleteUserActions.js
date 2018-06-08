@@ -1,5 +1,5 @@
 const fs = require("fs");
-const { readFile, writeFile, findItemById } = require("../helpers/helpers");
+const { readFile, writeFile, findItemById, runGeneratorFlow } = require("../helpers/helpers");
 
 let deleteUserFromDatabase = (users, user) => {
     let index = users.indexOf(user);
@@ -7,40 +7,34 @@ let deleteUserFromDatabase = (users, user) => {
 };
 
 let deleteUser = (req, res) => {
-    readFile("db/users.json")
-        .then(data => {
-            let users = JSON.parse(data);
-            let user = findItemById(users, Number(req.params.id));
 
-            if (user) {
-                deleteUserFromDatabase(users, user);
+	function * deleteUserFlow() {
+		const userFileData = yield readFile("db/users.json")
+		let users = JSON.parse(userFileData);
+		let user = yield findItemById(users, Number(req.params.id));
+		if (user) {
+			deleteUserFromDatabase(users, user);
+			yield writeFile("db/users.json", JSON.stringify(users))
+			res.status(200).json({
+				"GET": req.headers.host + req.baseUrl,
+				"POST": req.headers.host + req.baseUrl
+			});
+		} else {
+			res.status(404).json({
+				message: 'User not found'
+			})
+		}
+	}
 
-                writeFile("db/users.json", JSON.stringify(users))
-                    .then(() => {
-                        res.status(200).json({
-                            "GET": req.headers.host + req.baseUrl,
-                            "POST": req.headers.host + req.baseUrl
-                        });
-                    })
-                    .catch(error => {
-                        res.status(500).json({
-                            serverErrorMessage:
-                                "the error was logged and we’ll be checking it shortly"
-                        });
-                    });
-            }
-            else {
-                res.status(404).json({
-                    message: 'User not found'
-                })
-            }
-        })
-        .catch(error => {
-            res.status(500).json({
-                serverErrorMessage:
-                    "the error was logged and we’ll be checking it shortly"
-            });
-        });
+	try {
+		runGeneratorFlow(deleteUserFlow)
+	} catch (error) {
+		console.log("the 500 error:", error)
+		res.status(500).json({
+			serverErrorMessage:
+				"the error was logged and we’ll be checking it shortly"
+		});
+	}
 };
 
 if (process.env.NODE_ENV == "dev") {
