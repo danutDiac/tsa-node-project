@@ -22,3 +22,95 @@
   "email": "dsdsad@gmail.com",
   "phone": "0736572814"
 }
+[2018-06-08T14:52:05+03:00] PATCH "/users/5b1a6dc751c5ae047885081e" 500 Internal Server Error - {
+  "firstName": "mari",
+  "lastName": "ioana",
+  "email": "miha@gmail.com",
+  "phone": "0987600461"
+}
+[2018-06-08T14:52:07+03:00] PATCH "/users/5b1a6dc751c5ae047885081e" 500 Internal Server Error - {
+  "firstName": "mari",
+  "lastName": "ioana",
+  "email": "miha@gmail.com",
+  "phone": "0987600461"
+}
+[2018-06-08T15:02:07+03:00] PATCH "/users/5b1a7013be1d7d04c74caab7" 500 Internal Server Error - {
+  "firstName": "mari",
+  "lastName": "ioana",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:04:35+03:00] PATCH "/users/5b1a7013be1d7d04c74caab7" 500 Internal Server Error - {
+  "firstName": "mari",
+  "lastName": "ioana",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:09:43+03:00] PATCH "/users/5b1a6f0e608a5d04a7aa7d2a" 500 Internal Server Error - {
+  "firstName": "mari",
+  "lastName": "ioana",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:45:05+03:00] PATCH "/users/5b1a7a3c044ce905add4e5fe" 500 Internal Server Error - {
+  "firstName": "maiaf4234",
+  "lastName": "anca",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:48:43+03:00] PATCH "/users/5b1a7ae635cfc505cdc652e1" 500 OK - {
+  "firstName": "maiaf4234",
+  "lastName": "anca",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:48:45+03:00] PATCH "/users/5b1a7ae635cfc505cdc652e1" 500 OK - {
+  "firstName": "maiaf4234",
+  "lastName": "anca",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:55:25+03:00] PATCH "/users/5b1a7c947eddd205edfffb78" 500 OK - {
+  "firstName": "maiaf4234",
+  "lastName": "anca",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T15:59:31+03:00] PATCH "/users/5b1a7d9a16735606053a0462" 400 Bad Request - {
+  "firstName": "maiaf4234",
+  "lastName": "anca",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T16:00:15+03:00] PATCH "/users/5b1a7d9a16735606053a0462" 400 Bad Request - {
+  "firstName": "maiaf4234",
+  "lastName": "ancaaa",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T16:00:20+03:00] PATCH "/users/5b1a7d9a16735606053a0462" 400 Bad Request - {
+  "firstName": "maiaf4234",
+  "lastName": "anc2323aaa",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T16:00:24+03:00] PATCH "/users/5b1a7d9a16735606053a0462" 400 Bad Request - {
+  "firstName": "maiaf4234",
+  "lastName": "anc2323aaa",
+  "email": "miha@gmail.com"
+}
+[2018-06-08T16:00:32+03:00] PATCH "/users/5b1a7d9a16735606053a0462" 400 Bad Request - {
+  "firstName": "maiaf4234",
+  "lastName": "anc2323aaa",
+  "email": "masaiha@gmail.com"
+}
+[2018-06-08T16:04:24+03:00] PATCH "/users/5b1a7e96752934062aefb2b4" 400 Bad Request - {
+  "firstName": "maiaf4234",
+  "lastName": "anc2323aaa",
+  "email": "masaiha@gmail.com"
+}
+[2018-06-08T16:04:28+03:00] PATCH "/users/5b1a7e96752934062aefb2b4" 400 Bad Request - {
+  "firstName": "maia",
+  "lastName": "anc2323aaa",
+  "email": "masaiha@gmail.com"
+}
+[2018-06-08T16:04:39+03:00] PUT "/users/5b1a7e96752934062aefb2b4" 400 Bad Request - {
+  "firstName": "maia",
+  "lastName": "ancaa",
+  "email": "masaiha@gmail.com"
+}
+[2018-06-08T16:08:38+03:00] PUT "/users/5b1a7fad93ec8a06495e7039" 400 Bad Request - {
+  "firstName": "maia",
+  "lastName": "ancaa",
+  "email": "masaiha@gmail.com"
+}
