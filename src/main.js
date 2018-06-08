@@ -29,6 +29,7 @@ mongoose.connect(config.mongoUrl, (err, res) => {
         console.log(err);
     } else {
         console.log("Connected to db");
+        mongoose.connection.db.dropDatabase()
         let newUser = new User({
             firstName: "Gigel",
             lastName: "Muratura",
