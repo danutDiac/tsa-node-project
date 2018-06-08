@@ -1,13 +1,12 @@
 const mongoose = require("mongoose")
+const chai = require("chai");
+const chaiHttp = require("chai-http");
 const config = require("../config/config")
-let chai = require("chai");
-let chaiHttp = require("chai-http");
-let server = require("../src/main.js");
-let should = chai.should();
+const server = require("../src/main.js");
+const User = require("../src/models/userModel")
+const DaysOff = require("../src/models/daysOffModel")
+const should = chai.should();
 chai.use(chaiHttp);
-
-let User = require("../src/models/userModel")
-let DaysOff = require("../src/models/daysOffModel")
 
 describe("DELETE /days/:id", () => {
     let id
@@ -20,16 +19,17 @@ describe("DELETE /days/:id", () => {
                 "email": "flo@w.com",
                 "phone": "0749666666"
             })
-            newUser.save().then(user => {
-                let newDaysOff = new DaysOff({
-                    userId: user._id,
-                    daysOff: ["2018-02-20", "2018-02-21"]
+            newUser.save()
+                .then(user => {
+                    let newDaysOff = new DaysOff({
+                        userId: user._id,
+                        daysOff: ["2018-02-20", "2018-02-21"]
+                    })
+                    newDaysOff.save().then(daysOff => {
+                        id = daysOff._id
+                        done()
+                    })
                 })
-                newDaysOff.save().then(daysOff => {
-                    id = daysOff._id
-                    done()
-                })
-            })
                 .catch(err => {
                     done()
                 });
@@ -42,18 +42,18 @@ describe("DELETE /days/:id", () => {
                 done()
             })
     })
-    it("should return 404 if id not found", function(done) {
+    it("should return 404 if id not found", function (done) {
         chai.request(server).delete(`/days/123456789abv`)
-        .end(function(err, res) {
-            res.should.have.status(404)
-            done()
-        })
+            .end(function (err, res) {
+                res.should.have.status(404)
+                done()
+            })
     })
-    it("should return 400 for invalid id", function(done) {
+    it("should return 400 for invalid id", function (done) {
         chai.request(server).delete(`/days/123456789ab`)
-        .end(function(err, res) {
-            res.should.have.status(400)
-            done()
-        })
+            .end(function (err, res) {
+                res.should.have.status(400)
+                done()
+            })
     })
 })

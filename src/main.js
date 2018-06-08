@@ -8,9 +8,6 @@ let usersRouter = require("./routes/users");
 let daysRouter = require("./routes/days");
 let nationalDaysRouter = require("./routes/nationalDays");
 let config = require("../config/config");
-let User = require("./models/userModel");
-let DaysOff = require("./models/daysOffModel");
-let NationalDays = require("./models/nationalDaysModel");
 
 let app = express();
 
@@ -26,42 +23,8 @@ app.use("/days", daysRouter);
 app.use("/users", usersRouter);
 app.use("/nationalDays", nationalDaysRouter);
 mongoose.connect(config.mongoUrl, (err, res) => {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log("Connected to db");
-        mongoose.connection.db.dropDatabase()
-        let newUser = new User({
-            firstName: "John",
-            lastName: "Doe",
-            email: "doe@john.com",
-            phone: "0749666000"
-        })
-        newUser.save((err, user) => {
-            if (err) {
-                console.log(err);
-            }
-            let newDaysOff = new DaysOff({
-                userId: user._id,
-                daysOff: ["2018-02-20", "2018-02-21"]
-            })
-            newDaysOff.save((err, DaysOff) => {
-                if (err) {
-                    console.log(err);
-                }
-            });
-        });
-        let newNationalDays = [new NationalDays({
-            name: "o sarbatoare random",
-            days: ["2018-06-08", "2018-12-31"]
-        }),
-        new NationalDays({
-            name: "o alta sarbatoare random",
-            days: ["2018-04-21", "2018-11-22"]
-        })
-        ]
-        NationalDays.insertMany(newNationalDays)   
-    }
+    if (err) console.log(err)
+    else console.log("Connected to db")
 });
 
 app.listen(3000, function () {

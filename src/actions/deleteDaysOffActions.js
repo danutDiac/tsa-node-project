@@ -14,7 +14,6 @@ let deleteDaysOff = (req, res) => {
                         message: "User not found"
                     })
                 } else {
-                    console.log(daysOff)
                     res.status(200).json({
                         deleteDaysOff: daysOff,
                         links: {
