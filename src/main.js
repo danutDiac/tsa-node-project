@@ -8,8 +8,9 @@ let usersRouter = require("./routes/users");
 let daysRouter = require("./routes/days");
 let nationalDaysRouter = require("./routes/nationalDays");
 let config = require("../config/config");
-let User = require("../src/models/userModel");
-let DaysOff = require("../src/models/daysOffModel")
+let User = require("./models/userModel");
+let DaysOff = require("./models/daysOffModel");
+let NationalDays = require("./models/nationalDaysModel");
 
 let app = express();
 
@@ -42,7 +43,7 @@ mongoose.connect(config.mongoUrl, (err, res) => {
             }
             let newDaysOff = new DaysOff({
                 userId: user._id,
-                daysOff: ["2018-02-20","2018-02-21"]
+                daysOff: ["2018-02-20", "2018-02-21"]
             })
             newDaysOff.save((err, DaysOff) => {
                 if (err) {
@@ -50,8 +51,17 @@ mongoose.connect(config.mongoUrl, (err, res) => {
                 }
             });
         });
+        let newNationalDays = [new NationalDays({
+            name: "o sarbatoare random",
+            days: ["2018-06-08", "2018-12-31"]
+        }),
+        new NationalDays({
+            name: "o alta sarbatoare random",
+            days: ["2018-04-21", "2018-11-22"]
+        })
+        ]
+        NationalDays.insertMany(newNationalDays)   
     }
-    
 });
 
 app.listen(3000, function () {
