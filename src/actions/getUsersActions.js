@@ -2,13 +2,18 @@ const User = require("../models/userModel");
 
 const getUserFromDB = (userID) => {
   return new Promise((resolve, reject) => {
-    let findUser = User.findOne({ _id: userID }, (err, user) => {
+    let findUser = User.findById(userID, (err, user) => {
       if (err) reject({
+        status: 400,
+        message: "Bad request"
+      });
+      if(user)
+        resolve(user);
+      reject({
         status: 404,
         message: "User not found"
       });
-      resolve(user)
-    })
+    });
   })
 }
 
@@ -18,9 +23,9 @@ const sendResponse = (request, response, user) => {
       let returnData = {
         user: user,
         links: {
-          PUT: `http://localhost:3000/users/${request.params.id}`,
-          PATCH: `http://localhost:3000/users/${request.params.id}`,
-          DELETE: `http://localhost:3000/users/${request.params.id}`
+          PUT: `${request.headers.host}${request.originalUrl}`,
+          PATCH: `${request.headers.host}${request.originalUrl}`,
+          DELETE: `${request.headers.host}${request.originalUrl}`
         }
       }
       response.status(200).send(returnData);

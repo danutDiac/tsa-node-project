@@ -34,8 +34,8 @@ describe("GetUsers module actions", done => {
 
     it("Should return error for incorect user id", (done) => {
         let errorForUserNotFound = {
-            status: 404,
-            message: "User not found"
+            status: 400,
+            message: "Bad request"
         }
         getUserFromDB("231")
             .catch((err) => {
@@ -49,7 +49,7 @@ describe("GetUsers module actions", done => {
             status: 404,
             message: "User not found"
         }
-        getUserFromDB(3213)
+        getUserFromDB("321323xnsjsw")
             .catch((err) => {
                 chai.expect(err).to.deep.equal(errorForUserNotFound)
                 done()
