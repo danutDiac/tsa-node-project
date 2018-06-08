@@ -4,7 +4,7 @@ const editUserPut = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body)
         .then(user => {
             res.status(200).json({
-                updatedUser: User.findById(req.params.id),
+                updatedUser: user,
                 links: {
                     "GET": req.headers.host + req.originalUrl,
                     "PUT": req.headers.host + req.originalUrl,
@@ -14,9 +14,7 @@ const editUserPut = (req, res) => {
             })
         })
         .catch(err => {
-            res.status(500).json({
-                serverErrorMessage: "the error was logged and we’ll be checking it shortly"
-            })
+            res.status(err["status"]).json({ "message": err["message"] })
         })
 }
 

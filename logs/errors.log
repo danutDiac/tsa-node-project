@@ -1,0 +1,24 @@
+[2018-06-08T13:37:48+03:00] PUT "/users/5b1a58b651f2571d4698ecda" 500 Internal Server Error - {
+  "firstName": "Mihasil",
+  "lastName": "Ansca",
+  "email": "dsdsad@gmail.com",
+  "phone": "0736572814"
+}
+[2018-06-08T13:38:40+03:00] PUT "/users/5b1a5c70948ac41dfa0ce697" 500 Internal Server Error - {
+  "firstName": "Mihasil",
+  "lastName": "Ansca",
+  "email": "dsdsad@gmail.com",
+  "phone": "0736572814"
+}
+[2018-06-08T13:40:23+03:00] PUT "/users/5b1a5cee8891511e1a7cc045" 500 Internal Server Error - {
+  "firstName": "Mihasil",
+  "lastName": "Ansca",
+  "email": "dsdsad@gmail.com",
+  "phone": "0736572814"
+}
+[2018-06-08T13:42:18+03:00] PUT "/users/5b1a5d621a04781e250f3fa9" - - - {
+  "firstName": "Mihasil",
+  "lastName": "Ansca",
+  "email": "dsdsad@gmail.com",
+  "phone": "0736572814"
+}
