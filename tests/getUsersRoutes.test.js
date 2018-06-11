@@ -4,67 +4,56 @@ const should = chai.should();
 const server = require("../src/main.js");
 chai.use(chaiHttp);
 
+const User = require("../src/models/userModel");
+
 describe('GetUser module routes', () => {
-    it("Should return user with id 0", (done) => {
-        const input = `/users/0`;
-        let result = require("../db/users.json")[0];
-        result["links"] = {
-            PUT: `http://localhost:3000/users/0`,
-            PATCH: `http://localhost:3000/users/0`,
-            DELETE: `http://localhost:3000/users/0`
-        };
+    it("Should return corect user from database", (done) => {
 
-        chai.request(server)
-            .get(input)
-            .end((error, response) => {
-                response.should.have.status(200);
-                response.should.be.json;
-                response.body.should.deep.equal(result);
-                done();
+        let findUser = User.findOne({ email: "costel@gmail.com" }).exec()
+            .then((user) => {
+                let userId = user["_id"];
+                let userFromDB = JSON.parse(JSON.stringify(user));
+                const link = `/users/${userId}`;
+                chai.request(server)
+                    .get(link)
+                    .end((error, response) => {
+                        response.should.have.status(200);
+                        response.should.be.json;
+                        chai.expect(response.body.user).to.deep.equal(userFromDB);
+                        done();
+                    })
             })
     });
 
-    it("Should return error 404 for id -1", (done) => {
-        const input = `/users/-1`;
-        const result = { "error": "User not found" };
-
+    it("Should return error 404 for inexistent id", (done) => {
+        const link = `/users/123456789abv`;
+        const errorMessage = {
+            error: "User not found"
+        }
         chai.request(server)
-            .get(input)
-            .end((error, response) => {
-                response.should.have.status(404);
-                response.should.be.json;
-                response.body.should.deep.equal(result);
-                done();
-            })
-    });
-
-    it("Should return error 404 for id 'A'", (done) => {
-        const input = `/users/A`;
-        const result = { "error": "User not found" };
-
-        chai.request(server)
-            .get(input)
+            .get(link)
             .end((error, response) => {
                 response.should.have.status(404);
                 response.should.be.json;
-                response.body.should.deep.equal(result);
+                chai.expect(response.body).to.deep.equal(errorMessage);
                 done();
             })
     });
 
-    it("Should return error 404 for id '0'", (done) => {
-        const input = `/users/"0"`;
-        const result = { "error": "User not found" };
-
+    it("Should return error 400 for an wrong link", (done) => {
+        const link = `/users/123456789ab`;
+        const errorMessage = {
+            error: "Bad request"
+        }
         chai.request(server)
-            .get(input)
+            .get(link)
             .end((error, response) => {
-                response.should.have.status(404);
+                response.should.have.status(400);
                 response.should.be.json;
-                response.body.should.deep.equal(result);
+                chai.expect(response.body).to.deep.equal(errorMessage);
                 done();
             })
     });
-    
+
 })
 
