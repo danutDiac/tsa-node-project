@@ -1,4 +1,5 @@
 let fs = require('fs')
+let mongoose = require('mongoose')
 let express = require("express");
 let bodyParser = require("body-parser")
 let morgan = require("morgan")
@@ -8,6 +9,7 @@ let config = require('../config/config')
 let usersRouter = require("./routes/users");
 let daysRouter = require("./routes/days");
 let nationalDaysRouter = require("./routes/nationalDays");
+let config = require("../config/config");
 
 let app = express();
 
@@ -22,6 +24,10 @@ app.use(bodyParser.json());
 app.use("/days", daysRouter);
 app.use("/users", usersRouter);
 app.use("/nationalDays", nationalDaysRouter);
+mongoose.connect(config.mongoUrl, (err, res) => {
+    if (err) console.log(err)
+    else console.log("Connected to db")
+});
 
 
 mongoose.connect(config.mongoUrl, (err,res)=>{
@@ -37,4 +43,4 @@ app.listen(3000, function () {
     console.log('Server started on localhost:3000')
 });
 
-module.exports = app
+module.exports = app;
