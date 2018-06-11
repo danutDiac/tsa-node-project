@@ -84,5 +84,6 @@ if (process.env.NODE_ENV === 'dev') {
 } else {
     module.exports = {
         retriveAlreadyBookedDays,
+        getAlreadyBookedDays
     }
 }

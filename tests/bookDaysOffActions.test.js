@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const config = require("../config/config");
 
 const User = require("../src/models/userModel");
+const DaysOff = require("../src/models/daysOffModel");
 
 describe("Booking days module", () => {
   before(done => {
@@ -14,15 +15,37 @@ describe("Booking days module", () => {
         email: "costel@gmail.com",
         phone: "0232272892"
       });
-
-      newUser.save((err, data) => {
+      let createUser = newUser.save((err, user) => {
         if (err) console.log(err);
-        else done();
+        const newDaysOff1 = new DaysOff({
+          userID: user._id,
+          daysOff: ["2018-06-18", "2018-06-19", "2018-06-20"]
+        });
+        newDaysOff1.save((err, data) => {
+          if (err) console.log(err);
+        });
+        const newDaysOff2 = new DaysOff({
+          userID: user._id,
+          daysOff: ["2018-08-20", "2018-08-21", "2018-08-22"]
+        });
+
+        newDaysOff2.save((err, data) => {
+          if (err) console.log(err);
+        });
+      });
+      const newUser2 = new User({
+        firstName: "Gigel",
+        lastName: "Costache",
+        email: "gigel@gmail.com",
+        phone: "0232272892"
+      });
+      newUser2.save((err, user) => {
+        if (err) console.log(err);
+        done();
       });
     });
   });
 
- 
   describe("is date valid ", () => {
     it('Should say that date "2018-01-20" is valid', done => {
       const { isDateValid } = require("../src/actions/bookingDaysOffActions");
@@ -215,6 +238,56 @@ describe("Booking days module", () => {
           .expect(error.message)
           .to.deep.equal("End date lower than start date");
         done();
+      });
+    });
+  });
+  describe("Should remove duplicates date", () => {
+    const {
+      removeDuplicateDaysOff
+    } = require("../src/actions/bookingDaysOffActions");
+    it("Should return an array without days already booked", done => {
+      let findUser = User.findOne({ email: "costel@gmail.com" }).then(user => {
+        let userId = user["_id"];
+        let bookedDays = [
+          "2018-06-18",
+          "2018-06-19",
+          "2018-06-20",
+          "2018-06-21"
+        ];
+        let updatedBookedDaysOff = ["2018-06-21"];
+        removeDuplicateDaysOff(userId, bookedDays).then(newBookedDays => {
+          console.log(newBookedDays);
+          chai.expect(newBookedDays).to.deep.equal(updatedBookedDaysOff);
+          done();
+        });
+      });
+    });
+
+    it("Should return an error if days are already booked", done => {
+      let findUser = User.findOne({ email: "costel@gmail.com" }).then(user => {
+        let userId = user["_id"];
+        let bookedDays = ["2018-06-18", "2018-06-19", "2018-06-20"];
+        let errorMessage = {
+          status: 422,
+          message: "This days are already booked"
+        };
+        removeDuplicateDaysOff(userId, bookedDays).catch(err => {
+          chai.expect(err).to.deep.equal(errorMessage);
+          done();
+        });
+      });
+    });
+
+    it("Should return the same array if the days are not booked", done => {
+      let findUser = User.findOne({ email: "costel@gmail.com" }).then(user => {
+        let userId = user["_id"];
+        let bookedDays = ["2018-07-18", "2018-07-19", "2018-07-20"];
+        let updatedBookedDaysOff = ["2018-07-18", "2018-07-19", "2018-07-20"];
+        removeDuplicateDaysOff(userId, bookedDays)
+        .then((newBookedDays)=>{
+            chai.expect(newBookedDays).to.deep.equal(updatedBookedDaysOff)
+            done();
+        })
       });
     });
   });
