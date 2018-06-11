@@ -13,7 +13,7 @@ let userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     phone: {
         type: String,
@@ -23,3 +23,4 @@ let userSchema = new Schema({
 
 let User = mongoose.model('users', userSchema)
 module.exports = User
+
