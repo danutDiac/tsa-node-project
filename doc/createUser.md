@@ -1,5 +1,5 @@
 # Creating user 
-Returns a URL containing the ID of the new created user 
+Returns a JSON containing data for the new created user
 * **URL:** <br>
     /users/
 * **Method:** <br>
@@ -12,12 +12,10 @@ Returns a URL containing the ID of the new created user
     All the user details completed in the input fields given using body
     ```javascript
         {
-            id: [number], 
             firstName: [string],
             lastName: [string],
             email: [string],
-            phone: [string],
-            link: [string]
+            phone: [string]
        }
        ```
         Note: All specified fields need to take a valid series of input data.

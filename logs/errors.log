@@ -495,3 +495,75 @@
   "email": "cevdaaewcnou@gmail.com",
   "phone": "0734224223"
 }
+[2018-06-11T16:23:09+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedvdaaewcnou3@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:35:45+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedvdaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:51:52+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedvdddaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:52:27+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedvddssaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:53:14+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedvdddsadasssaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:55:09+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedvdsssaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:58:07+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedsdsvdddsssaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:59:06+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedsdsvdsdsdddsssaaewc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T17:02:01+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedsdsddvdsdsdddsssaaedsdswc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T17:02:34+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedsedsdswc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T17:02:35+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cedsedsdswc@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T17:06:58+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "ddd@gmail.com",
+  "phone": "0734224223"
+}

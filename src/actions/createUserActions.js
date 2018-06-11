@@ -1,11 +1,17 @@
-const { readFile, writeFile, maxId } = require("../helpers/helpers");
 const userSchema = require("../models/userModels");
 
 let createUser = (req, response) => {
   let user = req.body;
   dataValid(user)
     .then(saveUserToDb)
-    .then((user)=>{response.status(200).send(user)}) 
+    .then((user)=>{
+      user.id = idMax().then((data)=>data);
+      user.links = {
+        "GET" : `localhost:3000/users/${user.id}`,
+        "DELETE": `localhost:3000/users/${user.id}`
+      }
+      response.status(200).send(user)
+    }) 
     .catch(err => {
       if (/email_1/.test(err.message))
         response
@@ -32,6 +38,17 @@ let dataValid = body => {
   });
 };
 
+
+let idMax = () => {
+  return new Promise ((res,rej)=>{
+  userSchema.find({}, (err, users) => {
+    res(users.length);
+  })
+}
+)}
+
+console.log(idMax().then(data=>data))
+
 let saveUserToDb = body => {
   return new Promise((res,rej)=>{
   let newUser = new userSchema(body);
@@ -42,8 +59,7 @@ let saveUserToDb = body => {
 if (process.env.NODE_ENV == "dev") {
   module.exports = {
     createUser,
-    dataValid,
-    checkMail
+    dataValid
   };
 } else {
   module.exports = {
