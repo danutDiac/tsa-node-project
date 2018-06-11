@@ -33,7 +33,7 @@ Returns an array of days booked for an user and a list of URL for POST and DELET
       **Content:** 
     ```javascript
     {
-        error: "User not found/no days booked yet"
+        error: "No days booked yet"
     }
     ```
     * **Code:** 500 INTERNAL SERVER ERROR <br>
