@@ -1,13 +1,13 @@
-let fs = require("fs");
 const { readFile, writeFile, maxId } = require("../helpers/helpers");
 const userSchema = require("../models/userModels");
 
 let createUser = (req,res)=>{
   let user = req.body;
-  dataValid(user).then(mailValid).then(saveUsertoDb);
+  dataValid(user).then(saveUserToDb).catch((err)=>
+{
+  
+});
 }
-
-
 
 let dataValid = (body) => {
   return new Promise((res,rej)=>{
@@ -27,26 +27,16 @@ let dataValid = (body) => {
   });
 }
 
-let mailValid = (body)=>{
-
-}
-
 let saveUserToDb = (body) => {
   let newUser = new userSchema(body)
     newUser.save((err, data) => {
       if (err) 
-      sendErrorMessage({err, res})
+      console.log("Eroarea este",err);
        else 
       sendSuccessMessage(200, data, res)
     })
 };
-/*
-let checkMail = (newMail, allMails) => {
-  for (let i = 0; i < allMails.length; i++) {
-    if (newMail.email === allMails[i].email) return 1;
-  }
-  return 0;
-};
+
 if (process.env.NODE_ENV == "dev") {
   module.exports = {
     createUser,
@@ -58,4 +48,3 @@ if (process.env.NODE_ENV == "dev") {
     createUser
   };
 }
-*/

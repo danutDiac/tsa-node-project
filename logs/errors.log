@@ -1,0 +1,13 @@
+[2018-06-08T17:39:06+03:00] POST "/users/" 500 Internal Server Error - {
+  "firstName": "Dante",
+  "lastName": "Alighieri",
+  "email": "inferno@gmail.com",
+  "phone": "0734324343"
+}
+[2018-06-08T17:39:22+03:00] POST "/users/" 500 Internal Server Error - {
+  "firstName": "Dante",
+  "lastName": "Alighieri",
+  "email": "inferno@gmail.com",
+  "phone": "0734324343"
+}
+[2018-06-08T17:43:26+03:00] GET "/favicon.ico" 404 Not Found - {}
