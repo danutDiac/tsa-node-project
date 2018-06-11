@@ -1,15 +1,13 @@
 const { readFile, writeFile, maxId } = require("../helpers/helpers");
 const userSchema = require("../models/userModels");
 
-let createUser = (req, res) => {
+let createUser = (req, response) => {
   let user = req.body;
   dataValid(user)
-    .then(saveUserToDb)
+    .then(()=>{saveUserToDb();response.status(200).send(user);})
     .catch(err => {
-      res.send({
-        status: 404,
-        message: err
-      });
+      if(/email_1/.test(err.message))
+        response.status(400).send({"message":"Adresa de e-mail deja exista in baza de date"});
     });
 };
 
@@ -30,8 +28,9 @@ let dataValid = body => {
         DELETE: `http://localhost:3000/users/${Number(body.id)}`
       };
       res(body);
-    } else
-      rej({'message:': ok});
+    }
+    else 
+    {rej(ok)}
   });
 };
 
@@ -42,7 +41,6 @@ let saveUserToDb = body => {
       if (err) {
         rej(err);
       } else {
-        response.status(200).send(user);
         resolve();
       }
     });
