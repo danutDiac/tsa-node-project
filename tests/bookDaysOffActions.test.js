@@ -1,22 +1,28 @@
 const chai = require("chai");
+const mongoose = require("mongoose");
+const config = require("../config/config");
 
 const User = require("../src/models/userModel");
 
 describe("Booking days module", () => {
   before(done => {
-    const newUser = new User({
-      firstName: "Gigel",
-      lastName: "Costache",
-      email: "costel@gmail.com",
-      phone: "0232272892"
-    });
+    mongoose.connect(config.mongoUrl).then(() => {
+      mongoose.connection.db.dropDatabase();
+      const newUser = new User({
+        firstName: "Gigel",
+        lastName: "Costache",
+        email: "costel@gmail.com",
+        phone: "0232272892"
+      });
 
-    newUser.save((err, data) => {
-      if (err) console.log(err);
-      else done();
+      newUser.save((err, data) => {
+        if (err) console.log(err);
+        else done();
+      });
     });
   });
 
+ 
   describe("is date valid ", () => {
     it('Should say that date "2018-01-20" is valid', done => {
       const { isDateValid } = require("../src/actions/bookingDaysOffActions");

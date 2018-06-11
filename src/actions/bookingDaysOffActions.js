@@ -1,35 +1,47 @@
-const DaysOff  = require("../models/daysOffModel");
-const  User  = require("../models/userModel")
+const DaysOff = require("../models/daysOffModel");
+const User = require("../models/userModel");
+const NationalDays = require("../models/nationalDaysModel")
+
+const getNationalDays = () => {
+   return NationalDays.find({})
+    .then(nationalDays=>{
+        console.log(nationalDays)
+       return JSON.stringify(nationalDays);
+    })
+}
+
 
 const bookDaysOff = (request, response) => {
-  const body = request.body;
-
-  const createAndSaveDaysOffFlow = (userId, daysOffArray) => {
-    return createNewDaysOffJSON(userId, daysOffArray)
-    .then(saveDayOffInDb);
-  };
-
-  const saveDayOffInDb = newDaysOff => {
-      return new Promise((resolve, reject) => {
-      let newDays = new DaysOff(newDaysOff);
-      newDays.save((err, data) => {
-          if(err) reject(err);
-        resolve(data)
-      })  
-    });  
-  };
-
-  validateBody(body)
+    const body = request.body;
+    getNationalDays()
+        .then(data => {
+            console.log(data);
+        })
+    validateBody(body)
     .then(checkUserExistsInDB.bind(null, body.userId))
     .then(daysOffRangeToArray.bind(null, body.startDate, body.endDate))
     .then(createAndSaveDaysOffFlow.bind(null, body.userId))
-    .then(sendResponse.bind(null, request,response))
+    .then(sendResponse.bind(null, request, response))
     .catch(sendError.bind(null, response));
 };
 
+const createAndSaveDaysOffFlow = (userId, daysOffArray) => {
+  return createNewDaysOffJSON(userId, daysOffArray).then(saveDayOffInDb);
+};
+
+const saveDayOffInDb = newDaysOff => {
+  return new Promise((resolve, reject) => {
+    let newDays = new DaysOff(newDaysOff);
+    newDays.save((err, data) => {
+      if (err) reject(err);
+      resolve(data);
+    });
+  });
+};
+
 const isDateValid = date => {
-  const regex = /([0-9]{4})(-)([1][0-2]|[0][1-9])(-)([0][1-9]|[1-2][0-9]|([3][0-1]))/;
-  return date !== undefined && typeof date === "string" && regex.test(date);
+    const regex = /([0-9]{4})(-)([1][0-2]|[0][1-9])(-)([0][1-9]|[1-2][0-9]|([3][0-1]))/;
+    return date !== undefined && typeof date === "string" && regex.test(date);
 };
 
 const isDateIntervalOk = (date, dateName) => {
@@ -65,14 +77,16 @@ const validateBody = body => {
   });
 };
 
-const checkUserExistsInDB = (userId) => {
+const checkUserExistsInDB = userId => {
   return new Promise((resolve, reject) => {
     let findUser = User.findById(userId, (err, user) => {
-      if (err)
+      if (err){
         reject({
-          status: 400,
-          message: "Bad user id"
-        });
+            status: 400,
+            message: "Bad user id"
+          });
+          return 
+        }
       if (user) resolve();
       reject({
         status: 404,
@@ -111,7 +125,7 @@ const daysOffRangeToArray = (startDate, endDate) => {
         );
       }
     }
-    
+
     resolve(daysOffArray);
   });
 };
@@ -125,8 +139,7 @@ const createNewDaysOffJSON = (userId, daysOffArray) => {
   });
 };
 
-const sendResponse = (request,response, newDaysOffJSON) => {
-    console.log(newDaysOffJSON)
+const sendResponse = (request, response, newDaysOffJSON) => {
   return new Promise((resolve, reject) => {
     try {
       response.status(200).json({
@@ -144,7 +157,7 @@ const sendResponse = (request,response, newDaysOffJSON) => {
 };
 
 const sendError = (response, err) => {
-    console.log(err)
+  console.log(err);
   response.status(err.status).json({
     error: err.message
   });
@@ -157,7 +170,7 @@ if (process.env.NODE_ENV === "dev") {
     validateBody,
     formatDate,
     daysOffRangeToArray,
-    bookDaysOff,
+    bookDaysOff
   };
 } else {
   module.exports = {
