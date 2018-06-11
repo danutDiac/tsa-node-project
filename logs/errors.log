@@ -91,3 +91,407 @@
     "DELETE": "http://localhost:3000/users/NaN"
   }
 }
+[2018-06-11T14:45:02+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T14:46:08+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "4Zeus",
+  "lastName": "Olymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T14:46:30+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "4Zeus",
+  "lastName": "Olymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T14:47:07+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "4Zeus",
+  "lastName": "Olymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T14:47:28+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Ol3ymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T14:47:32+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ze3us",
+  "lastName": "Ol3ymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:06:48+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsadsadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:08:59+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsaddsdadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:09:21+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsaddsddddadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:09:38+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsaddsddddadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:09:39+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsaddsddddadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:09:40+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsaddsddddadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:09:43+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "O4lymp",
+  "email": "dsaddsddddadas@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:09:51+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsadddsddddadas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:10:12+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:10:18+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:10:19+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:10:19+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:10:20+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:27:25+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dddsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:27:28+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Zeus",
+  "lastName": "Olymp",
+  "email": "dddsas@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:27:58+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "nou",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:32:30+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "nou",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:32:33+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "nou",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:32:59+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "nou",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:33:02+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "nou",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:33:47+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:33:49+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:33:50+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:33:51+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevanou@gmail.com",
+  "phone": "0734224223",
+  "links": {
+    "GET": "http://localhost:3000/users/NaN",
+    "DELETE": "http://localhost:3000/users/NaN"
+  }
+}
+[2018-06-11T15:34:50+03:00] GET "/users/$%7BNumber(body.id)%7D" 404 Not Found - {}
+[2018-06-11T15:34:51+03:00] GET "/favicon.ico" 404 Not Found - {}
+[2018-06-11T15:45:53+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "2Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:46:10+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "2Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:46:11+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "2Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:46:15+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "2Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:51:56+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "1Ceva",
+  "lastName": "Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:54:24+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "1Ceva",
+  "lastName": "Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:57:12+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "1Ceva",
+  "lastName": "Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T15:57:17+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Oly3mp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:02:48+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:03:00+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:05:00+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Ol2ymp",
+  "email": "ceva2nou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:05:27+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Ol2ymp",
+  "email": "ceva2nou",
+  "phone": "0734224223"
+}
+[2018-06-11T16:15:28+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Ol2ymp",
+  "email": "cevaabsolutnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:15:33+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevaabsolutnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:19:54+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:19:55+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:20:10+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:20:14+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:20:14+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:20:17+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevdaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-11T16:20:44+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "cevdaaewcnou@gmail.com",
+  "phone": "0734224223"
+}
