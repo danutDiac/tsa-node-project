@@ -1,73 +1,58 @@
 const chai = require("chai");
 const { readFile, writeFile, findItemById, getJSONFromFile } = require("../src/helpers/helpers");
 
+const User = require("../src/models/userModel");
+const { getUserFromDB } = require("../src/actions/getUsersActions")
 describe("GetUsers module actions", done => {
-    before(done => {
-        const users = [
-            {
-                id: 0,
-                firstName: "",
-                lastName: "",
-                email: "",
-                phone: ""
-            }
-        ]
-        
-        writeFile("db/users.json", JSON.stringify(users))
-        .then(() => {
-            done();
+    before((done)=>{
+        const newUser = new User({
+            "firstName": "Gigel",
+            "lastName": "Costache",
+            "email": "costel@gmail.com",
+            "phone": "0232272892"
         })
-    })
-
-    it("Should return user with id 0", (done) => {
-        readFile("db/users.json")
-        .then(data => {
-            const users = JSON.parse(data);
-            const userId = 0;
-            const foundUser = findItemById(users, userId);
-            const testUser = users[0];
-            
-            chai.expect(foundUser).to.deep.equal(testUser);
-            done();
-        });
-    });
-
-    it("Should return user with id -1", (done) => {
-        readFile("db/users.json")
-        .then(data => {
-            const users = JSON.parse(data);
-            const userId = -1;
-            const foundUser = findItemById(users, userId);
-            const testUser = undefined;
-
-            chai.expect(foundUser).to.deep.equal(testUser);
-            done();
+    
+        newUser.save((err, data) => {
+            if (err) console.log(err);
+            else done();
         })
     });
+    
 
-    it("Should return user with id 'A' ", (done) => {
-        readFile("db/users.json")
-        .then(data => {
-            const users = JSON.parse(data);
-            const userId = 'A';
-            const foundUser = findItemById(users, userId);
-            const testUser = undefined;
 
-            chai.expect(foundUser).to.deep.equal(testUser);
-            done();
-        })
+    it("Should return corect user from database", (done) => {
+        let findUser = User.findOne({ email: "costel@gmail.com" })
+            .then((user) => {
+                let userId = user["_id"];
+                getUserFromDB(userId)
+                    .then((userData) => {
+                        chai.expect(userData).to.deep.equal(user);
+                        done();
+                    })
+            })
     });
 
-    it("Should return user with id '0' ", (done) => {
-        readFile("db/users.json")
-        .then(data => {
-            const users = JSON.parse(data);
-            const userId = '0';
-            const foundUser = findItemById(users, userId);
-            const testUser = undefined;
+    it("Should return error for incorect user id", (done) => {
+        let errorForUserNotFound = {
+            status: 400,
+            message: "Bad request"
+        }
+        getUserFromDB("231")
+            .catch((err) => {
+                chai.expect(err).to.deep.equal(errorForUserNotFound)
+                done()
+            })
+    });
 
-            chai.expect(foundUser).to.deep.equal(testUser);
-            done();
-        })
+    it("Should return error for incorect user id", (done) => {
+        let errorForUserNotFound = {
+            status: 404,
+            message: "User not found"
+        }
+        getUserFromDB("321323xnsjsw")
+            .catch((err) => {
+                chai.expect(err).to.deep.equal(errorForUserNotFound)
+                done()
+            })
     });
 });

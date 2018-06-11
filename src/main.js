@@ -27,6 +27,16 @@ mongoose.connect(config.mongoUrl, (err, res) => {
     else console.log("Connected to db")
 });
 
+
+mongoose.connect(config.mongoUrl, (err,res)=>{
+    if (err) console.log(`Error connecting to the database: ${err}`)
+    else {
+        console.log(`Connected to the ${config.mongoUrl} database`)
+        if(process.env.NODE_ENV == 'dev') mongoose.connection.db.dropDatabase()
+    }
+})
+
+
 app.listen(3000, function () {
     console.log('Server started on localhost:3000')
 });
