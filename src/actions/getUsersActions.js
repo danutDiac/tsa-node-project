@@ -1,63 +1,58 @@
-const { readFile, findItemById, parseJSON } = require("../helpers/helpers");
+const User = require("../models/userModel");
 
-const getUserFromDB = (userID, db) => {
+const getUserFromDB = (userID) => {
   return new Promise((resolve, reject) => {
-    let user = findItemById(db, userID);
-    if (user === undefined)
+    let findUser = User.findById(userID, (err, user) => {
+      if (err) reject({
+        status: 400,
+        message: "Bad request"
+      });
+      if(user)
+        resolve(user);
       reject({
         status: 404,
         message: "User not found"
       });
-    else {
-      resolve(user);
-    }
-  });
-};
+    });
+  })
+}
 
 const sendResponse = (request, response, user) => {
   return new Promise((resolve, reject) => {
     try {
-      user.links = {
-        PUT: `http://localhost:3000/users/${Number(request.params.id)}`,
-        PATCH: `http://localhost:3000/users/${Number(request.params.id)}`,
-        DELETE: `http://localhost:3000/users/${Number(request.params.id)}`
-      };
-      response.status(200).send(user);
+      let returnData = {
+        user: user,
+        links: {
+          PUT: `${request.headers.host}${request.originalUrl}`,
+          PATCH: `${request.headers.host}${request.originalUrl}`,
+          DELETE: `${request.headers.host}${request.originalUrl}`
+        }
+      }
+      response.status(200).send(returnData);
       resolve();
     } catch (err) {
-      reject(err);
+      console.log(err)
+      reject({
+        status: 500,
+        message: "the error was logged and we’ll be checking it shortly"
+      });
     }
   });
 };
 
-const parseJSONFromFile = path => {
-  return new Promise((resolve, reject) => {
-    readFile(path)
-      .then(parseJSON)
-      .then(resolve)
-      .catch(error => {
-        reject({
-          status: 500,
-          message: "the error was logged and we’ll be checking it shortly"
-        });
-      });
-  });
-};
-
 const sendError = (response, err) => {
+  console.log(err);
   response.status(err["status"]).json({ error: err["message"] });
 };
 
 let getUser = (request, response) => {
-  parseJSONFromFile("db/users.json")
-    .then(getUserFromDB.bind(null, Number(request.params.id)))
+  getUserFromDB(request.params.id)
     .then(sendResponse.bind(null, request, response))
     .catch(sendError.bind(null, response));
 };
 
 if (process.env.NODE_ENV === "dev") {
   module.exports = {
-    parseJSONFromFile,
     getUserFromDB,
     getUser
   };

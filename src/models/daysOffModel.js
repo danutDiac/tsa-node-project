@@ -1,16 +1,13 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 let daysOffSchema = new Schema({
-    userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        required: true
+    userID :{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'users',
+        require : true
     },
-    daysOff: [{
-        type: String
-    }]
+    daysOff :[]
 })
-
-let DaysOff = mongoose.model("daysOff", daysOffSchema);
-
-module.exports = DaysOff;
+let DaysOff = mongoose.model('daysOff',daysOffSchema);
+module.exports = DaysOff
