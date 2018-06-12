@@ -1,34 +1,38 @@
 let User = require("../models/userModel");
 
 const editUserPut = (req, res) => {
-    User.findByIdAndUpdate(req.params.id, { $set: req.body })
-        .then(user => 
-            reqValidData(req.body, user, 1)
-                .then(()=>res.status(200).json({
-                    updatedUser: user,
-                    links: {
-                        "GET": req.headers.host + req.originalUrl,
-                        "PUT": req.headers.host + req.originalUrl,
-                        "DELETE": req.headers.host + req.originalUrl,
-                        "POST": req.headers.host + req.baseUrl
-                    }
-                }))
-                .catch(err => {
-                    res.status(err["status"]).json({ "message": err["message"] })
-                })
-        )
-        .catch(err => {
-            res.status(500).json({
-                serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+    if(Object.keys(req.body).length===4){
+    User.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true }).then(user => {
+        reqValidData(req.body, user, 1)
+            .then(() => res.status(200).json({
+                updatedUser: user,
+                links: {
+                    "GET": req.headers.host + req.originalUrl,
+                    "PUT": req.headers.host + req.originalUrl,
+                    "DELETE": req.headers.host + req.originalUrl,
+                    "POST": req.headers.host + req.baseUrl
+                }
+
+            }))
+            .catch(err => {
+                res.status(err["status"]).json({ "message": err["message"] })
             })
+    }).catch(err => {
+        res.status(500).json({
+            serverErrorMessage: "the error was logged and we’ll be checking it shortly"
         })
+    })
+         }       else{
+            res.status(500).json({
+                serverErrorMessage: "need more parameters"
+            })
+                    }
 }
 
 const editUserPatch = (req, res) => {
-    User.findByIdAndUpdate(req.params.id, { $set: req.body })
-        .then(user => 
+    User.findByIdAndUpdate(req.params.id, { $set: req.body },{ new: true }).then(user => {
             reqValidData(req.body, user, 0)
-                .then(()=>res.status(200).json({
+                .then(() => res.status(200).json({
                     updatedUser: user,
                     links: {
                         "GET": req.headers.host + req.originalUrl,
@@ -40,7 +44,7 @@ const editUserPatch = (req, res) => {
                 .catch(err => {
                     res.status(err["status"]).json({ "message": err["message"] })
                 })
-        )
+            })
         .catch(err => {
             res.status(500).json({
                 serverErrorMessage: "the error was logged and we’ll be checking it shortly"
