@@ -114,3 +114,162 @@
   "lastName": "ancaa",
   "email": "masaiha@gmail.com"
 }
+[2018-06-12T13:51:54+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T13:51:54+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T13:51:54+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T13:51:55+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T13:51:55+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T13:51:55+03:00] PUT "/users/5b1fa5cbb81bc8097b714c9c" 500 Internal Server Error - {}
+[2018-06-12T13:51:55+03:00] PUT "/users/123456789abv" 500 Internal Server Error - {}
+[2018-06-12T13:51:55+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T13:51:55+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T13:51:55+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T13:51:55+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T13:54:17+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T13:54:17+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T13:54:17+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T13:54:17+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T13:54:17+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T13:54:18+03:00] PUT "/users/5b1fa65919bcd5099d371001" 500 Internal Server Error - {}
+[2018-06-12T13:54:18+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T13:54:18+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T13:54:18+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T13:54:18+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T13:55:11+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T13:55:11+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T13:55:11+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T13:55:11+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T13:55:11+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T13:55:11+03:00] PUT "/users/5b1fa68f50841d09b5e8f7b4" 500 Internal Server Error - {}
+[2018-06-12T13:55:12+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T13:55:12+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T13:55:12+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T13:55:12+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:00:08+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:00:08+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:00:08+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:00:09+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:00:09+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:00:09+03:00] PUT "/users/5b1fa7b9b6256909ef4cf692" 400 Bad Request - {
+  "firstName": "AAA",
+  "lastName": "BBBB",
+  "email": "AB@w.com",
+  "phone": "0749966666"
+}
+[2018-06-12T14:00:09+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T14:00:09+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:00:09+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:00:09+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:12:31+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:12:31+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:12:31+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:12:31+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:12:31+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:12:31+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T14:12:31+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:12:31+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:12:31+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:14:47+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:14:47+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:14:47+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:14:47+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:14:47+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:14:47+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T14:14:47+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:14:47+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:14:47+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:15:50+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:15:50+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:15:50+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:15:51+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:15:51+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:15:51+03:00] PUT "/users/5b1fab67c6a7000aabe4411e" 400 Bad Request - {
+  "firstName": "AAA",
+  "lastName": "BBBB",
+  "email": "AB@w.com",
+  "phone": "0749966666"
+}
+[2018-06-12T14:15:51+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T14:15:51+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:15:51+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:15:51+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:18:04+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:18:04+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:18:04+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:18:04+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:18:04+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:18:04+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T14:18:04+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:18:04+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:18:04+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:18:20+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:18:20+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:18:20+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:18:20+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:18:20+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:18:21+03:00] PUT "/users/123456789ab" 500 Internal Server Error - {}
+[2018-06-12T14:18:21+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:18:21+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:18:21+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:21:03+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:21:03+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:21:03+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:21:03+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:21:03+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:21:04+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:21:04+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:21:04+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:21:24+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:21:24+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:21:24+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:21:24+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:21:24+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:21:24+03:00] PUT "/users/5b1facb4cc671f0b2cb27cd6" 400 Bad Request - {
+  "firstName": "1AAABB",
+  "lastName": "BBBBAA",
+  "email": "iuynynw.com",
+  "phone": "0759966666"
+}
+[2018-06-12T14:21:24+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:21:24+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:21:24+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:22:58+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:22:58+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:22:58+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:22:58+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:22:59+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:22:59+03:00] PUT "/users/5b1fad13e94bc50b4b618eec" 400 Bad Request - {
+  "firstName": "1AAABB",
+  "lastName": "BBBBAA",
+  "email": "iuynynw.com",
+  "phone": "0759966666"
+}
+[2018-06-12T14:22:59+03:00] PATCH "/users/5b1fad13e94bc50b4b618eee" 400 Bad Request - {
+  "firstName": "1AAABB",
+  "lastName": "BBBBAA",
+  "email": "iuynynw.com",
+  "phone": "0759966666"
+}
+[2018-06-12T14:22:59+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:22:59+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:22:59+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T14:23:50+03:00] DELETE "/days/0" 500 Internal Server Error - {}
+[2018-06-12T14:23:50+03:00] DELETE "/days/-1" 500 Internal Server Error - {}
+[2018-06-12T14:23:50+03:00] DELETE "/days/A" 500 Internal Server Error - {}
+[2018-06-12T14:23:51+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-12T14:23:51+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
+[2018-06-12T14:23:51+03:00] PUT "/users/5b1fad47025bf60b5cd9acfc" 400 Bad Request - {
+  "firstName": "1AAABB",
+  "lastName": "BBBBAA",
+  "email": "iuynynw.com",
+  "phone": "0759966666"
+}
+[2018-06-12T14:23:51+03:00] PATCH "/users/5b1fad47025bf60b5cd9acfe" 400 Bad Request - {
+  "firstName": "1AAABB",
+  "lastName": "BBBBAA",
+  "email": "iuynynw.com",
+  "phone": "0759966666"
+}
+[2018-06-12T14:23:51+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T14:23:51+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T14:23:51+03:00] GET "/users/%220%22" 404 Not Found - {}
