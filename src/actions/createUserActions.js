@@ -1,16 +1,16 @@
-const userSchema = require("../models/userModels");
+const userSchema = require("../models/userModel");
 
 let createUser = (req, response) => {
   let user = req.body;
   dataValid(user)
     .then(saveUserToDb)
     .then((user)=>{
-      user.id = idMax().then((data)=>data);
-      user.links = {
-        "GET" : `localhost:3000/users/${user.id}`,
-        "DELETE": `localhost:3000/users/${user.id}`
+      user[0].links = {
+        "GET" : `localhost:3000/users/${user[1]}`,
+        "DELETE": `localhost:3000/users/${user[1]}`
       }
-      response.status(200).send(user)
+      user[0].id=user[1];
+      response.status(200).send(user[0])
     }) 
     .catch(err => {
       if (/email_1/.test(err.message))
@@ -38,28 +38,18 @@ let dataValid = body => {
   });
 };
 
-
-let idMax = () => {
-  return new Promise ((res,rej)=>{
-  userSchema.find({}, (err, users) => {
-    res(users.length);
-  })
-}
-)}
-
-console.log(idMax().then(data=>data))
-
 let saveUserToDb = body => {
   return new Promise((res,rej)=>{
   let newUser = new userSchema(body);
-  newUser.save((err, data) => {if (err) {rej(err)} else {res(body)}});
+  newUser.save((err, data) => {if (err) {rej(err)} else {res([body,newUser.id])}});
 })
 };
 
 if (process.env.NODE_ENV == "dev") {
   module.exports = {
     createUser,
-    dataValid
+    dataValid,
+    saveUserToDb
   };
 } else {
   module.exports = {

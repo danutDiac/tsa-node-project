@@ -567,3 +567,136 @@
   "email": "ddd@gmail.com",
   "phone": "0734224223"
 }
+[2018-06-12T09:11:56+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "ddddsdsdsadfdsddddd@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-12T09:12:01+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ceva",
+  "lastName": "Olymp",
+  "email": "dddddd@gmail.com",
+  "phone": "0734224223"
+}
+[2018-06-12T09:13:25+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T09:13:25+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T09:13:25+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T09:13:25+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T09:13:25+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T09:13:25+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T09:13:25+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T09:58:12+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ivanka",
+  "lasName": "Trump",
+  "email": "suaforlife@foreal.us",
+  "phone": "0999999999"
+}
+[2018-06-12T10:14:53+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ivanka",
+  "lasName": "Trump",
+  "email": "suaforlife@foreal.us",
+  "phone": "0999999999"
+}
+[2018-06-12T10:19:00+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:19:00+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:19:00+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:19:00+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:19:00+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:19:00+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:19:00+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:23:46+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ivanka",
+  "lasName": "Trump",
+  "email": "suaforlife@foreal.us",
+  "phone": "0999999999"
+}
+[2018-06-12T10:33:59+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Ivanka",
+  "lasName": "Trump",
+  "email": "suaforlife@foreal.us",
+  "phone": "0999999999"
+}
+[2018-06-12T10:34:33+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:34:33+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:34:33+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:34:33+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:34:33+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:34:33+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:34:33+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:35:35+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:37:10+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:37:46+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:42:49+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:44:31+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:45:36+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:45:36+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:45:36+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:45:36+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:45:37+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:45:37+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:45:37+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:46:14+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:46:42+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:47:53+03:00] GET "/users/%220%22" 404 Not Found - {}
+[2018-06-12T10:49:41+03:00] POST "/users/" 400 Bad Request - {
+  "firstName": "Iv4nk4",
+  "lastName": "Trump",
+  "email": "tzaruparupetersburg.ru",
+  "phone": "0999999999"
+}
+[2018-06-12T10:49:42+03:00] DELETE "/days/-1" 404 Not Found - {}
+[2018-06-12T10:49:42+03:00] DELETE "/days/A" 404 Not Found - {}
+[2018-06-12T10:49:42+03:00] DELETE "/users/-1" 404 Not Found - {}
+[2018-06-12T10:49:42+03:00] DELETE "/users/A" 404 Not Found - {}
+[2018-06-12T10:49:42+03:00] GET "/users/-1" 404 Not Found - {}
+[2018-06-12T10:49:42+03:00] GET "/users/A" 404 Not Found - {}
+[2018-06-12T10:49:42+03:00] GET "/users/%220%22" 404 Not Found - {}
