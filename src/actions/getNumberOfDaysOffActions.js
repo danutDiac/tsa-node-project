@@ -1,38 +1,48 @@
-let { findItemByUserId, readFile } = require("../helpers/helpers")
+let DaysOff = require('../models/daysOffModel')
+let mongoose = require("mongoose")
 
-let countDays=(user)=>{
-    let countDays=21
-        for (let i in user){
-            countDays-=user[i].daysOff.length
-        }
-    return String(countDays)
-}
-
-let getDaysOff=(req,res)=>{
-    readFile("db/daysOff.json")
-    .then(data=>{
-        let daysOff=JSON.parse(data);
-        let id=req.params.id;
-        let user=findItemByUserId(daysOff,Number(id));
-    
-        if(user.length!=0){
-            let remainingDays=countDays(user)
-            res.send(remainingDays)
-        }
-        else{
-            res.status(404).json({message:"User not found"})
-        }
-
-    })
-    .catch(error=>{
-        res.status(500);
-        res.json({
-            serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+let getNumberOfDaysOff = (req, res) => {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+        res.status(400).json({
+            message: "Bad request"
         })
-    })
+     } else {
+        DaysOff.find({userId: req.params.id})
+            .then(daysOff => {
+                console.log(daysOff)
+                if (!daysOff[0]) {
+                    res.status(404).json({
+                        message: "daysOff not found"
+                    })
+                } else {
+                    let remainingDays = 21;
+                    console.log(daysOff)
+                    daysOff.forEach(day => {
+                        remainingDays -= day.daysOff.length;
+                    })
+                    res.status(200).json({
+                        numberOfDaysOff: remainingDays,
+                        links: {
+                            "GET": req.headers.host + req.baseUrl,
+                            "POST": req.headers.host + req.baseUrl
+                        }
+                    })
+                }
+            })
+            .catch(err => {
+                res.status(500).json({
+                    serverErrorMessage: "the error was logged and we'll be checking it shortly"
+                });
+            })
+    }
 }
 
-module.exports={
-    getDaysOff,
-    countDays
+if (process.env.NODE_ENV == "dev") {
+    module.exports = {
+        getNumberOfDaysOff
+    }
+} else {
+    module.exports = {
+        getNumberOfDaysOff
+    }
 }
