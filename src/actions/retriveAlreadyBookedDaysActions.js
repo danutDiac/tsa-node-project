@@ -46,8 +46,7 @@ const createArrayOffBookedDaysOff = (allBookedDays) => {
 const getAlreadyBookedDays = (userId) => {
     return findBookedDays(userId)
         .then(createArrayOffBookedDaysOff)
-        // .then(data => { return data })
-        // .catch(err => { throw err })
+       
 }
 
 const sendResponse = (request, response, bookedDays) => {
