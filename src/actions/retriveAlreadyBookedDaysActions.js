@@ -4,7 +4,7 @@ const findBookedDays = (userId) => {
     return new Promise((resolve, reject) => {
         findDaysOff = DaysOff.find({ userId: userId }, "daysOff", (err, daysOff) => {
             if (err) reject(err)
-            resolve(JSON.parse(JSON.stringify(daysOff)))
+            resolve(daysOff)
         })
     })
 }
@@ -12,12 +12,17 @@ const findBookedDays = (userId) => {
 const checkUserExistsInDB = (userId) => {
     return new Promise((resolve, reject) => {
         let findUser = User.findById(userId, (err, user) => {
-            if (err)
+            if (err){
                 reject({
                     status: 400,
                     message: "Bad user id"
                 });
-            if (user) resolve();
+                return
+            }
+            if (user) {
+                resolve();
+                return;
+            }
             reject({
                 status: 404,
                 message: "User not found"
@@ -41,8 +46,8 @@ const createArrayOffBookedDaysOff = (allBookedDays) => {
 const getAlreadyBookedDays = (userId) => {
     return findBookedDays(userId)
         .then(createArrayOffBookedDaysOff)
-        .then(data => { return data })
-        .catch(err => { throw err })
+        // .then(data => { return data })
+        // .catch(err => { throw err })
 }
 
 const sendResponse = (request, response, bookedDays) => {
@@ -59,7 +64,10 @@ const sendResponse = (request, response, bookedDays) => {
             })
             resolve()
         } catch (err) {
-            reject(err)
+            reject({
+                status: 500,
+                message: "the error was logged and we’ll be checking it shortly"
+            })
         }
     })
 }
