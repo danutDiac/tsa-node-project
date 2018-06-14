@@ -8,11 +8,10 @@ const DaysOff = require("../src/models/daysOffModel")
 const should = chai.should();
 chai.use(chaiHttp);
 
-describe(" GET number of days off /:id/getNumberOfDaysOff", () => {
+describe(" GET number of days off users/getNumberOfDaysOff/:id", () => {
     let id="";
-    beforeEach(function (done) {
+    before(function (done) {
         mongoose.connect(config.mongoUrl).then(() => {
-            mongoose.connection.db.dropDatabase()
             let newUser = new User({
                 "firstName": "Gigel",
                 "lastName": "Ostafi",
@@ -35,15 +34,26 @@ describe(" GET number of days off /:id/getNumberOfDaysOff", () => {
                 });
         })
     })
+    after(function(done){
+        mongoose.connection.db.dropDatabase()
+        done()
+    })
     it("should return status 200 for id found", function (done) {
-        chai.request(server).get(`/days/${id}/getNumberOfDaysOff`)
+        chai.request(server).get(`/users/getNumberOfDaysOff/${id}`)
             .end(function (err, res) {
                 res.should.have.status(200)
                 done()
             })
     })
+    it("should return 400 if id not found", function (done) {
+        chai.request(server).get(`/users/getNumberOfDaysOff/123456789abcd1efg2hi1234`)
+            .end(function (err, res) {
+                res.should.have.status(400)
+                done()
+            })
+    })
     it("should return 404 if id not found", function (done) {
-        chai.request(server).get(`/days/123456789abv/getNumberOfDaysOff`)
+        chai.request(server).get(`/users/getNumberOfDaysOff/5b1a7c96d02bc01fd861cab1`)
             .end(function (err, res) {
                 res.should.have.status(404)
                 done()

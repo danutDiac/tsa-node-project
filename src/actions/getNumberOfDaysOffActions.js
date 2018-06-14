@@ -1,6 +1,14 @@
 let DaysOff = require('../models/daysOffModel')
 let mongoose = require("mongoose")
 
+const calcDaysOff= days =>{
+    let remainingDays = 21;
+    days.forEach(day => {
+        remainingDays -= day.daysOff.length;
+    })
+    return remainingDays
+}
+
 let getNumberOfDaysOff = (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
         res.status(400).json({
@@ -14,14 +22,10 @@ let getNumberOfDaysOff = (req, res) => {
                     res.status(404).json({
                         message: "daysOff not found"
                     })
+                    return
                 } else {
-                    let remainingDays = 21;
-                    console.log(daysOff)
-                    daysOff.forEach(day => {
-                        remainingDays -= day.daysOff.length;
-                    })
                     res.status(200).json({
-                        numberOfDaysOff: remainingDays,
+                        numberOfDaysOff: calcDaysOff(daysOff),
                         links: {
                             "GET": req.headers.host + req.baseUrl,
                             "POST": req.headers.host + req.baseUrl
