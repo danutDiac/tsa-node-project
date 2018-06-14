@@ -1,17 +1,20 @@
 const DaysOff = require("../models/daysOffModel");
 const User = require("../models/userModel");
-const { getAlreadyBookedDays } = require("./retriveAlreadyBookedDaysActions")
+const { checkUserExistsInDB } = require("../helpers/helpers");
+const {
+    getAlreadyBookedDays
+} = require("./retriveAlreadyBookedDaysActions");
 
 const bookDaysOff = (request, response) => {
     const body = request.body;
 
     validateBody(body)
-    .then(checkUserExistsInDB.bind(null, body.userId))
-    .then(daysOffRangeToArray.bind(null, body.startDate, body.endDate))
-    .then(removeDuplicateDaysOff.bind(null,body.userId))
-    .then(createAndSaveDaysOffFlow.bind(null, body.userId))
-    .then(sendResponse.bind(null, request, response))
-    .catch(sendError.bind(null, response));
+        .then(checkUserExistsInDB.bind(null, body.userId))
+        .then(daysOffRangeToArray.bind(null, body.startDate, body.endDate))
+        .then(removeDuplicateDaysOff.bind(null, body.userId))
+        .then(createAndSaveDaysOffFlow.bind(null, body.userId))
+        .then(sendResponse.bind(null, request, response))
+        .catch(sendError.bind(null, response));
 };
 
 const isDateValid = date => {
@@ -21,11 +24,11 @@ const isDateValid = date => {
 
 const isDateIntervalOk = (date, dateName) => {
     if (new Date(date).getFullYear() > new Date().getFullYear() + 3)
-    return dateName + " year should not be set 3 years in the future\n";
+        return dateName + " year should not be set 3 years in the future\n";
     else if (
         new Date(date).setHours(0, 0, 0, 0) < new Date().setHours(0, 0, 0, 0)
     )
-    return dateName + " should not be lower than today\n";
+        return dateName + " should not be lower than today\n";
     else return "";
 };
 
@@ -44,30 +47,11 @@ const validateBody = body => {
         }
         rejectStatus += isDateIntervalOk(body.endDate, "End date");
         if (rejectStatus !== "")
-        reject({
-            status: 400,
-            message: rejectStatus
-        });
-    else resolve();
-});
-};
-
-const checkUserExistsInDB = userId => {
-    return new Promise((resolve, reject) => {
-        let findUser = User.findById(userId, (err, user) => {
-            if (err){
-                reject({
-                    status: 400,
-                    message: "Bad user id"
-                });
-                return 
-            }
-            if (user) resolve();
             reject({
-                status: 404,
-                message: "User not found"
+                status: 400,
+                message: rejectStatus
             });
-        });
+        else resolve();
     });
 };
 
@@ -80,16 +64,16 @@ const daysOffRangeToArray = (startDate, endDate) => {
     return new Promise((resolve, reject) => {
         startDate = new Date(startDate);
         endDate = new Date(endDate);
-        
+
         let daysOffArray = [];
-        
+
         if (startDate > endDate) {
             reject({
                 status: 400,
                 message: "End date lower than start date"
             });
         }
-        
+
         endDate.setDate(endDate.getDate() + 1);
         for (; startDate < endDate; startDate.setDate(startDate.getDate() + 1)) {
             if (startDate.getDay() > 0 && startDate.getDay() < 6) {
@@ -100,26 +84,26 @@ const daysOffRangeToArray = (startDate, endDate) => {
                 );
             }
         }
-        
+
         resolve(daysOffArray);
     });
 };
 
 const createUpdatedArray = (alreadyBookedDays, arrayOfDaysOff) => {
     let updatedDaysOff = [];
-    for(let i=0; i<arrayOfDaysOff.length; i++){
-        if(alreadyBookedDays.indexOf(arrayOfDaysOff[i]) === -1) 
+    for (let i = 0; i < arrayOfDaysOff.length; i++) {
+        if (alreadyBookedDays.indexOf(arrayOfDaysOff[i]) === -1)
             updatedDaysOff.push(arrayOfDaysOff[i])
     }
     return updatedDaysOff
 }
 
-const removeDuplicateDaysOff = (userId,arrayOfDaysOff) => {
-   return new Promise((resolve,reject) => {
+const removeDuplicateDaysOff = (userId, arrayOfDaysOff) => {
+    return new Promise((resolve, reject) => {
         getAlreadyBookedDays(userId)
             .then(alreadyBookedDays => {
                 updatedDaysOff = createUpdatedArray(alreadyBookedDays, arrayOfDaysOff)
-                if(updatedDaysOff.length === 0){
+                if (updatedDaysOff.length === 0) {
                     reject({
                         status: 422,
                         message: "This days are already booked"
@@ -131,8 +115,8 @@ const removeDuplicateDaysOff = (userId,arrayOfDaysOff) => {
                 resolve(arrayOfDaysOff)
             })
 
-        })
-    
+    })
+
 }
 
 const createAndSaveDaysOffFlow = (userId, daysOffArray) => {
@@ -154,8 +138,8 @@ const createNewDaysOffJSON = (userId, daysOffArray) => {
         resolve({
             userID: userId,
             daysOff: daysOffArray
+        });
     });
-});
 };
 
 const sendResponse = (request, response, newDaysOffJSON) => {
