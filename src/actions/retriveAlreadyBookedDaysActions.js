@@ -1,5 +1,6 @@
 const DaysOff = require("../models/daysOffModel")
 const User = require("../models/userModel")
+const { checkUserExistsInDB } = require("../helpers/helpers");
 const findBookedDays = (userId) => {
     return new Promise((resolve, reject) => {
         findDaysOff = DaysOff.find({ userId: userId }, "daysOff", (err, daysOff) => {
@@ -8,28 +9,6 @@ const findBookedDays = (userId) => {
         })
     })
 }
-
-const checkUserExistsInDB = (userId) => {
-    return new Promise((resolve, reject) => {
-        let findUser = User.findById(userId, (err, user) => {
-            if (err){
-                reject({
-                    status: 400,
-                    message: "Bad user id"
-                });
-                return
-            }
-            if (user) {
-                resolve();
-                return;
-            }
-            reject({
-                status: 404,
-                message: "User not found"
-            });
-        });
-    });
-};
 
 const createArrayOffBookedDaysOff = (allBookedDays) => {
     if (allBookedDays.length === 0) throw {
