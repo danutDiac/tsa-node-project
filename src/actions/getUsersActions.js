@@ -1,21 +1,5 @@
 const User = require("../models/userModel");
-
-const getUserFromDB = (userID) => {
-  return new Promise((resolve, reject) => {
-    let findUser = User.findById(userID, (err, user) => {
-      if (err) reject({
-        status: 400,
-        message: "Bad request"
-      });
-      if(user)
-        resolve(user);
-      reject({
-        status: 404,
-        message: "User not found"
-      });
-    });
-  })
-}
+const { getUserFromDB } = require("../helpers/helpers"); 
 
 const sendResponse = (request, response, user) => {
   return new Promise((resolve, reject) => {

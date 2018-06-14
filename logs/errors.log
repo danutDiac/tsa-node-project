@@ -1,0 +1,4 @@
+[2018-06-14T11:53:05+03:00] DELETE "/days/123456789abv" 404 Not Found - {}
+[2018-06-14T11:53:06+03:00] DELETE "/days/123456789ab" 400 Bad Request - {}
+[2018-06-14T11:53:06+03:00] DELETE "/users/123456789abv" 404 Not Found - {}
+[2018-06-14T11:53:06+03:00] DELETE "/users/123456789ab" 400 Bad Request - {}
