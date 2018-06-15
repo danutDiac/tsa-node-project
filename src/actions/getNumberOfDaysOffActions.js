@@ -17,7 +17,6 @@ let getNumberOfDaysOff = (req, res) => {
      } else {
         DaysOff.find({userId: req.params.id})
             .then(daysOff => {
-                console.log(daysOff)
                 if (!daysOff[0]) {
                     res.status(404).json({
                         message: "daysOff not found"

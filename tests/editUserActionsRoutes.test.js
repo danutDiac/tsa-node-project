@@ -40,7 +40,6 @@ describe('UPDATE /users/:id', function () {
             newUser.save()
                 .then(user => {
                     id = user._id
-                    console.log(user._id)
                     done()
                 })
                 .catch(err => {

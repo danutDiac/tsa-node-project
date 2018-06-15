@@ -4,7 +4,10 @@ const { checkUserExistsInDB } = require("../helpers/helpers");
 const findBookedDays = (userId) => {
     return new Promise((resolve, reject) => {
         findDaysOff = DaysOff.find({ userId: userId }, "daysOff", (err, daysOff) => {
-            if (err) reject(err)
+            if (err) reject({
+                status: 500,
+                message: "the error was logged and we’ll be checking it shortly"
+            })
             resolve(daysOff)
         })
     })
