@@ -13,6 +13,6 @@ router.get("/",retrieveUsers);
 router.delete('/:id', deleteUser)
 router.patch("/:id", editUserPatch)
 router.put("/:id", editUserPut)
-router.get('/getNumberOfDaysOff/:id', getNumberOfDaysOff)
+router.get('/:id/available-days-off', getNumberOfDaysOff)
 
 module.exports = router;
