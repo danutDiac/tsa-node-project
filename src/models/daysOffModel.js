@@ -4,6 +4,7 @@ let Schema = mongoose.Schema
 let daysOffSchema = new Schema({
     userId:{
         type: mongoose.Schema.Types.ObjectId,
+        ref : 'users',
         required: true
     },
     daysOff: [{
