@@ -1,6 +1,5 @@
-let mongoose = require("mongoose");
-
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 let userSchema = new Schema({
     firstName: {
@@ -14,7 +13,7 @@ let userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: [true, 'eroare data de mail']
     },
     phone: {
         type: String,

@@ -61,11 +61,39 @@ const findItemByUserId = (array, id) => {
     return array.filter(item => item.userId === id);
 }
 
+const getUserFromDB = userId => {
+    return new Promise((resolve, reject) => {
+        let findUser = User.findById(userId, (err, user) => {
+            if (err) {
+                reject({
+                    status: 400,
+                    message: "Bad user id"
+                });
+                return
+            }
+            if (user) resolve(user);
+            reject({
+                status: 404,
+                message: "User not found"
+            });
+        });
+    });
+};
+
+const checkUserExistsInDB = userId => {
+    getUserFromDB(userId)
+    .then(() => {
+        return;
+    })
+}
+
 module.exports = {
     writeFile,
     readFile,
     parseJSON,
     maxId,
     newId,
-    findItemById
+    findItemById,
+    getUserFromDB,
+    checkUserExistsInDB
 }

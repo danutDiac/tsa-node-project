@@ -5,4 +5,6 @@ let { retriveAlreadyBookedDays } = require('../actions/retriveAlreadyBookedDaysA
 
 router.post("/", bookDaysOff);
 router.delete('/:id', deleteDaysOff)
+router.get('/:id', retriveAlreadyBookedDays)
+
 module.exports = router;

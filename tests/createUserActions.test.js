@@ -1,109 +1,78 @@
 const chai = require("chai");
-let { maxId } = require("../src/helpers/helpers");
-let { dataValid, checkMail } = require("../src/actions/createUserActions");
+const chaiHttp = require("chai-http");
+const config = require("../config/config");
+const mongoose = require("mongoose");
+let User = require("../src/models/userModel");
+let { dataValid, saveUserToDb } = require("../src/actions/createUserActions");
 const should = chai.should();
-// console.log(users);
 
-describe("Create user module actions", () => {
-  const userBody = [
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "cevacenueste@mail.com",
-      phone: "0734454922",
-      id: 0
-    },
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "cevamail.com",
-      phone: "0734454922",
-      id: 1
-    },
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "ceva@mail.com",
-      phone: "0734454922",
-      id: 2
-    },
-    {
-      firstName: "Co2tel",
-      lastName: "Ciobanu",
-      email: "cevacareecutotulaltceva@mail.com",
-      phone: "0734454922",
-      id: 3
-    }
-  ];
-  const users = [
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "cidsadagmail.com",
-      phone: "0734454922",
-      id: 1
-    },
-    {
-      firstName: "Co5t3!",
-      lastName: "Ciobanu",
-      email: "cidsa@dagmail.com",
-      phone: "0734454922",
-      id: 2
-    },
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "ceva@mail.com",
-      phone: "0734454922",
-      id: 3
-    },
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "altceva@gmail.com",
-      phone: "0734454922",
-      id: 4
-    },
-    {
-      firstName: "Costel",
-      lastName: "Ciobanu",
-      email: "altceva@gmail.com",
-      phone: "0734454922",
-      id: 5
-    }
-  ];
-  describe("maxId", () => {
-    it("Should return the maximum value for existing user id", done => {
-      // console.log(users);
-      let expectedResult = 5;
-      let result = maxId(users);
-
-      chai.expect(result).to.equal(expectedResult);
-      done();
+const server = require("../src/main.js");
+// user1 is control user
+let user1 = {
+  "firstName" : "Ivanka",
+  "lastName": "Trump",
+  "email": "suaforlife@foreal.us",
+  "phone": "0999999999"
+};
+// user2 has the same email as our model in DB
+let user2 = {
+  "firstName": "Ivanka",
+  "lastName": "Trump",
+  "email": "tzaruparu@petersburg.ru",
+  "phone": "0999999999"
+};
+// user3 has wrong data 
+let user3 = {
+  "firstName": "Iv4nk4",
+  "lastName": "Trump",
+  "email": "tzaruparupetersburg.ru",
+  "phone": "0999999999"
+};
+describe("POST / CREATE USER ", () => {
+  beforeEach(done => {
+    mongoose.connection.db.dropDatabase();
+    let newUser = new User({
+      firstName: "Ivan",
+      lastName: "CelGroaznic",
+      email: "tzaruparu@petersburg.ru",
+      phone: "0777777777"
     });
+    newUser.save();
+    done();
   });
 
   describe("dataValid", () => {
-    it("Should return 1 when the validation is good", done => {
-      let result = dataValid(userBody[0], users);
-      chai.expect(result).to.equal(1);
+    it("Should return status 200 when valid data is sent to the server", done => {
+      chai
+        .request(server)
+        .post("/users/")
+        .send(user1)
+        .then((err, res) => {
+          res.should.have.status(200);
+        })
+        .catch(err => err);
       done();
     });
-    it("Should return the error when mail validation requirements are not met", done => {
-      let result = dataValid(userBody[1], users);
-      chai.expect(result).to.equal("Ati introdus emailul gresit" + "\n");
+    it("Should return status 400 when a user tries to register with an already used email address", done => {
+      chai
+        .request(server)
+        .post("/users/")
+        .send(user2)
+        .then((err, res) => {
+          res.should.have.status(400);
+        })
+        .catch(err => err);
       done();
     });
-    it("Should return an error when you add odd characters to the name", done => {
-      let result = dataValid(userBody[3], users);
-      chai.expect(result).to.equal("Ati introdus prenumele gresit" + "\n");
-      done();
-    });
-  });
-  describe("checkMail", () => {
-    it("Should return 0 when there is the same e-mail twice", done => {
-      let result = checkMail(userBody, users);
-      chai.expect(result).to.equal(0);
+    it("Should return an error when wrong characters are being used to fill the form", done => {
+      chai
+        .request(server)
+        .post("/users/")
+        .send(user3)
+        .then((err, res) => {
+          res.should.have.status(400);
+        })
+        .catch(err => err);
       done();
     });
   });
