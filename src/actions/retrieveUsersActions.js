@@ -1,24 +1,20 @@
-const { readFile } = require("../helpers/helpers");
+const userSchema = require("../models/userModels");
+const mongoose=require('mongoose');
 
-let retrieveUsers = (req, res) => {
-  readFile("db/users.json")
-    .then(data => {
-      let users = JSON.parse(data);
-      if (users) {
-        res.status(200).json(users);
-      } else {
-        res.status(404).json({
-          serverErrorMessage: "User not found"
-        });
-      }
-    })
-    .catch(error => {
-      res.status(500);
-      res.json({
-        serverErrorMessage:
-          "the error was logged and we’ll be checking it shortly"
-      });
-    });
-};
+
+let retrieveUsers=(req,res)=>{
+var User= ()=> {return new Promise((resolve,reject)=>{
+  let user=userSchema.find(({}, function(err, users) {
+    var userMap = [];
+    users.map(e => userMap.push(e));
+    resolve(userMap);
+  }))
+})}
+User().then((userMap)=>{res.send(userMap)}).catch(( err=>{
+  res.status(400).json({
+    ErrorMessage :"Bad Request Error"
+  })
+}))
+}
 
 module.exports = { retrieveUsers };

@@ -1,25 +1,32 @@
-let fs = require('fs')
-let mongoose = require('mongoose')
+let fs = require("fs");
 let express = require("express");
-let bodyParser = require("body-parser")
-let morgan = require("morgan")
-let moment = require('moment-timezone');
+let bodyParser = require("body-parser");
+let morgan = require("morgan");
+let moment = require("moment-timezone");
 let usersRouter = require("./routes/users");
 let daysRouter = require("./routes/days");
-let nationalDaysRouter = require("./routes/nationalDays");
+let mongoose = require("mongoose");
 let config = require("../config/config");
+let nationalDaysRouter = require("./routes/nationalDays");
 let nationalDays2018 = require("../config/nationalDays2018")
 const NationalDays = require('./models/nationalDaysModel')
 
 let app = express();
 
-morgan.token('date', (req, res, tz) => moment().tz(tz).format())
-morgan.token('res', (req, res, field) => res[field])
-morgan.token('req', (req, res, field) => JSON.stringify(req[field], null, 2))
-morgan.format('dataFormat', '[:date[Europe/Bucharest]] :method ":url" :status :res[statusMessage] - :req[body]')
-const stream = fs.createWriteStream('logs/errors.log', { flags: 'a' })
-const skip = (req, res) => res.statusCode < 400
-app.use(morgan('dataFormat', { skip, stream }))
+morgan.token("date", (req, res, tz) =>
+  moment()
+    .tz(tz)
+    .format()
+);
+morgan.token("res", (req, res, field) => res[field]);
+morgan.token("req", (req, res, field) => JSON.stringify(req[field], null, 2));
+morgan.format(
+  "dataFormat",
+  '[:date[Europe/Bucharest]] :method ":url" :status :res[statusMessage] - :req[body]'
+);
+const stream = fs.createWriteStream("logs/errors.log", { flags: "a" });
+const skip = (req, res) => res.statusCode < 400;
+app.use(morgan("dataFormat", { skip, stream }));
 app.use(bodyParser.json());
 app.use("/days", daysRouter);
 app.use("/users", usersRouter);
@@ -43,8 +50,19 @@ mongoose.connect(config.mongoUrl, (err, res) => {
     }
 });
 
-app.listen(3000, function () {
-    console.log('Server started on localhost:3000')
+mongoose.connect(
+  config.mongoUrl,
+  (err, res) => {
+    if (err) console.log(`Error connecting to the database: ${err}`);
+    else {
+      console.log(`Connected to the ${config.mongoUrl} database`);
+      if (process.env.NODE_ENV == "dev") mongoose.connection.db.dropDatabase();
+    }
+  }
+);
+
+app.listen(3000, function() {
+  console.log("Server started on localhost:3000");
 });
 
 module.exports = app;
