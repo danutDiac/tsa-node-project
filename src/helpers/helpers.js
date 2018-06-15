@@ -61,15 +61,30 @@ const findItemByUserId = (array, id) => {
     return array.filter(item => item.userId === id);
 }
 
-let sendErrorMessage = ({err, res}) => {
-    return res.status(500).json({
-        serverErrorMessage: "the error was logged and we’ll be checking it shortly"
-    })
-}
+const getUserFromDB = userId => {
+    return new Promise((resolve, reject) => {
+        let findUser = User.findById(userId, (err, user) => {
+            if (err) {
+                reject({
+                    status: 400,
+                    message: "Bad user id"
+                });
+                return
+            }
+            if (user) resolve(user);
+            reject({
+                status: 404,
+                message: "User not found"
+            });
+        });
+    });
+};
 
-let sendSuccessMessage = (status, body, res) => {
-    
-    return res.status(status).json(body)
+const checkUserExistsInDB = userId => {
+    getUserFromDB(userId)
+    .then(() => {
+        return;
+    })
 }
 
 module.exports = {
@@ -78,5 +93,7 @@ module.exports = {
     parseJSON,
     maxId,
     newId,
-    findItemById
+    findItemById,
+    getUserFromDB,
+    checkUserExistsInDB
 }

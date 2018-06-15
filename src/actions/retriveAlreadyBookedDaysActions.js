@@ -1,39 +1,32 @@
-const { readFile, parseJSON } = require("../helpers/helpers");
+const DaysOff = require("../models/daysOffModel")
+const User = require("../models/userModel")
+const { checkUserExistsInDB } = require("../helpers/helpers");
+const findBookedDays = (userId) => {
+    return new Promise((resolve, reject) => {
+        findDaysOff = DaysOff.find({ userId: userId }, "daysOff", (err, daysOff) => {
+            if (err) reject(err)
+            resolve(daysOff)
+        })
+    })
+}
 
-const parseJSONFromFile = path => {
-    return readFile(path)
-        .then(parseJSON)
-        .catch(err => {
-            throw {
-                status: 500,
-                message: "the error was logged and we’ll be checking it shortly"
-            };
-        });
-};
+const createArrayOffBookedDaysOff = (allBookedDays) => {
+    if (allBookedDays.length === 0) throw {
+        status: 404,
+        message: "No days booked yet"
+    }
+    let alreadyBookedDays = []
+    for (i of allBookedDays) {
+        alreadyBookedDays.push(...i.daysOff)
+    }
+    return alreadyBookedDays
+}
 
-const findBookedDays = (userId, daysOff) => {
-    let daysBooked = [];
-    daysOff.forEach(element => {
-        if (element["userId"] === userId) {
-            daysBooked.push(...element["daysOff"]);
-        }
-    });
-    return daysBooked;
-};
-
-const getAlreadyBookedDays = (userId, daysOff) => {
-    return new Promise((response, reject) => {
-        const bookedDays = findBookedDays(userId, daysOff);
-        if (bookedDays.length === 0)
-            reject({
-                status: 404,
-                message: "User not found/no days booked yet"
-            });
-        else {
-            response(bookedDays);
-        }
-    });
-};
+const getAlreadyBookedDays = (userId) => {
+    return findBookedDays(userId)
+        .then(createArrayOffBookedDaysOff)
+       
+}
 
 const sendResponse = (request, response, bookedDays) => {
     return new Promise((resolve, reject) => {
@@ -42,36 +35,41 @@ const sendResponse = (request, response, bookedDays) => {
                 bookedDays: bookedDays,
                 links: {
                     POST: `http://localhost:3000/days`,
-                    DELETE: `http://localhost:3000/days/${Number(
+                    DELETE: `http://localhost:3000/days/${
                         request.params.id
-                    )}`
-                }
-            });
-            resolve();
+                        }`,
+                },
+            })
+            resolve()
         } catch (err) {
-            reject(err);
+            reject({
+                status: 500,
+                message: "the error was logged and we’ll be checking it shortly"
+            })
         }
-    });
-};
+    })
+}
 
 const sendError = (response, err) => {
-    response.status(err.status).json({ error: err.message });
-};
+    console.log(err)
+    response.status(err.status).json({ error: err.message })
+}
 
 const retriveAlreadyBookedDays = (request, response) => {
-    parseJSONFromFile("db/daysOff.json")
-        .then(getAlreadyBookedDays.bind(null, Number(request.params.id)))
+    checkUserExistsInDB(request.params.id)
+        .then(getAlreadyBookedDays.bind(null, request.params.id))
         .then(sendResponse.bind(null, request, response))
-        .catch(sendError.bind(null, response));
-};
-if (process.env.NODE_ENV === "dev") {
+        .catch(sendError.bind(null, response))
+}
+if (process.env.NODE_ENV === 'dev') {
     module.exports = {
         retriveAlreadyBookedDays,
         findBookedDays,
-        getAlreadyBookedDays
-    };
+        getAlreadyBookedDays,
+    }
 } else {
     module.exports = {
-        retriveAlreadyBookedDays
-    };
+        retriveAlreadyBookedDays,
+        getAlreadyBookedDays
+    }
 }
