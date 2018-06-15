@@ -25,7 +25,7 @@ describe('DELETE /users/:id', function () {
                     done()
                 })
                 .catch(err => {
-                    done()
+                    // done()
                 });
         })
     })

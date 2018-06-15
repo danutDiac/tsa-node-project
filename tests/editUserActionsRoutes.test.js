@@ -28,7 +28,8 @@ let userTest3 = {
 
 describe('UPDATE /users/:id', function () {
     let id="";
-    beforeEach(function (done) {
+
+    before(function (done) {
         mongoose.connect(config.mongoUrl).then(() => {
             mongoose.connection.db.dropDatabase()
             let newUser = new User({
@@ -43,7 +44,7 @@ describe('UPDATE /users/:id', function () {
                     done()
                 })
                 .catch(err => {
-                    done()
+                    // done()
                 });
         })
     })
