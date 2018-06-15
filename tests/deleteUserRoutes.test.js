@@ -43,7 +43,7 @@ describe('DELETE /users/:id', function () {
                 done()
             })
     })
-    it("should return 400 for invalid id", function (done) {
+    it("should return 400 for invalid id", function(done) {
         chai.request(server).delete(`/users/123456789ab`)
             .end(function (err, res) {
                 res.should.have.status(400)
