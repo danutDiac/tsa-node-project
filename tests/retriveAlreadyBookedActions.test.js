@@ -1,60 +1,89 @@
 const chai = require("chai")
+const mongoose = require("mongoose")
+const config = require("../config/config")
+const DaysOff = require("../src/models/daysOffModel");
+const User = require("../src/models/userModel");
+const { findBookedDays, createArrayOffBookedDaysOff, getAlreadyBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions")
 
 describe("retriveAlreadyBookedDays module actions", (done) => {
-    const daysOff = [
-        {"id": 0,
-         "userId": 0,
-         "daysOff": [2018-06-04, 2018-06-05]
-        },
 
-        {"id": 1,
-         "userId": 1,
-         "daysOff": [2018-06-20, 2018-06-21]
-        },
-
-        {"id": 2,
-         "userId": 0,
-         "daysOff": [2018-08-23, 2018-08-24, 2018-08-27, 2018-08-28]
-        }
-    ]
     describe("findBookedDays function tests", done => {
+        before((done) => {
+            mongoose.connect(config.mongoUrl).then(() => {
+                mongoose.connection.db.dropDatabase()
+                const newUser = new User({
+                    "firstName": "Gigel",
+                    "lastName": "Costache",
+                    "email": "costel@gmail.com",
+                    "phone": "0232272892"
+                })
 
-        it("Should return an array with the days already booked by user with id 0", done => {
-            const { findBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions");
-            const userId = 0
-            const bookedDays = findBookedDays(userId, daysOff);
-            const result = [2018-06-04, 2018-06-05,2018-08-23, 2018-08-24, 2018-08-27, 2018-08-28]
+                let createUser = newUser.save((err, user) => {
+                    if (err) console.log(err);
+                    const newDaysOff1 = new DaysOff({
+                        "userId": user._id,
+                        "daysOff": ["2018-06-18", "2018-06-19", "2018-06-20"]
+                    })
+                    newDaysOff1.save((err, data) => {
+                        if (err) console.log(err);
+                    })
+                    const newDaysOff2 = new DaysOff({
+                        "userId": user._id,
+                        "daysOff": ["2018-08-20", "2018-08-21", "2018-08-22"]
+                    })
 
-            chai.expect(bookedDays).to.deep.equal(result);
-            done();
+                    newDaysOff2.save((err, data) => {
+                        if (err) console.log(err);
+                    })
+                })
+                const newUser2 = new User({
+                    "firstName": "Gigel",
+                    "lastName": "Costache",
+                    "email": "gigel@gmail.com",
+                    "phone": "0232272892"
+                })
+                newUser2.save((err,user)=>{
+                    if(err) console.log(err)
+                    done();
+                })
+            });
+        })
+        it("Should return an array of booked days for an user", done => {
+            let findUser = User.findOne({ email: "costel@gmail.com" })
+                .then((user) => {
+                    let userId = user["_id"];
+                    getAlreadyBookedDays(userId)
+                        .then((arrayOffBookedDays) => {
+                            let alreadyBookedDays = [
+                                "2018-06-18",
+                                "2018-06-19", 
+                                "2018-06-20", 
+                                "2018-08-20", 
+                                "2018-08-21", 
+                                "2018-08-22"
+                            ]
+                            chai.expect(arrayOffBookedDays).to.deep.equal(alreadyBookedDays)
+                            done();
+                        })
+                        .catch(err=>{console.log(err)})
+                });
         })
 
-        it("should return an empty array for user with id 2", done => {
-            const { findBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions");
-            const userId = 2;
-            const bookedDays = findBookedDays(userId, daysOff);
-            const result = [];
-
-            chai.expect(bookedDays).to.deep.equal(result);
-            done()
-        })
-            })
-
-    describe("getAlreadyBookedDays function tests", done => {
-
-        it("Should return the message 'User not found/no days booked yet', for user with id 2", done => {
-        const { getAlreadyBookedDays } = require("../src/actions/retriveAlreadyBookedDaysActions");
-        const userId = 2;
-        const result = {
-            "status" : 404,
-            "message": "User not found/no days booked yet"
-        }
-        getAlreadyBookedDays(userId, daysOff)
-            .catch(err => {
-                chai.expect(err).to.deep.equal(result);
-                done();
-            })
-        })
+       it("Should return an error for no booked days",done=>{
+        let findUser = User.findOne({ email: "gigel@gmail.com" })
+        .then((user) => {
+            let userId = user["_id"];
+            getAlreadyBookedDays(userId)
+                .catch((err)=>{
+                    let errorReturn ={
+                        status: 404,
+                        message: "No days booked yet"
+                    }
+                    chai.expect(err).to.deep.equal(errorReturn)
+                    done();
+                })
+        });
+       })
     })
 
 })
