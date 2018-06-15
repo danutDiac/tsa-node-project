@@ -8,6 +8,8 @@ let daysRouter = require("./routes/days");
 let mongoose = require("mongoose");
 let config = require("../config/config");
 let nationalDaysRouter = require("./routes/nationalDays");
+let nationalDays2018 = require("../config/nationalDays2018")
+const NationalDays = require('./models/nationalDaysModel')
 
 let app = express();
 
@@ -29,6 +31,24 @@ app.use(bodyParser.json());
 app.use("/days", daysRouter);
 app.use("/users", usersRouter);
 app.use("/nationalDays", nationalDaysRouter);
+mongoose.connect(config.mongoUrl, (err, res) => {
+    if (err) console.log(err)
+    else {
+        console.log("Connected to db")
+        NationalDays.find({})
+            .then(nationalDays => {
+                if (!nationalDays[0]) {
+                    console.log("Populating db with national days...")
+                    let newNationalDays = []
+                    nationalDays2018.forEach(day => {
+                        let newNationalDay = new NationalDays(day)
+                        newNationalDays.push(newNationalDay)
+                    })
+                    NationalDays.insertMany(newNationalDays)
+                }
+            })
+    }
+});
 
 mongoose.connect(
   config.mongoUrl,
