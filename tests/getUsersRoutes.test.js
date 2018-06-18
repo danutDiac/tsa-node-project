@@ -43,7 +43,7 @@ describe('GetUser module routes', () => {
     it("Should return error 400 for an wrong link", (done) => {
         const link = `/users/123456789ab`;
         const errorMessage = {
-            error: "Bad request"
+            error: "Bad user id"
         }
         chai.request(server)
             .get(link)

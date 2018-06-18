@@ -89,7 +89,7 @@ const daysOffRangeToArray = (startDate, endDate) => {
     });
 };
 
-const createUpdatedArray = (alreadyBookedDays, arrayOfDaysOff) => {
+const createUpdatedArray = (arrayOfDaysOff, alreadyBookedDays) => {
     let updatedDaysOff = [];
     for (let i = 0; i < arrayOfDaysOff.length; i++) {
         if (alreadyBookedDays.indexOf(arrayOfDaysOff[i]) === -1)
@@ -101,18 +101,20 @@ const createUpdatedArray = (alreadyBookedDays, arrayOfDaysOff) => {
 const removeDuplicateDaysOff = (userId, arrayOfDaysOff) => {
     return new Promise((resolve, reject) => {
         getAlreadyBookedDays(userId)
-            .then(alreadyBookedDays => {
-                updatedDaysOff = createUpdatedArray(alreadyBookedDays, arrayOfDaysOff)
+            .then(createUpdatedArray.bind(null, arrayOfDaysOff))
+            .then(updatedDaysOff => {
                 if (updatedDaysOff.length === 0) {
                     reject({
                         status: 422,
-                        message: "This days are already booked"
+                        message: "These days are already booked"
                     })
                 }
                 resolve(updatedDaysOff);
             })
             .catch(err => {
-                resolve(arrayOfDaysOff)
+                if(err.status===404)
+                    resolve(arrayOfDaysOff)
+                else  reject(err)
             })
 
     })

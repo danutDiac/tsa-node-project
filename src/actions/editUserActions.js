@@ -3,24 +3,23 @@ let User = require("../models/userModel");
 const editUserPut = (req, res) => {
     if (Object.keys(req.body).length === 4) {
         User.findByIdAndUpdate(req.params.id, {
-            $set: req.body
-        }, {
-            new: true
-        })
-        .then(reqValidData.bind(null,req.body,1))
-        .then(sendResponse.bind(null, req, res))
-        .catch(err => {
-            if (typeof err === "object") {
-                res.status(err["status"]).json({
-                    "message": err["message"]
-                })
-            }
-            else {
-                res.status(500).json({
-                    serverErrorMessage: "the error was logged and we’ll be checking it shortly"
-                })
-            }
-        })
+                $set: req.body
+            }, {
+                new: true
+            })
+            .then(reqValidData.bind(null, req.body, 1))
+            .then(sendResponse.bind(null, req, res))
+            .catch(err => {
+                if (err["status"]) {
+                    res.status(err["status"]).json({
+                        "message": err["message"]
+                    })
+                } else {
+                    res.status(500).json({
+                        serverErrorMessage: "the error was logged and we’ll be checking it shortly"
+                    })
+                }
+            })
     } else {
         res.status(500).json({
             serverErrorMessage: "need more parameters"
@@ -37,12 +36,11 @@ const editUserPatch = (req, res) => {
         .then(reqValidData.bind(null, req.body, 0))
         .then(sendResponse.bind(null, req, res))
         .catch(err => {
-            if (typeof err === "object") {
+            if (err["status"]) {
                 res.status(err["status"]).json({
                     "message": err["message"]
                 })
-            }
-            else {
+            } else {
                 res.status(500).json({
                     serverErrorMessage: "the error was logged and we’ll be checking it shortly"
                 })
@@ -58,7 +56,7 @@ let checkMail = (newMail, allMails) => {
     return 0;
 };
 
-let reqValidData = (body,putMethod,users) => {
+let reqValidData = (body, putMethod, users) => {
     //putMethod=1 daca aplicam metoda pe put
     //putMethod=0 daca apliam metodaspe patch
     return new Promise((resolve, reject) => {
